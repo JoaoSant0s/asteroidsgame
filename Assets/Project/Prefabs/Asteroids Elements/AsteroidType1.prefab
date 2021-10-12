@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceshipTag: Spaceship
   bulletTag: Bullet
+  data: {fileID: 11400000, guid: e2f86c57e9b7ed74ab3e5b77cf940b97, type: 2}
 --- !u!114 &1169574845385655395
 MonoBehaviour:
   m_ObjectHideFlags: 0

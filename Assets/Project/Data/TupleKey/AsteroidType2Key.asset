@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf28217f0c2e7949a2d93d89bb43002, type: 3}
-  m_Name: AsteroidType2Data
+  m_Script: {fileID: 11500000, guid: fc46ebaeba1e37a4f967f3c52821f0ba, type: 3}
+  m_Name: AsteroidType2Key
   m_EditorClassIdentifier: 
-  speed: 50
-  canSpawnNextAsteroid: 1
-  nextAsteroidAmount: 3
-  nextAsteroidType: {fileID: 11400000, guid: bdb02aafb654bda4bb555e793168ffcd, type: 2}
+  key: AsteroidType1Key

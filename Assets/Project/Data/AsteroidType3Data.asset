@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: AsteroidType3Data
   m_EditorClassIdentifier: 
   speed: 75
+  canSpawnNextAsteroid: 0
+  nextAsteroidAmount: 0
+  nextAsteroidType: {fileID: 0}
