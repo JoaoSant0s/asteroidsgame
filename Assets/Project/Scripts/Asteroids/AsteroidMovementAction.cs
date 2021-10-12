@@ -16,10 +16,14 @@ namespace AsteroidsGame.Actions
         [SerializeField]
         private AsteroidData data;
 
+        #region Unity Methods
+
         private void Start()
         {
             Move();
         }
+
+        #endregion
 
         private void Move()
         {

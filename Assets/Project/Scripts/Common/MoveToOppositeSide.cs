@@ -15,6 +15,8 @@ namespace AsteroidsGame.UtilWrapper
 
         private Vector2 sizeOffset;
 
+        #region Unity Methods
+
         private void Awake()
         {
             canvas = FindObjectOfType<Canvas>();
@@ -34,6 +36,8 @@ namespace AsteroidsGame.UtilWrapper
 
             transform.position = nextPosition;
         }
+
+        #endregion
 
         private bool CollideScreenSide(Vector2 basePosition, out Vector2 oppositivePosition)
         {
