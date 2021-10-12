@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace AsteroidsGame.UtilWrapper
+namespace AsteroidsGame.UI
 {
     public class ButtonHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
@@ -20,7 +20,10 @@ namespace AsteroidsGame.UtilWrapper
 
         private bool isPressed;
 
-        #region Unity Methods        
+
+        public UnityEvent HoldEvent => holdEvent;
+
+#region Unity Methods        
 
         public void OnPointerDown(PointerEventData eventData)
         {            
@@ -39,7 +42,7 @@ namespace AsteroidsGame.UtilWrapper
             OnUpdateSelected();
         }        
 
-        #endregion
+#endregion
 
         public void OnUpdateSelected()
         {

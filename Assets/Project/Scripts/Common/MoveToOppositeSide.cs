@@ -15,7 +15,7 @@ namespace AsteroidsGame.UtilWrapper
 
         private Vector2 sizeOffset;
 
-        #region Unity Methods
+#region Unity Methods
 
         private void Awake()
         {
@@ -37,7 +37,7 @@ namespace AsteroidsGame.UtilWrapper
             transform.position = nextPosition;
         }
 
-        #endregion
+#endregion
 
         private bool CollideScreenSide(Vector2 basePosition, out Vector2 oppositivePosition)
         {

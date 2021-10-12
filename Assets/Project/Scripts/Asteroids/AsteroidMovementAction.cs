@@ -16,14 +16,14 @@ namespace AsteroidsGame.Actions
         [SerializeField]
         private AsteroidData data;
 
-        #region Unity Methods
+#region Unity Methods
 
         private void Start()
         {
             Move();
         }
 
-        #endregion
+#endregion
 
         private void Move()
         {
@@ -32,7 +32,7 @@ namespace AsteroidsGame.Actions
             var direction = Util.RandomDirection();
             direction.Normalize();
 
-            rb.velocity = direction * data.speed;
+            rb.velocity = direction * data.speed * Time.deltaTime;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AsteroidsGame.UtilWrapper
+namespace AsteroidsGame.UI
 {
     [RequireComponent(typeof(Image))]
     public class ImageColor : MonoBehaviour
