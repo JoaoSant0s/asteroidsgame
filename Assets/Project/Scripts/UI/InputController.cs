@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace AsteroidsGame.UI
 {
@@ -10,7 +12,11 @@ namespace AsteroidsGame.UI
         public static OnManipulateSpaceShip RotateSpaceShip;
         public static OnManipulateSpaceShip AccelerateSpaceShip;
 
-        [Header("Buttons")]
+        public delegate void OnActionSpaceShip();
+        public static OnActionSpaceShip ShootAction;
+        public static OnActionSpaceShip HyperSpaceAction;
+
+        [Header("Hold Buttons")]
 
         [SerializeField]
         private ButtonHold buttonRotateLeft;
@@ -21,6 +27,11 @@ namespace AsteroidsGame.UI
         [SerializeField]
         private ButtonHold buttonAccelerate;
 
+        [Header("Simple Buttons")]
+
+        [SerializeField]
+        private Button buttonShoot;
+
 #region Unity Methods
             private void Awake() 
             {
@@ -30,16 +41,24 @@ namespace AsteroidsGame.UI
 
             private void SetButtonsActions()
             {
-                buttonRotateLeft.HoldEvent.AddListener(()=>{
+                buttonRotateLeft.HoldEvent.AddListener(()=>
+                {
                     RotateSpaceShip?.Invoke(1);
                 });
 
-                buttonRotateRight.HoldEvent.AddListener(()=>{
+                buttonRotateRight.HoldEvent.AddListener(()=>
+                {
                     RotateSpaceShip?.Invoke(-1);
                 });
 
-                buttonAccelerate.HoldEvent.AddListener(()=>{
+                buttonAccelerate.HoldEvent.AddListener(()=>
+                {
                     AccelerateSpaceShip?.Invoke(1);
+                });
+
+                buttonShoot.onClick.AddListener(()=>
+                {
+                    ShootAction?.Invoke();
                 });
             }
             

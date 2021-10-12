@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2757933576462487187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6956714178246273786}
+  m_Layer: 0
+  m_Name: BulletOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6956714178246273786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2757933576462487187}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.019, y: 0.312, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7682215802541502691}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7682215802541502689
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,12 +40,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7682215802541502691}
   - component: {fileID: 7682215802541502690}
+  - component: {fileID: 1135018853}
   - component: {fileID: 7232691595977183956}
   - component: {fileID: 6981900981540135995}
+  - component: {fileID: 8064669255497903500}
   - component: {fileID: 7748884888836786921}
   - component: {fileID: 3702076022467836716}
   - component: {fileID: 65310726465635410}
-  - component: {fileID: 1135018853}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -33,7 +64,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6956714178246273786}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -88,6 +120,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1135018853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682215802541502689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffd0e5411d61844bb6a166d43807368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7232691595977183956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +159,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3702076022467836716}
   data: {fileID: 11400000, guid: 9370e1c13e94dd24daaef3c1c5d28d9c, type: 2}
+--- !u!114 &8064669255497903500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682215802541502689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a548689b1ef7bae4a947bfb4796e6dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4574333110036720673, guid: 532f50eba1ec688469b4ea901fcfaef9, type: 3}
+  bulletOrigin: {fileID: 6956714178246273786}
 --- !u!114 &7748884888836786921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,15 +233,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.42, y: 0.66}
   m_EdgeRadius: 0
---- !u!114 &1135018853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7682215802541502689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ffd0e5411d61844bb6a166d43807368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

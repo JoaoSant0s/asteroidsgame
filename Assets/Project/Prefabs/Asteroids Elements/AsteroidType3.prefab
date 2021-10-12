@@ -10,15 +10,16 @@ GameObject:
   m_Component:
   - component: {fileID: 1847156655779301462}
   - component: {fileID: 1847156655779301457}
-  - component: {fileID: 3623478771892204609}
-  - component: {fileID: 8275433610998417368}
   - component: {fileID: 872020644}
+  - component: {fileID: 3623478771892204609}
+  - component: {fileID: 9121939428652355191}
+  - component: {fileID: 8275433610998417368}
   - component: {fileID: 692215124}
   - component: {fileID: 692215123}
   - component: {fileID: 2242347735258995824}
   m_Layer: 0
   m_Name: AsteroidType3
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,6 +89,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &872020644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847156655779301456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d0978becbe74a244acf21bdc3dd8475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3623478771892204609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +115,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 692215124}
   data: {fileID: 11400000, guid: a90113226797cbf4bbbdf3fc99c15f18, type: 2}
+--- !u!114 &9121939428652355191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847156655779301456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e923f76e8accea44a0a794e845b30fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spaceshipTag: Spaceship
+  bulletTag: Bullet
 --- !u!114 &8275433610998417368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,18 +142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider2D: {fileID: 2242347735258995824}
---- !u!114 &872020644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847156655779301456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d0978becbe74a244acf21bdc3dd8475, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &692215124
 Rigidbody2D:
   serializedVersion: 4
