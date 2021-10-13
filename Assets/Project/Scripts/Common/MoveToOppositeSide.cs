@@ -25,7 +25,10 @@ namespace AsteroidsGame.UtilWrapper
         private void Start()
         {
             var canvasScale = canvas.transform.localScale;
-            limits = new Vector2(Screen.width * canvasScale.x / 2, Screen.height * canvasScale.y / 2);
+            
+            var rect = ((RectTransform)canvas.transform).rect;
+
+            limits = new Vector2(rect.width * canvasScale.x / 2, rect.height * canvasScale.y / 2);
             sizeOffset = new Vector2(boxCollider2D.size.x / 2, boxCollider2D.size.y / 2);
         }
 

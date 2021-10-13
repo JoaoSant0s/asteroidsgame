@@ -9,6 +9,8 @@ namespace AsteroidsGame.Actions
     {
         private Canvas canvas;
 
+        private Vector2 limits;
+
        
 #region Unity Methods
 
@@ -17,6 +19,14 @@ namespace AsteroidsGame.Actions
             canvas = FindObjectOfType<Canvas>();
 
             InputController.HyperSpaceAction += HyperSpace;
+        }
+
+        private void Start() 
+        {
+            var canvasScale = canvas.transform.localScale;
+            var rect = ((RectTransform)canvas.transform).rect;
+
+            limits = new Vector2(rect.width * canvasScale.x / 2, rect.height * canvasScale.y / 2);
         }
 
         private void OnDestroy()
@@ -28,9 +38,6 @@ namespace AsteroidsGame.Actions
 
         private void HyperSpace()
         {
-            var canvasScale = canvas.transform.localScale;
-            var limits = new Vector2(Screen.width * canvasScale.x / 2, Screen.height * canvasScale.y / 2);
-
             var xPosition = Random.Range(-limits.x, limits.x);
             var yPosition = Random.Range(-limits.y, limits.y);
 
