@@ -12,6 +12,13 @@ namespace AsteroidsGame.Data
         public float speed;
         public int destroyScore;
 
+        [Header("Effects")]
+
+        public GameObject spaceshipCollisionEffectPrefab;
+        public GameObject bulletCollisionEffectPrefab;
+
+        [Header("Asteroid Children")]
+
         public bool canSpawnNextAsteroid;
 
         [ShowIf(nameof(canSpawnNextAsteroid))]

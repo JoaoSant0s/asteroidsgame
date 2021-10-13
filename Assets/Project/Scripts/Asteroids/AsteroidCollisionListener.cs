@@ -40,12 +40,14 @@ namespace AsteroidsGame.Actions
         {
             if(col.tag == spaceshipTag)
             {
+                Instantiate(data.spaceshipCollisionEffectPrefab, col.transform.position, Quaternion.identity);
                 Destroy(col.gameObject);
                 RegisterSpaceshipCollision();
             }
             else if(col.tag == bulletTag)
             {
-                RegisterBulletCollision();                
+                Instantiate(data.bulletCollisionEffectPrefab, col.transform.position, Quaternion.identity);
+                RegisterBulletCollision();
                 Destroy(col.gameObject);
             }            
         }

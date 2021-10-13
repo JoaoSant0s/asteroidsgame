@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 75
   destroyScore: 1
+  spaceshipCollisionEffectPrefab: {fileID: 2941703647786210198, guid: 7a9c924ea1fa0424bbcd48627dacd362, type: 3}
+  bulletCollisionEffectPrefab: {fileID: 2554450836756354896, guid: f516cc5b03d2ee14ea5858f2459956da, type: 3}
   canSpawnNextAsteroid: 0
   nextAsteroidAmount: 0
   nextAsteroidType: {fileID: 0}
