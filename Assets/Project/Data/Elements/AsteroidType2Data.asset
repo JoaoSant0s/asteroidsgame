@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AsteroidType2Data
   m_EditorClassIdentifier: 
   speed: 50
+  destroyScore: 5
   canSpawnNextAsteroid: 1
   nextAsteroidAmount: 3
   nextAsteroidType: {fileID: 11400000, guid: bdb02aafb654bda4bb555e793168ffcd, type: 2}

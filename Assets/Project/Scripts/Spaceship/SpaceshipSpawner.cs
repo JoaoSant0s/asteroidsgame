@@ -11,7 +11,10 @@ using AsteroidsGame.Actions;
 namespace AsteroidsGame.Manager
 {
     public class SpaceshipSpawner : SceneComponent
-    {        
+    {
+        public delegate void OnUpdateSpaceshipLife( int value);
+        public static OnUpdateSpaceshipLife UpdateSpaceshipLife;
+
         [SerializeField]
         private Spaceship spaceshipPrefab;
 
@@ -20,7 +23,7 @@ namespace AsteroidsGame.Manager
 
         private int spaceshipLife;
 
-        #region Unity Methods
+#region Unity Methods
 
         private void Awake() 
         {
@@ -32,11 +35,12 @@ namespace AsteroidsGame.Manager
             AsteroidCollisionListener.SpaceshipCollideAsteroid -= SpaceshipDestroyed;
         }
 
-        #endregion
+#endregion
         
         public override void Initialize()
         {
             spaceshipLife = data.maxSpaceshipLife;
+            UpdateSpaceshipLife?.Invoke(spaceshipLife);
             RespawnSpaceship();
         }
 
@@ -45,6 +49,7 @@ namespace AsteroidsGame.Manager
             spaceshipLife--;
             Debug.Log(spaceshipLife);
 
+            UpdateSpaceshipLife?.Invoke(spaceshipLife);
             if(spaceshipLife <= 0) {
                 //TODO Game Over
                 return;

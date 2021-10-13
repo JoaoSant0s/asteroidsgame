@@ -10,6 +10,7 @@ namespace AsteroidsGame.Data
     public class AsteroidData : ScriptableObject
     {
         public float speed;
+        public int destroyScore;
 
         public bool canSpawnNextAsteroid;
 

@@ -15,7 +15,7 @@ namespace AsteroidsGame.Manager
     public class AsteroidSpawner : SingletonBehaviour<AsteroidSpawner>
     {
         public delegate void OnSpawnNextLevel();
-        public static OnSpawnNextLevel SpawnNextLevel;
+        public static OnSpawnNextLevel SpawnNextLevel;        
 
         [SerializeField]
         private List<AsteroidTuple> asteroids;
