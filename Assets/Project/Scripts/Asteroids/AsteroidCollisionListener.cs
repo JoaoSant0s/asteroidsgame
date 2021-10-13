@@ -3,10 +3,11 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.Collection;
-
 using NaughtyAttributes;
+
+using AsteroidsGame.Manager;
 using AsteroidsGame.Data;
+using AsteroidsGame.Unit;
 
 namespace AsteroidsGame.Actions
 {
@@ -36,10 +37,13 @@ namespace AsteroidsGame.Actions
             }
             else if(col.tag == bulletTag)
             {
+                AsteroidSpawner.Instance.RemoveAsteroid(GetComponent<Asteroid>());
                 SpawnNextAsteroid();
 
                 Destroy(col.gameObject);
                 Destroy(gameObject);
+
+                AsteroidSpawner.Instance.CheckLevelEnded();
             }            
         }
 
