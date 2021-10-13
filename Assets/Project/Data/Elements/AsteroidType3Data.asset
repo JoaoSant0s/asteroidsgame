@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf28217f0c2e7949a2d93d89bb43002, type: 3}
   m_Name: AsteroidType3Data
   m_EditorClassIdentifier: 
-  speed: 75
+  speed: 60
   destroyScore: 1
   spaceshipCollisionEffectPrefab: {fileID: 2941703647786210198, guid: 7a9c924ea1fa0424bbcd48627dacd362, type: 3}
   bulletCollisionEffectPrefab: {fileID: 2554450836756354896, guid: f516cc5b03d2ee14ea5858f2459956da, type: 3}

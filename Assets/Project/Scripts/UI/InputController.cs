@@ -32,6 +32,9 @@ namespace AsteroidsGame.UI
         [SerializeField]
         private Button buttonShoot;
 
+        [SerializeField]
+        private Button buttonHyperSpace;
+
 #region Unity Methods
             private void Awake() 
             {
@@ -60,7 +63,11 @@ namespace AsteroidsGame.UI
                 {
                     ShootAction?.Invoke();
                 });
+
+                buttonHyperSpace.onClick.AddListener(()=>
+                {
+                    HyperSpaceAction?.Invoke();
+                });
             }
-            
     }
 }

@@ -43,21 +43,23 @@ namespace AsteroidsGame.UtilWrapper
         {
             oppositivePosition = basePosition;
 
+            var offset = 0.1f;
+
             if (basePosition.x - sizeOffset.x < -limits.x)
             {
-                oppositivePosition.x = limits.x - sizeOffset.x;
+                oppositivePosition.x = limits.x - sizeOffset.x - offset;
             }
             else if (basePosition.x + sizeOffset.x > limits.x)
             {
-                oppositivePosition.x = -limits.x + sizeOffset.x;
+                oppositivePosition.x = -limits.x + sizeOffset.x + offset;
             }
             else if (basePosition.y - sizeOffset.y < -limits.y)
             {
-                oppositivePosition.y = limits.y - sizeOffset.y;
+                oppositivePosition.y = limits.y - sizeOffset.y - offset;
             }
             else if (basePosition.y + sizeOffset.y > limits.y)
             {
-                oppositivePosition.y = -limits.y + sizeOffset.y;
+                oppositivePosition.y = -limits.y + sizeOffset.y + offset;
             }
 
             return oppositivePosition != basePosition;

@@ -8,6 +8,7 @@ using AsteroidsGame.Data;
 using AsteroidsGame.Unit;
 
 using TMPro;
+using AsteroidsGame.UI.Popup;
 
 namespace AsteroidsGame.UI
 {
@@ -23,11 +24,13 @@ namespace AsteroidsGame.UI
        protected void Awake() 
         {                        
             AsteroidCollisionListener.BulletCollideAsteroid += BulletshipCollideAsteroid;
+            GameOverScreenPopup.RestartGame += RestartScore;
         }
 
         private void OnDestroy() 
         {
             AsteroidCollisionListener.BulletCollideAsteroid -= BulletshipCollideAsteroid;
+            GameOverScreenPopup.RestartGame -= RestartScore;
         }
 
 #endregion
@@ -36,6 +39,13 @@ namespace AsteroidsGame.UI
         {
             scorePoints += data.destroyScore;
 
+            scoreLabel.text = string.Format("{0}", scorePoints);
+        }
+
+        private void RestartScore()
+        {
+            scorePoints = 0;
+            
             scoreLabel.text = string.Format("{0}", scorePoints);
         }
     }

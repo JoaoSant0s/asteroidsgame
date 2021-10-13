@@ -45,7 +45,7 @@ namespace AsteroidsGame.Manager
             base.Awake();
             
             AsteroidCollisionListener.BulletCollideAsteroid += BulletshipCollideAsteroid;
-        }
+        }        
 
         private void OnDestroy() 
         {
@@ -53,6 +53,15 @@ namespace AsteroidsGame.Manager
         }
 
 #endregion       
+
+        public void Reset()
+        {
+            for (int i = 0; i < GeneratedAsteroids.Count; i++)
+            {
+                Destroy(GeneratedAsteroids[i].gameObject);
+            }
+            GeneratedAsteroids.Clear();
+        }
 
         public void SpawnAsteroid(TupleKeyData type, Vector2 position)
         {
@@ -85,8 +94,8 @@ namespace AsteroidsGame.Manager
         private void BulletshipCollideAsteroid(Asteroid asteroid, AsteroidData data)
         {
             RemoveAsteroid(asteroid);
-            SpawnChildrenAsteroids(asteroid, data);
             Destroy(asteroid.gameObject);
+            SpawnChildrenAsteroids(asteroid, data);
 
             CheckLevelEnded();
         }
@@ -104,15 +113,22 @@ namespace AsteroidsGame.Manager
             {
                 var position = asteroid.transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0);
 
-                AsteroidSpawner.Instance.SpawnAsteroid(data.nextAsteroidType, position);
+                SpawnAsteroid(data.nextAsteroidType, position);
             }
         } 
         
         private void CheckLevelEnded()
-        {
+        {            
             if(GeneratedAsteroids.Count != 0) return;
 
-            SpawnNextLevel?.Invoke();
+            StartCoroutine(SpawnNextLevelRoutine());            
+        }
+
+        private IEnumerator SpawnNextLevelRoutine()
+        {            
+            yield return new WaitForSeconds(1.5f);
+            
+            SpawnNextLevel?.Invoke();            
         }
     }
 

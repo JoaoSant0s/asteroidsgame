@@ -3,14 +3,19 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using Main.Scene;
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
+using AsteroidsGame.UI.Popup;
+
+using Main.Scene;
+using Main.ServicePackage.Popup;
+using Main.ServicePackage.General;
+using System;
 
 namespace AsteroidsGame.Manager
 {
-    public class SpaceshipSpawner : SceneComponent
+    public class SpaceshipSpawner : MonoBehaviour
     {
         public delegate void OnUpdateSpaceshipLife( int value);
         public static OnUpdateSpaceshipLife UpdateSpaceshipLife;
@@ -23,6 +28,8 @@ namespace AsteroidsGame.Manager
 
         private int spaceshipLife;
 
+        private PopupService popupService;
+
 #region Unity Methods
 
         private void Awake() 
@@ -30,35 +37,31 @@ namespace AsteroidsGame.Manager
             AsteroidCollisionListener.SpaceshipCollideAsteroid += SpaceshipDestroyed;
         }
 
+        private void Start() 
+        {
+            popupService = Services.Get<PopupService>();    
+        }
+
         private void OnDestroy() 
         {
             AsteroidCollisionListener.SpaceshipCollideAsteroid -= SpaceshipDestroyed;
-        }
+        }      
 
-#endregion
-        
-        public override void Initialize()
+        #endregion
+
+        public void Reset()
         {
             spaceshipLife = data.maxSpaceshipLife;
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
+        }
+
+        public void SpawnSpaceship()
+        {
+            Reset();
             RespawnSpaceship();
         }
 
-        private void SpaceshipDestroyed()
-        {
-            spaceshipLife--;
-            Debug.Log(spaceshipLife);
-
-            UpdateSpaceshipLife?.Invoke(spaceshipLife);
-            if(spaceshipLife <= 0) {
-                //TODO Game Over
-                return;
-            }
-
-            StartCoroutine(RespawnSpaceshipRoutine());
-        }
-
-        private void RespawnSpaceship()
+        public void RespawnSpaceship()
         {
             Instantiate(spaceshipPrefab, Vector3.zero, Quaternion.identity);
         }
@@ -67,6 +70,19 @@ namespace AsteroidsGame.Manager
         {
             yield return new WaitForSeconds(data.respawnDelay);
             RespawnSpaceship();
+        }
+
+           private void SpaceshipDestroyed()
+        {
+            spaceshipLife--;
+
+            UpdateSpaceshipLife?.Invoke(spaceshipLife);
+            if(spaceshipLife <= 0) {
+                popupService.ShowPopup<GameOverScreenPopup>();
+                return;
+            }
+
+            StartCoroutine(RespawnSpaceshipRoutine());
         }
     }
 }

@@ -7,23 +7,26 @@ using UnityEngine.UI;
 using Main.ServicePackage.Popup;
 using Main.ServicePackage.Flag;
 using Main.ServicePackage.General;
-
 namespace AsteroidsGame.UI.Popup
 {
-    public class SplashScreenPopup : BasePopup
+    public class GameOverScreenPopup : BasePopup
     {
+        public delegate void OnRestartGame();
+        public static OnRestartGame RestartGame; 
+
         [SerializeField]
-        private Button startButton;
+        private Button restartButton;
 
         [SerializeField]
         private FlagAsset enableGameplayFlag;
-
         private FlagService flagService;
 
 #region Unity Methods
         private void Start() 
         {
             flagService = Services.Get<FlagService>();
+            flagService.Lower(enableGameplayFlag);
+
             SetButtonEvents();  
         }
 
@@ -31,8 +34,9 @@ namespace AsteroidsGame.UI.Popup
 
         private void SetButtonEvents()
         {            
-            startButton.onClick.AddListener(()=>
+            restartButton.onClick.AddListener(()=>
             {
+                RestartGame?.Invoke();
                 flagService.Raise(enableGameplayFlag);
                 Hide();
             });

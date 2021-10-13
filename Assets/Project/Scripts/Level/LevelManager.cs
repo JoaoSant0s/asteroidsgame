@@ -7,10 +7,11 @@ using AsteroidsGame.Data;
 using CommonWrapper;
 
 using Main.Scene;
+using System;
 
 namespace AsteroidsGame.Manager
 {
-    public class LevelManager : SceneComponent
+    public class LevelManager : MonoBehaviour
     {
         [SerializeField]
         private LevelCollectionData data;
@@ -31,19 +32,11 @@ namespace AsteroidsGame.Manager
 
 #endregion
 
-        public override void Initialize()
+        public void Reset()
         {
-            SpawnLevelContent();
-        }
-
-        private void GoNextLevel()
-        {
-            currentLevelIndex++;
-
-            if(currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
-
-            StartCoroutine(GoNextLevelRoutine());
-        }
+            AsteroidSpawner.Instance.Reset();
+            currentLevelIndex = 0;
+        }       
 
         public IEnumerator GoNextLevelRoutine()
         {
@@ -65,6 +58,15 @@ namespace AsteroidsGame.Manager
                     AsteroidSpawner.Instance.SpawnAsteroid(config.asteroidType);
                 }
             }
+        }
+
+        private void GoNextLevel()
+        {
+            currentLevelIndex++;
+
+            if(currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
+
+            StartCoroutine(GoNextLevelRoutine());
         }
     }
 }

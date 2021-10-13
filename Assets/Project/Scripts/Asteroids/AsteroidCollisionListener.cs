@@ -18,9 +18,8 @@ namespace AsteroidsGame.Actions
         public static OnSpaceshipCollideAsteroid SpaceshipCollideAsteroid;  
 
         public delegate void OnBulletshipCollideAsteroid(Asteroid asteroid, AsteroidData data);
-        public static OnBulletshipCollideAsteroid BulletCollideAsteroid; 
-              
-
+        public static OnBulletshipCollideAsteroid BulletCollideAsteroid;
+        
         [Header("Tags")]
         [Tag]
         [SerializeField]
