@@ -14,6 +14,13 @@ namespace AsteroidsGame.Actions
     [RequireComponent(typeof(Collider2D))]
     public class AsteroidCollisionListener : MonoBehaviour
     {
+        public delegate void OnSpaceshipCollideAsteroid();
+        public static OnSpaceshipCollideAsteroid SpaceshipCollideAsteroid;  
+
+        public delegate void OnBulletshipCollideAsteroid(Asteroid asteroid, AsteroidData data);
+        public static OnBulletshipCollideAsteroid BulletCollideAsteroid; 
+              
+
         [Header("Tags")]
         [Tag]
         [SerializeField]
@@ -33,32 +40,26 @@ namespace AsteroidsGame.Actions
         {
             if(col.tag == spaceshipTag)
             {
-                //TODO
+                Destroy(col.gameObject);
+                RegisterSpaceshipCollision();
             }
             else if(col.tag == bulletTag)
             {
-                AsteroidSpawner.Instance.RemoveAsteroid(GetComponent<Asteroid>());
-                SpawnNextAsteroid();
-
+                RegisterBulletCollision();                
                 Destroy(col.gameObject);
-                Destroy(gameObject);
-
-                AsteroidSpawner.Instance.CheckLevelEnded();
             }            
         }
 
 #endregion
 
-        private void SpawnNextAsteroid()
+        private void RegisterSpaceshipCollision()
         {
-            if(!data.canSpawnNextAsteroid) return;
+            SpaceshipCollideAsteroid?.Invoke();
+        }
 
-            for (int i = 0; i < data.nextAsteroidAmount; i++)
-            {
-                var position = transform.position + new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0);
-
-                AsteroidSpawner.Instance.SpawnAsteroid(data.nextAsteroidType, position);
-            }
+        private void RegisterBulletCollision()
+        {
+            BulletCollideAsteroid?.Invoke(GetComponent<Asteroid>(), data);
         }
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
+using AsteroidsGame.Actions;
+
 using CommonWrapper;
 
 namespace AsteroidsGame.Manager
@@ -36,6 +38,22 @@ namespace AsteroidsGame.Manager
             }
         }
 
+#region Unity Methods
+
+        protected override void Awake() 
+        {
+            base.Awake();
+            
+            AsteroidCollisionListener.BulletCollideAsteroid += BulletshipCollideAsteroid;
+        }
+
+        private void OnDestroy() 
+        {
+            AsteroidCollisionListener.BulletCollideAsteroid -= BulletshipCollideAsteroid;
+        }
+
+#endregion       
+
         public void SpawnAsteroid(TupleKeyData type, Vector2 position)
         {
             var config = asteroids.Find( a => a.type == type);
@@ -52,19 +70,7 @@ namespace AsteroidsGame.Manager
             var asteroid = Instantiate(config.prefab, position, Quaternion.identity);
 
             GeneratedAsteroids.Add(asteroid);
-        }
-
-        public void RemoveAsteroid(Asteroid asteroid)
-        {
-            GeneratedAsteroids.Remove(asteroid);
-        }
-
-        public void CheckLevelEnded()
-        {
-            if(GeneratedAsteroids.Count != 0) return;
-
-            SpawnNextLevel?.Invoke();
-        }
+        }        
 
         private Vector3 SequencePosition()
         {
@@ -74,6 +80,39 @@ namespace AsteroidsGame.Manager
             if(spawnPointIndex >= spawnPoints.Count) spawnPointIndex = 0;
 
             return position + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0);
+        }
+
+        private void BulletshipCollideAsteroid(Asteroid asteroid, AsteroidData data)
+        {
+            RemoveAsteroid(asteroid);
+            SpawnChildrenAsteroids(asteroid, data);
+            Destroy(asteroid.gameObject);
+
+            CheckLevelEnded();
+        }
+
+        private void RemoveAsteroid(Asteroid asteroid)
+        {
+            GeneratedAsteroids.Remove(asteroid);
+        }
+
+        private void SpawnChildrenAsteroids(Asteroid asteroid, AsteroidData data)
+        {
+            if(!data.canSpawnNextAsteroid) return;
+
+            for (int i = 0; i < data.nextAsteroidAmount; i++)
+            {
+                var position = asteroid.transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0);
+
+                AsteroidSpawner.Instance.SpawnAsteroid(data.nextAsteroidType, position);
+            }
+        } 
+        
+        private void CheckLevelEnded()
+        {
+            if(GeneratedAsteroids.Count != 0) return;
+
+            SpawnNextLevel?.Invoke();
         }
     }
 

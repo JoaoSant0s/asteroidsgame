@@ -13,7 +13,7 @@ namespace AsteroidsGame.Manager
     public class LevelManager : SceneComponent
     {
         [SerializeField]
-        private List<LevelData> levels;
+        private LevelCollectionData data;
 
         private int currentLevelIndex = 0;
 
@@ -40,21 +40,21 @@ namespace AsteroidsGame.Manager
         {
             currentLevelIndex++;
 
-            if(currentLevelIndex >= levels.Count) currentLevelIndex = 0;
+            if(currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
 
             StartCoroutine(GoNextLevelRoutine());
         }
 
         public IEnumerator GoNextLevelRoutine()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(data.nextLevelDelay);
             
             SpawnLevelContent();
         }
 
         public void SpawnLevelContent()
         {
-            var level = levels[currentLevelIndex];
+            var level = data.levels[currentLevelIndex];
 
             for (int i = 0; i < level.Configs.Count; i++)
             {

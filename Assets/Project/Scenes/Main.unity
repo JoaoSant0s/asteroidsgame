@@ -868,6 +868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceshipPrefab: {fileID: 1135018853, guid: f95fbc8f85d7aa948b5de3b8eb71b37e, type: 3}
+  data: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
 --- !u!1 &1137748155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,6 +1340,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 104c86c2e4d5e4b4fba5d7d56e430711, type: 2}
   - {fileID: 11400000, guid: 5898507349344ed4591174d1e306dfcc, type: 2}
   - {fileID: 11400000, guid: bf42bba6d03175f4cbb159662f83ebb0, type: 2}
+  data: {fileID: 11400000, guid: 254eeeff025d3fa49ab2b40aab62d157, type: 2}
 --- !u!4 &1911586693
 Transform:
   m_ObjectHideFlags: 0
