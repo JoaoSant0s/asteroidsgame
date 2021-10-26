@@ -11,14 +11,17 @@ using Main.ServicePackage.Popup;
 
 namespace AsteroidsGame.Manager
 {
-    public class GameScene : MainScene
+    public class GameScene : MonoBehaviour
     {
 
         [SerializeField]
         private SpaceshipSpawner spaceshipSpawner;
 
         [SerializeField]
-        private LevelManager levelManager;        
+        private LevelManager levelManager;
+
+        [SerializeField]
+        private ScoreManager scoreManager;  
 
         private PopupService popupService;
 
@@ -45,6 +48,7 @@ namespace AsteroidsGame.Manager
         {
             spaceshipSpawner.Reset();
             levelManager.Reset();
+            scoreManager.Reset();
 
             StartGame();
         }
