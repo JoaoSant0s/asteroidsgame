@@ -34,7 +34,7 @@ namespace AsteroidsGame.Manager
 
         private void Awake() 
         {
-            AsteroidCollisionListener.SpaceshipCollideAsteroid += SpaceshipDestroyed;
+            SpaceshipCollisionListener.AsteroidCollided += SpaceshipDestroyed;
         }
 
         private void Start() 
@@ -44,7 +44,7 @@ namespace AsteroidsGame.Manager
 
         private void OnDestroy() 
         {
-            AsteroidCollisionListener.SpaceshipCollideAsteroid -= SpaceshipDestroyed;
+            SpaceshipCollisionListener.AsteroidCollided -= SpaceshipDestroyed;
         }      
 
         #endregion

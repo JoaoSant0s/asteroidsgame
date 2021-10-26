@@ -41,12 +41,15 @@ GameObject:
   - component: {fileID: 7682215802541502691}
   - component: {fileID: 7682215802541502690}
   - component: {fileID: 1135018853}
+  - component: {fileID: 8930818950646345645}
+  - component: {fileID: 4710790814476915514}
   - component: {fileID: 7232691595977183956}
   - component: {fileID: 6981900981540135995}
   - component: {fileID: 8064669255497903500}
   - component: {fileID: 8826334281993856411}
   - component: {fileID: 7748884888836786921}
   - component: {fileID: 3702076022467836716}
+  - component: {fileID: 1004504313520619712}
   - component: {fileID: 65310726465635410}
   m_Layer: 0
   m_Name: Spaceship
@@ -133,6 +136,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ffd0e5411d61844bb6a166d43807368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8930818950646345645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682215802541502689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1033619872c3f60488a9e725fe01cd75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 9370e1c13e94dd24daaef3c1c5d28d9c, type: 2}
+--- !u!114 &4710790814476915514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682215802541502689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1ed2d39c37e3949abc9f4f85227612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidTag: Asteroid
+  context: {fileID: 8930818950646345645}
 --- !u!114 &7232691595977183956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c580a1f266a0c7742be43bfb6210653d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 9370e1c13e94dd24daaef3c1c5d28d9c, type: 2}
+  context: {fileID: 8930818950646345645}
 --- !u!114 &6981900981540135995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3702076022467836716}
-  data: {fileID: 11400000, guid: 9370e1c13e94dd24daaef3c1c5d28d9c, type: 2}
+  context: {fileID: 8930818950646345645}
 --- !u!114 &8064669255497903500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,8 +250,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &65310726465635410
-BoxCollider2D:
+--- !u!60 &1004504313520619712
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -231,6 +261,67 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.42, y: 0.66}
+    newSize: {x: 0.21, y: 0.33}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.17, y: 0.06}
+      - {x: 0.12, y: 0.16}
+      - {x: 0.03, y: 0.32999998}
+      - {x: -0.049999997, y: 0.32999998}
+      - {x: -0.089999996, y: 0.31}
+      - {x: -0.21, y: -0.099999994}
+      - {x: -0.21, y: -0.24}
+      - {x: -0.17, y: -0.24}
+      - {x: -0.14999999, y: -0.22}
+      - {x: -0.11, y: -0.22}
+      - {x: -0.03, y: -0.32999998}
+      - {x: 0.049999997, y: -0.32999998}
+      - {x: 0.099999994, y: -0.22999999}
+      - {x: 0.21, y: -0.22}
+      - {x: 0.21, y: -0.07}
+    - - {x: -0.06, y: -0.14999999}
+      - {x: -0.07, y: -0.12}
+      - {x: -0.089999996, y: -0.11}
+      - {x: 0.06, y: -0.12}
+      - {x: 0.02, y: -0.17}
+      - {x: 0, y: -0.21}
+      - {x: 0, y: -0.22999999}
+      - {x: 0.01, y: -0.22999999}
+    - - {x: -0.03, y: 0.14}
+      - {x: -0.03, y: 0.19}
+      - {x: -0.01, y: 0.22}
+      - {x: -0.01, y: 0.25}
+      - {x: -0.02, y: 0.22}
+      - {x: 0, y: 0.17}
+      - {x: 0.02, y: 0.14}
+      - {x: 0.04, y: 0.08}
+      - {x: 0.06, y: 0.04}
+      - {x: 0.08, y: -0.02}
+      - {x: 0.099999994, y: -0.04}
+      - {x: -0.099999994, y: -0.049999997}
+      - {x: -0.089999996, y: -0.049999997}
+--- !u!61 &65310726465635410
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7682215802541502689}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

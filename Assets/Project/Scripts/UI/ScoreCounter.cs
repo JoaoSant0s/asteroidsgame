@@ -23,21 +23,21 @@ namespace AsteroidsGame.UI
 #region Unitye Methods
        protected void Awake() 
         {                        
-            AsteroidCollisionListener.BulletCollideAsteroid += BulletshipCollideAsteroid;
+            BulletCollisionListener.AsteroidCollided += BulletshipCollideAsteroid;
             GameOverScreenPopup.RestartGame += RestartScore;
         }
 
         private void OnDestroy() 
         {
-            AsteroidCollisionListener.BulletCollideAsteroid -= BulletshipCollideAsteroid;
+            BulletCollisionListener.AsteroidCollided -= BulletshipCollideAsteroid;
             GameOverScreenPopup.RestartGame -= RestartScore;
         }
 
 #endregion
 
-        private void BulletshipCollideAsteroid(Asteroid asteroid, AsteroidData data)
+        private void BulletshipCollideAsteroid(AsteroidContext context)
         {
-            scorePoints += data.destroyScore;
+            scorePoints += context.Data.destroyScore;
 
             scoreLabel.text = string.Format("{0}", scorePoints);
         }
