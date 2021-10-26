@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.Data;
+using AsteroidsGame.Unit;
 
 namespace AsteroidsGame.Actions
 {
@@ -13,12 +13,12 @@ namespace AsteroidsGame.Actions
         private Rigidbody2D rb;
 
         [SerializeField]
-        private BulletData data;
+        private BulletContext context;
 
         public void Move(Vector2 direction)
         {
-            rb.velocity = direction * data.speed * Time.deltaTime;
-            Destroy(gameObject, data.lifeTime);
+            rb.velocity = direction * context.Data.speed * Time.deltaTime;
+            Destroy(gameObject, context.Data.lifeTime);
         }
     }
 }

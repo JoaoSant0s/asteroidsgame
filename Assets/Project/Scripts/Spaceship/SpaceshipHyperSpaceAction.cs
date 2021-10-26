@@ -7,26 +7,18 @@ namespace AsteroidsGame.Actions
 {
     public class SpaceshipHyperSpaceAction : MonoBehaviour
     {
-        private Canvas canvas;
-
         private Vector2 limits;
-
        
 #region Unity Methods
 
         private void Awake()
         {
-            canvas = FindObjectOfType<Canvas>();
-
             InputController.HyperSpaceAction += HyperSpace;
         }
 
         private void Start() 
         {
-            var canvasScale = canvas.transform.localScale;
-            var rect = ((RectTransform)canvas.transform).rect;
-
-            limits = new Vector2(rect.width * canvasScale.x / 2, rect.height * canvasScale.y / 2);
+            limits = MainCanvas.Instance.Limits;
         }
 
         private void OnDestroy()

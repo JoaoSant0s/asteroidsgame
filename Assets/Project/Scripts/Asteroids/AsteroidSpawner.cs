@@ -44,12 +44,12 @@ namespace AsteroidsGame.Manager
         {
             base.Awake();
             
-            AsteroidCollisionListener.BulletCollideAsteroid += BulletshipCollideAsteroid;
+            BulletCollisionListener.AsteroidCollided += BulletshipCollideAsteroid;
         }        
 
         private void OnDestroy() 
         {
-            AsteroidCollisionListener.BulletCollideAsteroid -= BulletshipCollideAsteroid;
+            BulletCollisionListener.AsteroidCollided -= BulletshipCollideAsteroid;
         }
 
 #endregion       
@@ -91,11 +91,11 @@ namespace AsteroidsGame.Manager
             return position + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0);
         }
 
-        private void BulletshipCollideAsteroid(Asteroid asteroid, AsteroidData data)
+        private void BulletshipCollideAsteroid(AsteroidContext context)
         {
-            RemoveAsteroid(asteroid);
-            Destroy(asteroid.gameObject);
-            SpawnChildrenAsteroids(asteroid, data);
+            RemoveAsteroid(context.Asteroid);
+            SpawnChildrenAsteroids(context.Asteroid, context.Data);
+            Destroy(context.Asteroid.gameObject);
 
             CheckLevelEnded();
         }
