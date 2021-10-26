@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using Main.Scene;
 using AsteroidsGame.Unit;
 using AsteroidsGame.UI.Popup;
-using Main.ServicePackage.General;
-using Main.ServicePackage.Popup;
+
+using JoaoSant0s.Scene;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Popup;
 
 namespace AsteroidsGame.Manager
 {

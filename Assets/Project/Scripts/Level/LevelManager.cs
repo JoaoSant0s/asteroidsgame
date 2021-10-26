@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using AsteroidsGame.Data;
-using CommonWrapper;
+using JoaoSant0s.CommonWrapper;
 
-using Main.Scene;
-using System;
 
 namespace AsteroidsGame.Manager
 {

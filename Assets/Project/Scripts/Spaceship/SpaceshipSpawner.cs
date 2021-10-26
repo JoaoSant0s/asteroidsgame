@@ -8,10 +8,8 @@ using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
 using AsteroidsGame.UI.Popup;
 
-using Main.Scene;
-using Main.ServicePackage.Popup;
-using Main.ServicePackage.General;
-using System;
+using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.General;
 
 namespace AsteroidsGame.Manager
 {

@@ -8,7 +8,7 @@ using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
 
-using CommonWrapper;
+using JoaoSant0s.CommonWrapper;
 
 namespace AsteroidsGame.Manager
 {
