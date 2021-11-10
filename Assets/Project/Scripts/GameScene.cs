@@ -31,7 +31,7 @@ namespace AsteroidsGame.Manager
         {
             popupService = Services.Get<PopupService>();            
 
-            var popup = popupService.ShowPopup<SplashScreenPopup>();
+            var popup = popupService.Show<SplashScreenPopup>();
 
             popup.OnBeforeHide += StartGame;
 
