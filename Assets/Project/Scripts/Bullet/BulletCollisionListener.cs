@@ -22,6 +22,9 @@ namespace AsteroidsGame.Actions
         [SerializeField]
         private BulletContext context;
 
+        [SerializeField]
+        private Bullet bullet;
+
 #region Unity Methods
             void OnTriggerEnter2D(Collider2D col)
             {
@@ -29,7 +32,7 @@ namespace AsteroidsGame.Actions
                
                 Instantiate(context.Data.asteroidCollisionEffectPrefab, col.transform.position, Quaternion.identity);
                 RegisterBulletCollision(col.GetComponent<AsteroidContext>());
-                Destroy(gameObject);
+                bullet.Dispose();
             }
 #endregion
             private void RegisterBulletCollision(AsteroidContext context)

@@ -4,11 +4,13 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using JoaoSant0s.CommonWrapper;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Pool;
+
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
-
-using JoaoSant0s.CommonWrapper;
 
 namespace AsteroidsGame.Manager
 {
@@ -24,6 +26,8 @@ namespace AsteroidsGame.Manager
         private List<Transform> spawnPoints;
 
         private int spawnPointIndex;
+
+        private PoolService poolService;
 
         private List<Asteroid> generatedAsteroids;
 
@@ -45,7 +49,12 @@ namespace AsteroidsGame.Manager
             base.Awake();
             
             BulletCollisionListener.AsteroidCollided += BulletshipCollideAsteroid;
-        }        
+        }
+
+        private void Start() 
+        {
+            poolService = Services.Get<PoolService>();
+        }
 
         private void OnDestroy() 
         {

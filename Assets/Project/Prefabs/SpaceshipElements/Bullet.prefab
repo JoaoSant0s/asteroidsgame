@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidTag: Asteroid
   context: {fileID: 1576592489839253266}
+  bullet: {fileID: 4574333110036720673}
 --- !u!114 &1664267252640217619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 503133799310881423}
+  bullet: {fileID: 4574333110036720673}
   context: {fileID: 1576592489839253266}
 --- !u!114 &5203716581880347640
 MonoBehaviour:
