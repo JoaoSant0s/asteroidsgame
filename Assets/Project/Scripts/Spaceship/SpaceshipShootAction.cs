@@ -50,9 +50,7 @@ namespace AsteroidsGame.Actions
 
         private Bullet InstatiateBullet()
         {
-
-            var bullet = poolService.Get<Bullet>(null, bulletOrigin.position, Quaternion.identity);
-            //var bullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.identity);
+            var bullet = poolService.Get<Bullet>(null, bulletOrigin.position, Quaternion.identity);            
             return bullet;
         }
     }

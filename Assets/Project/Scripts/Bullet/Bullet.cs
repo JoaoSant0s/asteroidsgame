@@ -27,6 +27,7 @@ namespace AsteroidsGame.Unit
         }
 
 #endregion
+
         public override void OnDispose()
         {
             rb.velocity = Vector2.zero;
