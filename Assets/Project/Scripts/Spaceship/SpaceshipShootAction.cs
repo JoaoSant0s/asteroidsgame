@@ -32,10 +32,16 @@ namespace AsteroidsGame.Actions
 
         private void Shoot()
         {
-            var bullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.identity);
+            var bullet = InstatiateBullet();
             var movementAction = bullet.GetComponent<BulletMovementAction>();
             
             movementAction.Move(transform.up);
+        }
+
+        private Bullet InstatiateBullet()
+        {
+            var bullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.identity);
+            return bullet;
         }
     }
 }

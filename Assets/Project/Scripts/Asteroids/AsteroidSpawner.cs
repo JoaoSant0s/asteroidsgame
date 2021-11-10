@@ -67,19 +67,23 @@ namespace AsteroidsGame.Manager
         {
             var config = asteroids.Find( a => a.type == type);
             
-            var asteroid = Instantiate(config.prefab, position, Quaternion.identity);
-            GeneratedAsteroids.Add(asteroid);
+            InstantiateAsteroid(config.prefab, position);
         }
 
         public void SpawnAsteroid(TupleKeyData type)
         {
             var config = asteroids.Find( a => a.type == type);
-            var position = SequencePosition();
+            var position = SequencePosition();            
 
-            var asteroid = Instantiate(config.prefab, position, Quaternion.identity);
+            InstantiateAsteroid(config.prefab, position);
+        }
+
+        private void InstantiateAsteroid(Asteroid prefab, Vector3 position)
+        {
+            var asteroid = Instantiate(prefab, position, Quaternion.identity);
 
             GeneratedAsteroids.Add(asteroid);
-        }        
+        }
 
         private Vector3 SequencePosition()
         {
