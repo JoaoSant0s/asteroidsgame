@@ -67,7 +67,7 @@ namespace AsteroidsGame.Manager
         {
             for (int i = 0; i < GeneratedAsteroids.Count; i++)
             {
-                Destroy(GeneratedAsteroids[i].gameObject);
+                GeneratedAsteroids[i].Dispose();
             }
             GeneratedAsteroids.Clear();
         }
@@ -76,7 +76,7 @@ namespace AsteroidsGame.Manager
         {
             var config = asteroids.Find( a => a.type == type);
             
-            InstantiateAsteroid(config.prefab, position);
+            InstantiateAsteroid(config.asteroidIndex, position);
         }
 
         public void SpawnAsteroid(TupleKeyData type)
@@ -84,12 +84,12 @@ namespace AsteroidsGame.Manager
             var config = asteroids.Find( a => a.type == type);
             var position = SequencePosition();            
 
-            InstantiateAsteroid(config.prefab, position);
+            InstantiateAsteroid(config.asteroidIndex, position);
         }
 
-        private void InstantiateAsteroid(Asteroid prefab, Vector3 position)
-        {
-            var asteroid = Instantiate(prefab, position, Quaternion.identity);
+        private void InstantiateAsteroid(int asteroidIndex, Vector3 position)
+        {            
+            var asteroid = poolService.Get<Asteroid>(position, Quaternion.identity, asteroidIndex);
 
             GeneratedAsteroids.Add(asteroid);
         }
@@ -108,7 +108,7 @@ namespace AsteroidsGame.Manager
         {
             RemoveAsteroid(context.Asteroid);
             SpawnChildrenAsteroids(context.Asteroid, context.Data);
-            Destroy(context.Asteroid.gameObject);
+            context.Asteroid.Dispose();
 
             CheckLevelEnded();
         }
@@ -149,6 +149,8 @@ namespace AsteroidsGame.Manager
     public struct AsteroidTuple
     {
         public TupleKeyData type;
-        public Asteroid prefab;
+
+        [Min(0)]
+        public int asteroidIndex;
     }
 }

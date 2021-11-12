@@ -14,9 +14,6 @@ namespace AsteroidsGame.Actions
     public class SpaceshipShootAction : MonoBehaviour
     {
         [SerializeField]
-        private Bullet bulletPrefab;
-
-        [SerializeField]
         private Transform bulletOrigin;
 
         private PoolService poolService;

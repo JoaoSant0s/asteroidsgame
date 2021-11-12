@@ -11,7 +11,6 @@ namespace AsteroidsGame.Unit
     [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : PoolBase
     {
-        private PoolService poolService;
         private Rigidbody2D rb;
 
 #region Unity Methods
@@ -21,14 +20,9 @@ namespace AsteroidsGame.Unit
             rb = GetComponent<Rigidbody2D>();
         }
 
-        private void Start() 
-        {
-            poolService = Services.Get<PoolService>();
-        }
-
 #endregion
 
-        public override void OnDispose()
+        protected override void OnDispose()
         {
             rb.velocity = Vector2.zero;
             StopAllCoroutines();
