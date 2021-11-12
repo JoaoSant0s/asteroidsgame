@@ -8,10 +8,8 @@ using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
 using AsteroidsGame.UI.Popup;
 
-using Main.Scene;
-using Main.ServicePackage.Popup;
-using Main.ServicePackage.General;
-using System;
+using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.General;
 
 namespace AsteroidsGame.Manager
 {
@@ -34,7 +32,7 @@ namespace AsteroidsGame.Manager
 
         private void Awake() 
         {
-            AsteroidCollisionListener.SpaceshipCollideAsteroid += SpaceshipDestroyed;
+            SpaceshipCollisionListener.AsteroidCollided += SpaceshipDestroyed;
         }
 
         private void Start() 
@@ -44,7 +42,7 @@ namespace AsteroidsGame.Manager
 
         private void OnDestroy() 
         {
-            AsteroidCollisionListener.SpaceshipCollideAsteroid -= SpaceshipDestroyed;
+            SpaceshipCollisionListener.AsteroidCollided -= SpaceshipDestroyed;
         }      
 
         #endregion
@@ -56,7 +54,7 @@ namespace AsteroidsGame.Manager
         }
 
         public void SpawnSpaceship()
-        {
+        {          
             Reset();
             RespawnSpaceship();
         }
@@ -72,13 +70,13 @@ namespace AsteroidsGame.Manager
             RespawnSpaceship();
         }
 
-           private void SpaceshipDestroyed()
+        private void SpaceshipDestroyed()
         {
             spaceshipLife--;
 
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
             if(spaceshipLife <= 0) {
-                popupService.ShowPopup<GameOverScreenPopup>();
+                popupService.Show<GameOverScreenPopup>();
                 return;
             }
 

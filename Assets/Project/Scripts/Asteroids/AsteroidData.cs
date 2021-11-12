@@ -9,16 +9,11 @@ namespace AsteroidsGame.Data
     [CreateAssetMenu(fileName = "AsteroidData", menuName = "AsteroidsGame/AsteroidData")]
     public class AsteroidData : ScriptableObject
     {
+        [Header("Configs")]
         public float speed;
         public int destroyScore;
 
-        [Header("Effects")]
-
-        public GameObject spaceshipCollisionEffectPrefab;
-        public GameObject bulletCollisionEffectPrefab;
-
         [Header("Asteroid Children")]
-
         public bool canSpawnNextAsteroid;
 
         [ShowIf(nameof(canSpawnNextAsteroid))]

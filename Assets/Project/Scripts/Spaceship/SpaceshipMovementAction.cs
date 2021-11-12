@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.Data;
 using AsteroidsGame.UI;
+using AsteroidsGame.Unit;
 
 namespace AsteroidsGame.Actions
 {
@@ -14,7 +14,7 @@ namespace AsteroidsGame.Actions
         private Rigidbody2D rb;
 
         [SerializeField]
-        private SpaceshipData data;
+        private SpaceshipContext context;
 
 #region Unity Methods
         private void Awake() 
@@ -31,9 +31,9 @@ namespace AsteroidsGame.Actions
 
         private void AccelerateDirection(int direction)
         {
-            if(rb.velocity.magnitude >= data.maxForwardVelocity) return;
+            if(rb.velocity.magnitude >= context.Data.maxForwardVelocity) return;
 
-            rb.AddForce(transform.up * data.forwardForce * Time.deltaTime);
+            rb.AddForce(transform.up * context.Data.forwardForce * Time.deltaTime);
         }
     }
 }

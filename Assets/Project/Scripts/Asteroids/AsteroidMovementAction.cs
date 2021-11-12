@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.Data;
 using AsteroidsGame.UtilWrapper;
+using AsteroidsGame.Unit;
 
 namespace AsteroidsGame.Actions
 {
@@ -14,11 +14,11 @@ namespace AsteroidsGame.Actions
         private Rigidbody2D rb;
 
         [SerializeField]
-        private AsteroidData data;
+        private AsteroidContext context;
 
 #region Unity Methods
 
-        private void Start()
+        private void OnEnable()
         {
             Move();
         }
@@ -32,7 +32,7 @@ namespace AsteroidsGame.Actions
             var direction = Util.RandomDirection();
             direction.Normalize();
 
-            rb.velocity = direction * data.speed * Time.deltaTime;
+            rb.velocity = direction * context.Data.speed * Time.deltaTime;
         }
     }
 }

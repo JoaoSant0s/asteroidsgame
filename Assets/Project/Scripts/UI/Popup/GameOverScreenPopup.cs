@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using Main.ServicePackage.Popup;
-using Main.ServicePackage.Flag;
-using Main.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.Flag;
+using JoaoSant0s.ServicePackage.General;
+
 namespace AsteroidsGame.UI.Popup
 {
     public class GameOverScreenPopup : BasePopup

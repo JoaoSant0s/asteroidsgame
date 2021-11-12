@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using AsteroidsGame.UI;
-using AsteroidsGame.Data;
+using AsteroidsGame.Unit;
 
 namespace AsteroidsGame.Actions
 {
     public class SpaceshipRotateAction : MonoBehaviour
     {
         [SerializeField]
-        private SpaceshipData data;
+        private SpaceshipContext context;
 
 #region Unity Methods
         private void Awake() 
@@ -27,7 +27,7 @@ namespace AsteroidsGame.Actions
 
         private void RotateDirection(int direction)
         {
-            transform.Rotate (0, 0, direction * data.rotateSpeed * Time.deltaTime);            
+            transform.Rotate (0, 0, direction * context.Data.rotateSpeed * Time.deltaTime);            
         }
 
     }

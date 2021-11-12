@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+
+using AsteroidsGame.UI;
 
 namespace AsteroidsGame.UtilWrapper
 {
@@ -9,26 +12,13 @@ namespace AsteroidsGame.UtilWrapper
         [SerializeField]
         private BoxCollider2D boxCollider2D;
 
-        private Canvas canvas;
-
         private Vector2 limits;
-
         private Vector2 sizeOffset;
 
-#region Unity Methods
-
-        private void Awake()
-        {
-            canvas = FindObjectOfType<Canvas>();
-        }
-
+#region Unity Methods        
         private void Start()
-        {
-            var canvasScale = canvas.transform.localScale;
-            
-            var rect = ((RectTransform)canvas.transform).rect;
-
-            limits = new Vector2(rect.width * canvasScale.x / 2, rect.height * canvasScale.y / 2);
+        {            
+            limits = MainCanvas.Instance.Limits;
             sizeOffset = new Vector2(boxCollider2D.size.x / 2, boxCollider2D.size.y / 2);
         }
 

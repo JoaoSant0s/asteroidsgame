@@ -3,22 +3,26 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using Main.Scene;
 using AsteroidsGame.Unit;
 using AsteroidsGame.UI.Popup;
-using Main.ServicePackage.General;
-using Main.ServicePackage.Popup;
+
+using JoaoSant0s.Scene;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Popup;
 
 namespace AsteroidsGame.Manager
 {
-    public class GameScene : MainScene
+    public class GameScene : MonoBehaviour
     {
 
         [SerializeField]
         private SpaceshipSpawner spaceshipSpawner;
 
         [SerializeField]
-        private LevelManager levelManager;        
+        private LevelManager levelManager;
+
+        [SerializeField]
+        private ScoreManager scoreManager;  
 
         private PopupService popupService;
 
@@ -27,7 +31,7 @@ namespace AsteroidsGame.Manager
         {
             popupService = Services.Get<PopupService>();            
 
-            var popup = popupService.ShowPopup<SplashScreenPopup>();
+            var popup = popupService.Show<SplashScreenPopup>();
 
             popup.OnBeforeHide += StartGame;
 
@@ -45,6 +49,7 @@ namespace AsteroidsGame.Manager
         {
             spaceshipSpawner.Reset();
             levelManager.Reset();
+            scoreManager.Reset();
 
             StartGame();
         }

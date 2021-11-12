@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.Data;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Pool;
+
+using AsteroidsGame.Unit;
 
 namespace AsteroidsGame.Actions
 {
@@ -13,12 +16,21 @@ namespace AsteroidsGame.Actions
         private Rigidbody2D rb;
 
         [SerializeField]
-        private BulletData data;
+        private Bullet bullet;
+
+        [SerializeField]
+        private BulletContext context;
 
         public void Move(Vector2 direction)
         {
-            rb.velocity = direction * data.speed * Time.deltaTime;
-            Destroy(gameObject, data.lifeTime);
+            rb.velocity = direction * context.Data.speed * Time.deltaTime;
+            StartCoroutine(DisposeBullet());
+        }
+
+        private IEnumerator DisposeBullet()
+        {
+            yield return new WaitForSeconds(context.Data.lifeTime);
+            bullet.Dispose();
         }
     }
 }
