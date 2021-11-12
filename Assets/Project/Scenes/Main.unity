@@ -777,7 +777,7 @@ GameObject:
   - component: {fileID: 793252770}
   - component: {fileID: 793252769}
   m_Layer: 0
-  m_Name: GameScene
+  m_Name: Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1978,13 +1978,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroids:
   - type: {fileID: 11400000, guid: 5bb348a445e532b4fb1325db5cde4f8e, type: 2}
-    prefab: {fileID: 3237488011463464408, guid: fe2b18e9f7e7d8a478f18217916391d2, type: 3}
     asteroidIndex: 0
   - type: {fileID: 11400000, guid: 815d2f53c8daa2d4197748a13df74471, type: 2}
-    prefab: {fileID: 5197274536728244146, guid: 530ec6f8758c3a349bf05b862791a0fd, type: 3}
     asteroidIndex: 1
   - type: {fileID: 11400000, guid: bdb02aafb654bda4bb555e793168ffcd, type: 2}
-    prefab: {fileID: 361766350084869549, guid: d62e6baa897911849b784369a867ee90, type: 3}
     asteroidIndex: 2
   spawnPoints:
   - {fileID: 2131720066}
