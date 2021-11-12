@@ -4,11 +4,13 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using JoaoSant0s.CommonWrapper;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Pool;
+
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
-
-using JoaoSant0s.CommonWrapper;
 
 namespace AsteroidsGame.Manager
 {
@@ -24,6 +26,8 @@ namespace AsteroidsGame.Manager
         private List<Transform> spawnPoints;
 
         private int spawnPointIndex;
+
+        private PoolService poolService;
 
         private List<Asteroid> generatedAsteroids;
 
@@ -45,7 +49,12 @@ namespace AsteroidsGame.Manager
             base.Awake();
             
             BulletCollisionListener.AsteroidCollided += BulletshipCollideAsteroid;
-        }        
+        }
+
+        private void Start() 
+        {
+            poolService = Services.Get<PoolService>();
+        }
 
         private void OnDestroy() 
         {
@@ -58,7 +67,7 @@ namespace AsteroidsGame.Manager
         {
             for (int i = 0; i < GeneratedAsteroids.Count; i++)
             {
-                Destroy(GeneratedAsteroids[i].gameObject);
+                GeneratedAsteroids[i].Dispose();
             }
             GeneratedAsteroids.Clear();
         }
@@ -67,19 +76,23 @@ namespace AsteroidsGame.Manager
         {
             var config = asteroids.Find( a => a.type == type);
             
-            var asteroid = Instantiate(config.prefab, position, Quaternion.identity);
-            GeneratedAsteroids.Add(asteroid);
+            InstantiateAsteroid(config.asteroidIndex, position);
         }
 
         public void SpawnAsteroid(TupleKeyData type)
         {
             var config = asteroids.Find( a => a.type == type);
-            var position = SequencePosition();
+            var position = SequencePosition();            
 
-            var asteroid = Instantiate(config.prefab, position, Quaternion.identity);
+            InstantiateAsteroid(config.asteroidIndex, position);
+        }
+
+        private void InstantiateAsteroid(int asteroidIndex, Vector3 position)
+        {            
+            var asteroid = poolService.Get<Asteroid>(position, Quaternion.identity, asteroidIndex);
 
             GeneratedAsteroids.Add(asteroid);
-        }        
+        }
 
         private Vector3 SequencePosition()
         {
@@ -95,7 +108,7 @@ namespace AsteroidsGame.Manager
         {
             RemoveAsteroid(context.Asteroid);
             SpawnChildrenAsteroids(context.Asteroid, context.Data);
-            Destroy(context.Asteroid.gameObject);
+            context.Asteroid.Dispose();
 
             CheckLevelEnded();
         }
@@ -136,6 +149,8 @@ namespace AsteroidsGame.Manager
     public struct AsteroidTuple
     {
         public TupleKeyData type;
-        public Asteroid prefab;
+
+        [Min(0)]
+        public int asteroidIndex;
     }
 }

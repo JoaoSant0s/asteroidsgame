@@ -18,7 +18,7 @@ namespace AsteroidsGame.Actions
 
 #region Unity Methods
 
-        private void Start()
+        private void OnEnable()
         {
             Move();
         }

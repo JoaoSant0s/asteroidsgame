@@ -54,7 +54,7 @@ namespace AsteroidsGame.Manager
         }
 
         public void SpawnSpaceship()
-        {
+        {          
             Reset();
             RespawnSpaceship();
         }
@@ -70,13 +70,13 @@ namespace AsteroidsGame.Manager
             RespawnSpaceship();
         }
 
-           private void SpaceshipDestroyed()
+        private void SpaceshipDestroyed()
         {
             spaceshipLife--;
 
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
             if(spaceshipLife <= 0) {
-                popupService.ShowPopup<GameOverScreenPopup>();
+                popupService.Show<GameOverScreenPopup>();
                 return;
             }
 
