@@ -2,29 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
-using UnityEngine.UI;
 
 using JoaoSant0s.ServicePackage.Popup;
-using JoaoSant0s.ServicePackage.Flag;
 using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Flag;
 using AsteroidsGame.Data;
+using UnityEngine.UI;
+using UnityEngine.Events;
+using System;
+using TMPro;
 
 namespace AsteroidsGame.UI.Popup
 {
-    public class GameOverScreenPopup : BasePopup
+    public class NextLevelPopup : BasePopup
     {
-        public delegate void OnRestartGame();
-        public static OnRestartGame RestartGame;
-
+        [Header("Components")]
         [SerializeField]
-        private Button restartButton;
+        private Button continueButton;
+        [SerializeField]
+        private TextMeshProUGUI levelLabel;
 
+        [Header("Data")]
         [SerializeField]
         private UINavigationKeyboardMapData navigationKeyoard;
 
         [SerializeField]
         private FlagAsset enableGameplayFlag;
         private FlagService flagService;
+
+        private UnityAction action;
 
         #region Unity Methods
         private void Start()
@@ -47,10 +53,23 @@ namespace AsteroidsGame.UI.Popup
 
         #endregion
 
+        #region Public Methods
+
+        public void SetVisual(int visualLevel)
+        {
+            levelLabel.text = string.Format("Level {0}", visualLevel);
+        }
+        public void SetGoAction(UnityAction action)
+        {
+            this.action = action;
+        }
+
+        #endregion
+
         #region  Private Methods
         private void SetButtonEvents()
         {
-            restartButton.onClick.AddListener(() =>
+            continueButton.onClick.AddListener(() =>
             {
                 NextAction();
             });
@@ -58,8 +77,8 @@ namespace AsteroidsGame.UI.Popup
 
         private void NextAction()
         {
-            RestartGame?.Invoke();
             flagService.Raise(enableGameplayFlag);
+            action?.Invoke();
             Hide();
         }
 

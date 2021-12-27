@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AsteroidsGame.Data
 {
-    [CreateAssetMenu(fileName = "SpaceshipSpawnerData", menuName = "AsteroidsGame/SpaceshipSpawnerData")]
+    [CreateAssetMenu(fileName = "SpaceshipSpawnerData", menuName = "AsteroidsGame/Spaceship/SpaceshipSpawnerData")]
     public class SpaceshipSpawnerData : ScriptableObject
     {
         public int maxSpaceshipLife;

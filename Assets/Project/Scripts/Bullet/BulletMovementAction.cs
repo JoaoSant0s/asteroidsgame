@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using JoaoSant0s.ServicePackage.General;
-using JoaoSant0s.ServicePackage.Pool;
-
 using AsteroidsGame.Unit;
 
 namespace AsteroidsGame.Actions
@@ -23,7 +20,7 @@ namespace AsteroidsGame.Actions
 
         public void Move(Vector2 direction)
         {
-            rb.velocity = direction * context.Data.speed * Time.deltaTime;
+            rb.velocity = direction * context.Data.speed * Time.fixedDeltaTime;
             StartCoroutine(DisposeBullet());
         }
 

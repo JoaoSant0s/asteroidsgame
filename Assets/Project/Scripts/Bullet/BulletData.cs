@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AsteroidsGame.Data
 {
-    [CreateAssetMenu(fileName = "BulletData", menuName = "AsteroidsGame/BulletData")]
+    [CreateAssetMenu(fileName = "BulletData", menuName = "AsteroidsGame/Bullet/BulletData")]
     public class BulletData : ScriptableObject
     {
 

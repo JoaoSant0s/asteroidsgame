@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AsteroidsGame.Data
 {
-    [CreateAssetMenu(fileName = "LevelCollectionData", menuName = "AsteroidsGame/LevelCollectionData")]
+    [CreateAssetMenu(fileName = "LevelCollectionData", menuName = "AsteroidsGame/Level/LevelCollectionData")]
     public class LevelCollectionData : ScriptableObject
     {        
         public float nextLevelDelay;

@@ -14,7 +14,6 @@ namespace AsteroidsGame.Manager
 {
     public class GameScene : MonoBehaviour
     {
-
         [SerializeField]
         private SpaceshipSpawner spaceshipSpawner;
 
@@ -22,28 +21,27 @@ namespace AsteroidsGame.Manager
         private LevelManager levelManager;
 
         [SerializeField]
-        private ScoreManager scoreManager;  
+        private ScoreManager scoreManager;
 
         private PopupService popupService;
 
-#region Unity Methods
-        private void Start() 
+        #region Unity Methods
+        private void Start()
         {
-            popupService = Services.Get<PopupService>();            
-
-            var popup = popupService.Show<SplashScreenPopup>();
-
-            popup.OnBeforeHide += StartGame;
-
+            popupService = Services.Get<PopupService>();
             GameOverScreenPopup.RestartGame += RestartGame;
+
+            StartCoroutine(ShowSplashScreenRoutine());
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
             GameOverScreenPopup.RestartGame -= RestartGame;
         }
 
-#endregion
+        #endregion
+
+        #region Private Methods
 
         private void RestartGame()
         {
@@ -57,7 +55,18 @@ namespace AsteroidsGame.Manager
         private void StartGame()
         {
             spaceshipSpawner.SpawnSpaceship();
-            levelManager.SpawnLevelContent();
+            levelManager.StartCurrentLevel();
         }
+
+        private IEnumerator ShowSplashScreenRoutine()
+        {
+            yield return new WaitForEndOfFrame();
+
+            var popup = popupService.Show<SplashScreenPopup>();
+
+            popup.OnBeforeHide += StartGame;
+        }
+
+        #endregion
     }
 }
