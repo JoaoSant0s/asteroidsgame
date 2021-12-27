@@ -30,6 +30,7 @@ namespace AsteroidsGame.UI.Popup
             flagService = Services.Get<FlagService>();
             SetButtonEvents();
         }
+#if UNITY_EDITOR
 
         private void Update()
         {
@@ -38,6 +39,7 @@ namespace AsteroidsGame.UI.Popup
                 NextAction();
             }
         }
+#endif
 
         #endregion
 

@@ -34,7 +34,8 @@ namespace AsteroidsGame.UI.Popup
 
             SetButtonEvents();
         }
-
+        
+#if UNITY_EDITOR
         private void Update()
         {
             if (Input.GetKeyUp(navigationKeyoard.confirmAction))
@@ -42,6 +43,7 @@ namespace AsteroidsGame.UI.Popup
                 NextAction();
             }
         }
+#endif
 
         #endregion
 

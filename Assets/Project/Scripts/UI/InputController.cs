@@ -46,10 +46,13 @@ namespace AsteroidsGame.UI
             SetUIButtonsActions();
         }
 
+#if UNITY_EDITOR
         private void Update()
         {
             ListeningKeyboardActions();
         }
+#endif
+
         #endregion
 
         #region Private Methods
