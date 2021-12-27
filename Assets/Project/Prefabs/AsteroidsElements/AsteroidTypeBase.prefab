@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8969033533035778296}
   - component: {fileID: 8969033533035778297}
   - component: {fileID: 5657880553891253099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AsteroidTypeBase
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.76, y: 1.5}
+    oldSize: {x: 1.74, y: 1.49}
     newSize: {x: 0.88, y: 0.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -337,7 +337,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.76, y: 1.5}
+    oldSize: {x: 1.74, y: 1.49}
     newSize: {x: 0.88, y: 0.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
