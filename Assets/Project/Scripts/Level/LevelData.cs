@@ -23,7 +23,7 @@ namespace AsteroidsGame.Data
         public TupleKeyData asteroidType;
 
         [MinMaxSlider(1, 30)]
-        public Vector2 asteroidAmount;
+        public Vector2Int asteroidAmount;
 
         public int RandomAmount => UnityEngine.Random.Range((int)asteroidAmount.x, (int)asteroidAmount.y);
     }
