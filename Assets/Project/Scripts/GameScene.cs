@@ -55,7 +55,7 @@ namespace AsteroidsGame.Manager
         private void StartGame()
         {
             spaceshipSpawner.SpawnSpaceship();
-            levelManager.SpawnLevelContent();
+            levelManager.StartCurrentLevel();
         }
 
         private IEnumerator ShowSplashScreenRoutine()

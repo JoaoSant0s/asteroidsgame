@@ -5,45 +5,68 @@ using UnityEngine;
 
 using AsteroidsGame.Data;
 using JoaoSant0s.CommonWrapper;
-
+using AsteroidsGame.UI;
 
 namespace AsteroidsGame.Manager
 {
     public class LevelManager : MonoBehaviour
     {
+        [Header("Components")]
+        [SerializeField]
+        private LevelView levelView;
+
+        [Header("Configs")]
         [SerializeField]
         private LevelCollectionData data;
 
         private int currentLevelIndex = 0;
+        private int visualLevel = 0;
 
-#region Unity Methods
+        #region Unity Methods
 
-        private void Awake() 
+        private void Awake()
         {
-            AsteroidSpawner.SpawnNextLevel += GoNextLevel; 
+            AsteroidSpawner.SpawnNextLevel += GoNextLevel;
+            visualLevel = currentLevelIndex;
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
             AsteroidSpawner.SpawnNextLevel -= GoNextLevel;
         }
 
-#endregion
+        #endregion
+
+        #region Public Methods
 
         public void Reset()
         {
             AsteroidSpawner.Instance.Reset();
             currentLevelIndex = 0;
-        }       
+            visualLevel = currentLevelIndex;
+        }
 
-        public IEnumerator GoNextLevelRoutine()
+        public void StartCurrentLevel()
         {
-            yield return new WaitForSeconds(data.nextLevelDelay);
-            
+            levelView.UpdateLevel(visualLevel + 1);
             SpawnLevelContent();
         }
 
-        public void SpawnLevelContent()
+        #endregion
+
+        #region Private Methods
+
+        private void GoNextLevel()
+        {
+            currentLevelIndex++;
+            visualLevel++;
+
+            if (currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
+
+            StartCoroutine(GoNextLevelRoutine());
+        }
+
+        private void SpawnLevelContent()
         {
             var level = data.levels[currentLevelIndex];
 
@@ -58,13 +81,13 @@ namespace AsteroidsGame.Manager
             }
         }
 
-        private void GoNextLevel()
+        private IEnumerator GoNextLevelRoutine()
         {
-            currentLevelIndex++;
+            yield return new WaitForSeconds(data.nextLevelDelay);
 
-            if(currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
-
-            StartCoroutine(GoNextLevelRoutine());
+            StartCurrentLevel();
         }
+
+        #endregion
     }
 }
