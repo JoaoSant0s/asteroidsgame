@@ -8,7 +8,7 @@ using NaughtyAttributes;
 
 namespace AsteroidsGame.Data
 {
-    [CreateAssetMenu(fileName = "LevelData", menuName = "AsteroidsGame/LevelData")]
+    [CreateAssetMenu(fileName = "LevelData", menuName = "AsteroidsGame/Level/LevelData")]
     public class LevelData : ScriptableObject
     {
         [SerializeField]
