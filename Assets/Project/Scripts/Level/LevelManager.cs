@@ -6,6 +6,9 @@ using UnityEngine;
 using AsteroidsGame.Data;
 using JoaoSant0s.CommonWrapper;
 using AsteroidsGame.UI;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Popup;
+using AsteroidsGame.UI.Popup;
 
 namespace AsteroidsGame.Manager
 {
@@ -22,12 +25,20 @@ namespace AsteroidsGame.Manager
         private int currentLevelIndex = 0;
         private int visualLevel = 0;
 
+        private PopupService popupService;
+
+
         #region Unity Methods
 
         private void Awake()
         {
             AsteroidSpawner.SpawnNextLevel += GoNextLevel;
             visualLevel = currentLevelIndex;
+        }
+
+        private void Start()
+        {
+            popupService = Services.Get<PopupService>();
         }
 
         private void OnDestroy()
@@ -85,7 +96,9 @@ namespace AsteroidsGame.Manager
         {
             yield return new WaitForSeconds(data.nextLevelDelay);
 
-            StartCurrentLevel();
+            var popup = popupService.Show<NextLevelPopup>();
+            popup.SetVisual(visualLevel + 1);
+            popup.SetGoAction(StartCurrentLevel);
         }
 
         #endregion
