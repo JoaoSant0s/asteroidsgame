@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 889cc2a51409278488aee2e8686919f6, type: 3}
-  m_Name: LevelData
+  m_Name: Phase10
   m_EditorClassIdentifier: 
   configs:
+  - asteroidType: {fileID: 11400000, guid: 5bb348a445e532b4fb1325db5cde4f8e, type: 2}
+    asteroidAmount: {x: 3, y: 3}
   - asteroidType: {fileID: 11400000, guid: 815d2f53c8daa2d4197748a13df74471, type: 2}
-    asteroidAmount: {x: 1, y: 2}
+    asteroidAmount: {x: 2, y: 3}
   - asteroidType: {fileID: 11400000, guid: bdb02aafb654bda4bb555e793168ffcd, type: 2}
-    asteroidAmount: {x: 1, y: 2}
+    asteroidAmount: {x: 10, y: 10}

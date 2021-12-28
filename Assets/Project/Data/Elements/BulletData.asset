@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BulletData
   m_EditorClassIdentifier: 
   speed: 350
-  lifeTime: 1.5
+  lifeTime: 1.1
   asteroidCollisionEffectPrefab: {fileID: 2554450836756354896, guid: f516cc5b03d2ee14ea5858f2459956da, type: 3}

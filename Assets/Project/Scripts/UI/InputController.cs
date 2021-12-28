@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using AsteroidsGame.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,39 +35,83 @@ namespace AsteroidsGame.UI
         [SerializeField]
         private Button buttonHyperSpace;
 
-#region Unity Methods
-            private void Awake() 
+        [Header("Keyboard Map")]
+
+        [SerializeField]
+        private SpaceshipKeyboardMapData spaceshipKeyboardMapping;
+
+        #region Unity Methods
+        private void Awake()
+        {
+            SetUIButtonsActions();
+        }
+
+#if UNITY_EDITOR
+        private void Update()
+        {
+            ListeningKeyboardActions();
+        }
+#endif
+
+        #endregion
+
+        #region Private Methods
+        private void SetUIButtonsActions()
+        {
+            buttonRotateLeft.HoldEvent.AddListener(() =>
             {
-                SetButtonsActions();
-            }
-#endregion
+                RotateSpaceShip?.Invoke(1);
+            });
 
-            private void SetButtonsActions()
+            buttonRotateRight.HoldEvent.AddListener(() =>
             {
-                buttonRotateLeft.HoldEvent.AddListener(()=>
-                {
-                    RotateSpaceShip?.Invoke(1);
-                });
+                RotateSpaceShip?.Invoke(-1);
+            });
 
-                buttonRotateRight.HoldEvent.AddListener(()=>
-                {
-                    RotateSpaceShip?.Invoke(-1);
-                });
+            buttonAccelerate.HoldEvent.AddListener(() =>
+            {
+                AccelerateSpaceShip?.Invoke(1);
+            });
 
-                buttonAccelerate.HoldEvent.AddListener(()=>
-                {
-                    AccelerateSpaceShip?.Invoke(1);
-                });
+            buttonShoot.onClick.AddListener(() =>
+            {
+                ShootAction?.Invoke();
+            });
 
-                buttonShoot.onClick.AddListener(()=>
-                {
-                    ShootAction?.Invoke();
-                });
+            buttonHyperSpace.onClick.AddListener(() =>
+            {
+                HyperSpaceAction?.Invoke();
+            });
+        }
 
-                buttonHyperSpace.onClick.AddListener(()=>
-                {
-                    HyperSpaceAction?.Invoke();
-                });
+        private void ListeningKeyboardActions()
+        {
+            if (Input.GetKeyUp(spaceshipKeyboardMapping.shootAction))
+            {
+                ShootAction?.Invoke();
             }
+
+            if (Input.GetKeyUp(spaceshipKeyboardMapping.hyperSpaceAction))
+            {
+                HyperSpaceAction?.Invoke();
+            }
+
+            if (Input.GetKey(spaceshipKeyboardMapping.accelerate))
+            {
+                AccelerateSpaceShip?.Invoke(1);
+            }
+
+            if (Input.GetKey(spaceshipKeyboardMapping.rotateLeft))
+            {
+                RotateSpaceShip?.Invoke(1);
+            }
+
+            if (Input.GetKey(spaceshipKeyboardMapping.rotateRight))
+            {
+                RotateSpaceShip?.Invoke(-1);
+            }
+        }
+
+        #endregion
     }
 }

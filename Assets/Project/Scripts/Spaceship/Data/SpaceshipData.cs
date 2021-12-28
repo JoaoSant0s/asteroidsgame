@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AsteroidsGame.Data
 {
-    [CreateAssetMenu(fileName = "SpaceshipData", menuName = "AsteroidsGame/SpaceshipData")]
+    [CreateAssetMenu(fileName = "SpaceshipData", menuName = "AsteroidsGame/Spaceship/SpaceshipData")]
     public class SpaceshipData : ScriptableObject
     {
         [Header("Configs")]

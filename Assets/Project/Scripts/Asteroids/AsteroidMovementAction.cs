@@ -32,7 +32,7 @@ namespace AsteroidsGame.Actions
             var direction = Util.RandomDirection();
             direction.Normalize();
 
-            rb.velocity = direction * context.Data.speed * Time.deltaTime;
+            rb.velocity = direction * context.Data.speed * Time.fixedDeltaTime;
         }
     }
 }
