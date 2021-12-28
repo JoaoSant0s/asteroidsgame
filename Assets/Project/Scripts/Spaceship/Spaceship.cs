@@ -8,6 +8,10 @@ namespace AsteroidsGame.Unit
     {
         [SerializeField]
         private SpaceshipContext context;
+
+        [SerializeField]
+        private SpaceshipShield spaceshipShield;
+
         public bool IsInvulnerable { get; private set; }
 
         #region Public Methods
@@ -16,6 +20,8 @@ namespace AsteroidsGame.Unit
         {
             if (IsInvulnerable) return;
             IsInvulnerable = true;
+            
+            spaceshipShield.StartAnimation(context.Data.InvulnarableConfig());
             StartCoroutine(DisableInvulnerabilityRoutine(context.Data.invulnerabilityDuration));
         }
 
@@ -27,6 +33,7 @@ namespace AsteroidsGame.Unit
         {
             yield return new WaitForSeconds(duration);
             IsInvulnerable = false;
+            spaceshipShield.StopAnimation();
         }
 
         #endregion
