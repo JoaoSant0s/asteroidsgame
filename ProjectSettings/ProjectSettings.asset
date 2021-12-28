@@ -127,7 +127,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.2.0
+  bundleVersion: 0.2.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -149,10 +149,10 @@ PlayerSettings:
     Android: com.JoaoSantos.AsteroidsGame
   buildNumber:
     Standalone: 0
-    iPhone: 0.2.0
+    iPhone: 0.2.1
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
-  AndroidBundleVersionCode: 2048
+  AndroidBundleVersionCode: 2049
   AndroidMinSdkVersion: 24
   AndroidTargetSdkVersion: 30
   AndroidPreferredInstallLocation: 1
