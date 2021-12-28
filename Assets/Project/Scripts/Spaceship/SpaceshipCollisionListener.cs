@@ -13,7 +13,7 @@ namespace AsteroidsGame.Actions
     {
         public delegate void OnSpaceshipCollideAsteroid();
         public static OnSpaceshipCollideAsteroid AsteroidCollided;
-                
+
         [Tag]
         [SerializeField]
         private string asteroidTag;
@@ -21,18 +21,19 @@ namespace AsteroidsGame.Actions
         [SerializeField]
         private SpaceshipContext context;
 
-#region Unity Methods        
+        #region Unity Methods      
 
-        void OnTriggerEnter2D(Collider2D col)
+        void OnTriggerStay2D(Collider2D col)
         {
             if (!col.CompareTag(asteroidTag)) return;
-            
+            if (context.IsInvulnerable) return;
+
             Instantiate(context.Data.asteroidCollisionEffectPrefab, col.transform.position, Quaternion.identity);
-            Destroy(gameObject);                                   
             RegisterSpaceshipCollision();
+            Destroy(gameObject);
         }
 
-#endregion
+        #endregion
 
         private void RegisterSpaceshipCollision()
         {

@@ -11,6 +11,7 @@ namespace AsteroidsGame.Data
         public float rotateSpeed;        
         public float forwardForce;
         public float maxForwardVelocity;
+        public float invulnerabilityDuration;
 
         [Header("Effects")]
         public GameObject asteroidCollisionEffectPrefab;

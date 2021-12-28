@@ -15,4 +15,5 @@ MonoBehaviour:
   rotateSpeed: 175
   forwardForce: 75
   maxForwardVelocity: 3.5
+  invulnerabilityDuration: 3
   asteroidCollisionEffectPrefab: {fileID: 2941703647786210198, guid: 7a9c924ea1fa0424bbcd48627dacd362, type: 3}

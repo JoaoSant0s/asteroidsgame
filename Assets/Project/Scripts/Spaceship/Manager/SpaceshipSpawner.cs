@@ -15,7 +15,7 @@ namespace AsteroidsGame.Manager
 {
     public class SpaceshipSpawner : MonoBehaviour
     {
-        public delegate void OnUpdateSpaceshipLife( int value);
+        public delegate void OnUpdateSpaceshipLife(int value);
         public static OnUpdateSpaceshipLife UpdateSpaceshipLife;
 
         [SerializeField]
@@ -28,22 +28,26 @@ namespace AsteroidsGame.Manager
 
         private PopupService popupService;
 
-#region Unity Methods
+        private Spaceship currentSpaceship;
 
-        private void Awake() 
+        #region Unity Methods
+
+        private void Awake()
         {
             SpaceshipCollisionListener.AsteroidCollided += SpaceshipDestroyed;
+            LevelManager.OnMakeSpaceshipInvulnerable += MakeSpaceshipInvulnerable;
         }
 
-        private void Start() 
+        private void Start()
         {
-            popupService = Services.Get<PopupService>();    
+            popupService = Services.Get<PopupService>();
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
             SpaceshipCollisionListener.AsteroidCollided -= SpaceshipDestroyed;
-        }      
+            LevelManager.OnMakeSpaceshipInvulnerable -= MakeSpaceshipInvulnerable;
+        }
 
         #endregion
 
@@ -54,14 +58,21 @@ namespace AsteroidsGame.Manager
         }
 
         public void SpawnSpaceship()
-        {          
+        {
             Reset();
             RespawnSpaceship();
         }
 
         public void RespawnSpaceship()
         {
-            Instantiate(spaceshipPrefab, Vector3.zero, Quaternion.identity);
+            currentSpaceship = Instantiate(spaceshipPrefab, Vector3.zero, Quaternion.identity);
+            MakeSpaceshipInvulnerable();
+        }
+
+        private void MakeSpaceshipInvulnerable()
+        {
+            if (currentSpaceship == null) return;
+            currentSpaceship.RunDefaultInvulnerability();
         }
 
         private IEnumerator RespawnSpaceshipRoutine()
@@ -75,7 +86,8 @@ namespace AsteroidsGame.Manager
             spaceshipLife--;
 
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
-            if(spaceshipLife <= 0) {
+            if (spaceshipLife <= 0)
+            {
                 popupService.Show<GameOverScreenPopup>();
                 return;
             }

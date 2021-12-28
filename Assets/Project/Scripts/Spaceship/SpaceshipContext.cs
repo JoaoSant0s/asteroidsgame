@@ -11,6 +11,11 @@ namespace AsteroidsGame.Unit
         [SerializeField]
         private SpaceshipData data;
 
+        [SerializeField]
+        private Spaceship currentSpaceship;
+
         public SpaceshipData Data => data;
+
+        public bool IsInvulnerable => currentSpaceship.IsInvulnerable;
     }
 }
