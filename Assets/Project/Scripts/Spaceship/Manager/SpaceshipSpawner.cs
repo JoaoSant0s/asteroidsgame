@@ -51,34 +51,29 @@ namespace AsteroidsGame.Manager
 
         #endregion
 
+        #region Public Methods
+
         public void Reset()
         {
             spaceshipLife = data.maxSpaceshipLife;
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
         }
 
-        public void SpawnSpaceship()
-        {
-            Reset();
-            RespawnSpaceship();
-        }
-
-        public void RespawnSpaceship()
+        public void SpawnSpaceship(bool makeInvulnarable = false)
         {
             currentSpaceship = Instantiate(spaceshipPrefab, Vector3.zero, Quaternion.identity);
-            MakeSpaceshipInvulnerable();
+            if (makeInvulnarable) MakeSpaceshipInvulnerable();
         }
+
+        #endregion
+
+        #region Private Methods    
 
         private void MakeSpaceshipInvulnerable()
         {
             if (currentSpaceship == null) return;
-            currentSpaceship.RunDefaultInvulnerability();
-        }
-
-        private IEnumerator RespawnSpaceshipRoutine()
-        {
-            yield return new WaitForSeconds(data.respawnDelay);
-            RespawnSpaceship();
+            var action = currentSpaceship.GetComponent<SpaceshipInvulnerableAction>();
+            action?.RunDefaultInvulnerability();
         }
 
         private void SpaceshipDestroyed()
@@ -94,5 +89,13 @@ namespace AsteroidsGame.Manager
 
             StartCoroutine(RespawnSpaceshipRoutine());
         }
+
+        private IEnumerator RespawnSpaceshipRoutine()
+        {
+            yield return new WaitForSeconds(data.respawnDelay);
+            SpawnSpaceship(true);
+        }
+
+        #endregion
     }
 }
