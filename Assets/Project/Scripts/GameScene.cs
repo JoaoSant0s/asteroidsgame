@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.Unit;
 using AsteroidsGame.UI.Popup;
 
-using JoaoSant0s.Scene;
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Popup;
 
