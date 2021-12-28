@@ -15,7 +15,7 @@ namespace AsteroidsGame.Manager
 {
     public class SpaceshipSpawner : MonoBehaviour
     {
-        public delegate void OnUpdateSpaceshipLife( int value);
+        public delegate void OnUpdateSpaceshipLife(int value);
         public static OnUpdateSpaceshipLife UpdateSpaceshipLife;
 
         [SerializeField]
@@ -28,24 +28,30 @@ namespace AsteroidsGame.Manager
 
         private PopupService popupService;
 
-#region Unity Methods
+        private Spaceship currentSpaceship;
 
-        private void Awake() 
+        #region Unity Methods
+
+        private void Awake()
         {
             SpaceshipCollisionListener.AsteroidCollided += SpaceshipDestroyed;
+            LevelManager.OnMakeSpaceshipInvulnerable += MakeSpaceshipInvulnerable;
         }
 
-        private void Start() 
+        private void Start()
         {
-            popupService = Services.Get<PopupService>();    
+            popupService = Services.Get<PopupService>();
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
             SpaceshipCollisionListener.AsteroidCollided -= SpaceshipDestroyed;
-        }      
+            LevelManager.OnMakeSpaceshipInvulnerable -= MakeSpaceshipInvulnerable;
+        }
 
         #endregion
+
+        #region Public Methods
 
         public void Reset()
         {
@@ -53,21 +59,21 @@ namespace AsteroidsGame.Manager
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
         }
 
-        public void SpawnSpaceship()
-        {          
-            Reset();
-            RespawnSpaceship();
+        public void SpawnSpaceship(bool makeInvulnarable = false)
+        {
+            currentSpaceship = Instantiate(spaceshipPrefab, Vector3.zero, Quaternion.identity);
+            if (makeInvulnarable) MakeSpaceshipInvulnerable();
         }
 
-        public void RespawnSpaceship()
-        {
-            Instantiate(spaceshipPrefab, Vector3.zero, Quaternion.identity);
-        }
+        #endregion
 
-        private IEnumerator RespawnSpaceshipRoutine()
+        #region Private Methods    
+
+        private void MakeSpaceshipInvulnerable()
         {
-            yield return new WaitForSeconds(data.respawnDelay);
-            RespawnSpaceship();
+            if (currentSpaceship == null) return;
+            var action = currentSpaceship.GetComponent<SpaceshipInvulnerableAction>();
+            action?.RunDefaultInvulnerability();
         }
 
         private void SpaceshipDestroyed()
@@ -75,12 +81,21 @@ namespace AsteroidsGame.Manager
             spaceshipLife--;
 
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
-            if(spaceshipLife <= 0) {
+            if (spaceshipLife <= 0)
+            {
                 popupService.Show<GameOverScreenPopup>();
                 return;
             }
 
             StartCoroutine(RespawnSpaceshipRoutine());
         }
+
+        private IEnumerator RespawnSpaceshipRoutine()
+        {
+            yield return new WaitForSeconds(data.respawnDelay);
+            SpawnSpaceship(true);
+        }
+
+        #endregion
     }
 }

@@ -6,6 +6,5 @@ namespace AsteroidsGame.Unit
 {
     public class Spaceship : MonoBehaviour
     {
-       
     }
 }

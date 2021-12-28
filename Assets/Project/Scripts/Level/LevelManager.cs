@@ -14,6 +14,9 @@ namespace AsteroidsGame.Manager
 {
     public class LevelManager : MonoBehaviour
     {
+        public delegate void MakeSpaceshipInvulnerable();
+        public static MakeSpaceshipInvulnerable OnMakeSpaceshipInvulnerable;
+
         [Header("Components")]
         [SerializeField]
         private LevelView levelView;
@@ -59,6 +62,7 @@ namespace AsteroidsGame.Manager
 
         public void StartCurrentLevel()
         {
+            OnMakeSpaceshipInvulnerable?.Invoke();
             levelView.UpdateLevel(visualLevel + 1);
             SpawnLevelContent();
         }
