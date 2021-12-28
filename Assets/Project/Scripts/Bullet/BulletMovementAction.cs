@@ -21,13 +21,6 @@ namespace AsteroidsGame.Actions
         public void Move(Vector2 direction)
         {
             rb.velocity = direction * context.Data.speed * Time.fixedDeltaTime;
-            StartCoroutine(DisposeBullet());
-        }
-
-        private IEnumerator DisposeBullet()
-        {
-            yield return new WaitForSeconds(context.Data.lifeTime);
-            bullet.Dispose();
         }
     }
 }

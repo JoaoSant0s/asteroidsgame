@@ -101,6 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4b538c3bbd4d645b684142d7db5089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementAction: {fileID: 1664267252640217619}
+  context: {fileID: 1576592489839253266}
 --- !u!114 &1576592489839253266
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,14 +18,14 @@ namespace AsteroidsGame.Actions
 
         private PoolService poolService;
 
-#region Unity Methods
+        #region Unity Methods
 
         private void Awake()
         {
             InputController.ShootAction += Shoot;
         }
 
-        private void Start() 
+        private void Start()
         {
             poolService = Services.Get<PoolService>();
         }
@@ -35,19 +35,17 @@ namespace AsteroidsGame.Actions
             InputController.ShootAction -= Shoot;
         }
 
-#endregion
+        #endregion
 
         private void Shoot()
         {
             var bullet = InstatiateBullet();
-            var movementAction = bullet.GetComponent<BulletMovementAction>();
-            
-            movementAction.Move(transform.up);
+            bullet.Move(transform.up);
         }
 
         private Bullet InstatiateBullet()
         {
-            var bullet = poolService.Get<Bullet>(null, bulletOrigin.position, Quaternion.identity);            
+            var bullet = poolService.Get<Bullet>(null, bulletOrigin.position, Quaternion.identity);
             return bullet;
         }
     }
