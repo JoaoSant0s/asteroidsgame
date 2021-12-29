@@ -26,7 +26,7 @@ namespace AsteroidsGame.Manager
         private LevelCollectionData data;
 
         private int currentLevelIndex = 0;
-        private int visualLevel = 0;
+        private int globalLevelIndex = 0;
 
         private PopupService popupService;
 
@@ -36,7 +36,6 @@ namespace AsteroidsGame.Manager
         private void Awake()
         {
             AsteroidSpawner.SpawnNextLevel += GoNextLevel;
-            visualLevel = currentLevelIndex;
         }
 
         private void Start()
@@ -53,47 +52,85 @@ namespace AsteroidsGame.Manager
 
         #region Public Methods
 
-        public void Reset()
-        {
-            AsteroidSpawner.Instance.Reset();
-            currentLevelIndex = 0;
-            visualLevel = currentLevelIndex;
-        }
-
-        public void StartCurrentLevel()
+        public void StartCurrentLevel(LevelSave levelSave = null)
         {
             OnMakeSpaceshipInvulnerable?.Invoke();
-            levelView.UpdateLevel(visualLevel + 1);
-            SpawnLevelContent();
+
+            SetPlayerLevelIndex(levelSave);
+
+            levelView.UpdateLevel(globalLevelIndex + 1);
+
+            var info = levelSave?.ContainsGameplayInfo();
+
+            if (info.Value)
+            {
+                SpawnLevelContent(levelSave.gameplayInfo);
+            }
+            else
+            {
+                SpawnLevelContent();
+            }
         }
 
         #endregion
 
         #region Private Methods
 
+        private void SetPlayerLevelIndex(LevelSave levelSave = null)
+        {
+            if (levelSave == null) return;
+
+            globalLevelIndex = levelSave.globalLevelIndex;
+            currentLevelIndex = levelSave.levelIndex;
+        }
+
         private void GoNextLevel()
         {
             currentLevelIndex++;
-            visualLevel++;
+            globalLevelIndex++;
 
             if (currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
+
+            SaveManager.Instance.SetPlayerLevel(new LevelSave(currentLevelIndex, globalLevelIndex));
 
             StartCoroutine(GoNextLevelRoutine());
         }
 
-        private void SpawnLevelContent()
+        private void SpawnLevelContent(LevelGameplaySave info)
         {
             var level = data.levels[currentLevelIndex];
 
             for (int i = 0; i < level.Configs.Count; i++)
             {
                 var config = level.Configs[i];
+                var amount = info.asteroidsAmount[i];
 
-                for (int j = 0; j < config.RandomAmount; j++)
+                for (int j = 0; j < amount; j++)
                 {
                     AsteroidSpawner.Instance.SpawnAsteroid(config.asteroidType);
                 }
             }
+        }
+
+        private void SpawnLevelContent()
+        {
+            var level = data.levels[currentLevelIndex];
+            var gameplayLevelInfo = new LevelGameplaySave();
+
+            for (int i = 0; i < level.Configs.Count; i++)
+            {
+                var config = level.Configs[i];
+                var amount = config.RandomAmount;
+
+                gameplayLevelInfo.asteroidsAmount.Add(amount);
+
+                for (int j = 0; j < amount; j++)
+                {
+                    AsteroidSpawner.Instance.SpawnAsteroid(config.asteroidType);
+                }
+            }
+
+            SaveManager.Instance.SetPlayerGameplayLevel(gameplayLevelInfo);
         }
 
         private IEnumerator GoNextLevelRoutine()
@@ -101,8 +138,8 @@ namespace AsteroidsGame.Manager
             yield return new WaitForSeconds(data.nextLevelDelay);
 
             var popup = popupService.Show<NextLevelPopup>();
-            popup.SetVisual(visualLevel + 1);
-            popup.SetGoAction(StartCurrentLevel);
+            popup.SetVisual(globalLevelIndex + 1);
+            popup.SetGoAction(() => StartCurrentLevel());
         }
 
         #endregion

@@ -53,9 +53,9 @@ namespace AsteroidsGame.Manager
 
         #region Public Methods
 
-        public void Reset()
+        public void SetLife(int newLife)
         {
-            spaceshipLife = data.maxSpaceshipLife;
+            spaceshipLife = newLife;
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
         }
 
@@ -84,10 +84,19 @@ namespace AsteroidsGame.Manager
             if (spaceshipLife <= 0)
             {
                 popupService.Show<GameOverScreenPopup>();
+                PlayerSaveGameOver();
+                
                 return;
             }
 
+            SaveManager.Instance.SetPlayerLife(spaceshipLife);
+
             StartCoroutine(RespawnSpaceshipRoutine());
+        }
+
+        private void PlayerSaveGameOver()
+        {
+            SaveManager.Instance.SetPlayerLife(data.maxSpaceshipLife);
         }
 
         private IEnumerator RespawnSpaceshipRoutine()

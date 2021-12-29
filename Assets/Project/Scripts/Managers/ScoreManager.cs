@@ -7,6 +7,7 @@ using AsteroidsGame.Actions;
 using AsteroidsGame.UI.Popup;
 using AsteroidsGame.Unit;
 using AsteroidsGame.UI;
+using System;
 
 namespace AsteroidsGame.Manager
 {
@@ -14,29 +15,36 @@ namespace AsteroidsGame.Manager
     {
         [SerializeField]
         private ScoreCounter scoreLabel;
-        private int scorePoints;        
+        private int scorePoints;
 
-#region Unitye Methods
-       protected void Awake() 
-        {                        
+        #region Unitye Methods
+        protected void Awake()
+        {
             BulletCollisionListener.AsteroidCollided += BulletshipCollideAsteroid;
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
             BulletCollisionListener.AsteroidCollided -= BulletshipCollideAsteroid;
         }
-#endregion
+        #endregion
 
-        public void Reset()
+        #region Public Methods
+
+        public void SetScore(int newScore)
         {
-            scorePoints = 0;
+            scorePoints = newScore;
             UpdateScoreLabel();
         }
+
+        #endregion
+
+        #region Private Methods
 
         private void BulletshipCollideAsteroid(AsteroidContext context)
         {
             scorePoints += context.Data.destroyScore;
+            SaveManager.Instance.SetPlayerScore(scorePoints);
             UpdateScoreLabel();
         }
 
@@ -44,5 +52,7 @@ namespace AsteroidsGame.Manager
         {
             scoreLabel.UpdateScore(string.Format("{0}", scorePoints));
         }
+
+        #endregion
     }
 }
