@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.Flag;
 using JoaoSant0s.ServicePackage.General;
+
 using AsteroidsGame.Data;
-using System;
-using TMPro;
 
 namespace AsteroidsGame.UI.Popup
 {

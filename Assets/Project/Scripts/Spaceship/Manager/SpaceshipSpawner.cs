@@ -6,7 +6,6 @@ using UnityEngine;
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
-using AsteroidsGame.UI.Popup;
 
 using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.General;
