@@ -12,5 +12,7 @@ namespace AsteroidsGame.Unit
         private SpaceshipData data;
 
         public SpaceshipData Data => data;
+
+        public bool IsInvulnerable { get; set; }
     }
 }
