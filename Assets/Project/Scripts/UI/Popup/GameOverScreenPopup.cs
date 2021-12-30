@@ -8,6 +8,8 @@ using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.Flag;
 using JoaoSant0s.ServicePackage.General;
 using AsteroidsGame.Data;
+using System;
+using TMPro;
 
 namespace AsteroidsGame.UI.Popup
 {
@@ -16,8 +18,15 @@ namespace AsteroidsGame.UI.Popup
         public delegate void OnRestartGame();
         public static OnRestartGame RestartGame;
 
+        [Header("Components")]
+
         [SerializeField]
         private Button restartButton;
+
+        [SerializeField]
+        private TextMeshProUGUI messageLabel;
+
+        [Header("Data")]
 
         [SerializeField]
         private UINavigationKeyboardMapData navigationKeyoard;
@@ -44,6 +53,17 @@ namespace AsteroidsGame.UI.Popup
             }
         }
 #endif
+
+        #endregion
+
+        #region Public Methods
+
+        public void UpdateMessage(int returnLevel)
+        {
+            var pluralMessage = (returnLevel > 1) ? "levels" : "level";
+
+            messageLabel.text = string.Format("Returning {0} {1}", returnLevel, pluralMessage);
+        }
 
         #endregion
 

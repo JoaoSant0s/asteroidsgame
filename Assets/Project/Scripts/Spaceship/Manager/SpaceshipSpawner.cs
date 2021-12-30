@@ -18,6 +18,9 @@ namespace AsteroidsGame.Manager
         public delegate void OnUpdateSpaceshipLife(int value);
         public static OnUpdateSpaceshipLife UpdateSpaceshipLife;
 
+        public delegate void PlayerGameOver();
+        public static PlayerGameOver OnGameOver;
+
         [SerializeField]
         private Spaceship spaceshipPrefab;
 
@@ -85,12 +88,9 @@ namespace AsteroidsGame.Manager
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
             if (spaceshipLife <= 0)
             {
-                PlayerSaveGameOver();
-                popupService.Show<GameOverScreenPopup>();
-                
+                OnGameOver?.Invoke();
                 return;
             }
-
 
             StartCoroutine(RespawnSpaceshipRoutine());
         }
@@ -98,11 +98,6 @@ namespace AsteroidsGame.Manager
         private void SaveLife()
         {
             SaveManager.Instance.SetPlayerLife(spaceshipLife);
-        }
-
-        private void PlayerSaveGameOver()
-        {
-            SaveManager.Instance.SetPlayerLife(data.maxSpaceshipLife);
         }
 
         private IEnumerator RespawnSpaceshipRoutine()

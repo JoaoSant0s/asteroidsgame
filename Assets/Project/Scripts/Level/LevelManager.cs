@@ -29,6 +29,9 @@ namespace AsteroidsGame.Manager
         [SerializeField]
         private LevelCollectionData data;
 
+        [SerializeField]
+        private SpaceshipSpawnerData spaceshipData;
+
         private int currentLevelIndex = 0;
         private int globalLevelIndex = 0;
 
@@ -40,6 +43,7 @@ namespace AsteroidsGame.Manager
         private void Awake()
         {
             AsteroidSpawner.SpawnNextLevel += GoNextLevel;
+            SpaceshipSpawner.OnGameOver += OnGameOver;
         }
 
         private void Start()
@@ -50,6 +54,7 @@ namespace AsteroidsGame.Manager
         private void OnDestroy()
         {
             AsteroidSpawner.SpawnNextLevel -= GoNextLevel;
+            SpaceshipSpawner.OnGameOver -= OnGameOver;
         }
 
         #endregion
@@ -77,6 +82,19 @@ namespace AsteroidsGame.Manager
         #endregion
 
         #region Private Methods
+
+        private void OnGameOver()
+        {
+            var save = SaveManager.Instance.GetPlayerSave();
+
+            save.life = spaceshipData.maxSpaceshipLife;
+            save.level.ReturningLevelBy(data.levelToReturnAfterGameOver);
+
+            SaveManager.Instance.SetPlayer(save);
+
+            var popup = popupService.Show<GameOverScreenPopup>();
+            popup.UpdateMessage(data.levelToReturnAfterGameOver);
+        }
 
         private void SetPlayerLevelIndex(LevelSave levelSave = null)
         {

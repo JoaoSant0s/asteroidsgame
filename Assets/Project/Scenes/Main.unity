@@ -929,9 +929,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68df2eca950bea84990b5c4ad5ef38d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceshipSpawner: {fileID: 1016014102}
   levelManager: {fileID: 1911586692}
   scoreManager: {fileID: 1496268954}
+  spaceshipSpawner: {fileID: 1016014102}
 --- !u!4 &793252770
 Transform:
   m_ObjectHideFlags: 0
@@ -2051,6 +2051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelView: {fileID: 1943020697}
   data: {fileID: 11400000, guid: 254eeeff025d3fa49ab2b40aab62d157, type: 2}
+  spaceshipData: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
 --- !u!4 &1911586693
 Transform:
   m_ObjectHideFlags: 0

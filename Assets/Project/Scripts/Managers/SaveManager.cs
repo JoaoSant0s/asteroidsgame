@@ -68,6 +68,12 @@ namespace AsteroidsGame.Manager
             saveService.Set<PlayerSave>(saveConfig.playerSaveKey, localPlayerSave);
         }
 
+        public void SetPlayer(PlayerSave player)
+        {
+            localPlayerSave = player;
+            saveService.Set<PlayerSave>(saveConfig.playerSaveKey, localPlayerSave);
+        }
+
         public void CreatePlayerSave()
         {
             localPlayerSave = new PlayerSave(data.maxSpaceshipLife);
@@ -125,6 +131,13 @@ namespace AsteroidsGame.Manager
         public bool ContainsGameplayInfo()
         {
             return gameplayInfo != null && gameplayInfo.asteroidsAmount.Count > 0;
+        }
+
+        public void ReturningLevelBy(int amount)
+        {
+            globalLevelIndex = Mathf.Max(0, globalLevelIndex - amount);
+            levelIndex = Mathf.Max(0, levelIndex - amount);
+            gameplayInfo = null;
         }
     }
 
