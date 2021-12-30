@@ -21,11 +21,13 @@ namespace AsteroidsGame.Manager
         protected void Awake()
         {
             BulletCollisionListener.AsteroidCollided += BulletshipCollideAsteroid;
+            LevelManager.OnSavePlayerScore += SaveScore;
         }
 
         private void OnDestroy()
         {
             BulletCollisionListener.AsteroidCollided -= BulletshipCollideAsteroid;
+            LevelManager.OnSavePlayerScore -= SaveScore;
         }
         #endregion
 
@@ -44,8 +46,12 @@ namespace AsteroidsGame.Manager
         private void BulletshipCollideAsteroid(AsteroidContext context)
         {
             scorePoints += context.Data.destroyScore;
-            SaveManager.Instance.SetPlayerScore(scorePoints);
             UpdateScoreLabel();
+        }
+
+        private void SaveScore()
+        {
+            SaveManager.Instance.SetPlayerScore(scorePoints);
         }
 
         private void UpdateScoreLabel()

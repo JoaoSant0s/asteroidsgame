@@ -36,6 +36,7 @@ namespace AsteroidsGame.Manager
         {
             SpaceshipCollisionListener.AsteroidCollided += SpaceshipDestroyed;
             LevelManager.OnMakeSpaceshipInvulnerable += MakeSpaceshipInvulnerable;
+            LevelManager.OnSavePlayerLife += SaveLife;
         }
 
         private void Start()
@@ -47,6 +48,7 @@ namespace AsteroidsGame.Manager
         {
             SpaceshipCollisionListener.AsteroidCollided -= SpaceshipDestroyed;
             LevelManager.OnMakeSpaceshipInvulnerable -= MakeSpaceshipInvulnerable;
+            LevelManager.OnSavePlayerLife -= SaveLife;
         }
 
         #endregion
@@ -83,15 +85,19 @@ namespace AsteroidsGame.Manager
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
             if (spaceshipLife <= 0)
             {
-                popupService.Show<GameOverScreenPopup>();
                 PlayerSaveGameOver();
+                popupService.Show<GameOverScreenPopup>();
                 
                 return;
             }
 
-            SaveManager.Instance.SetPlayerLife(spaceshipLife);
 
             StartCoroutine(RespawnSpaceshipRoutine());
+        }
+
+        private void SaveLife()
+        {
+            SaveManager.Instance.SetPlayerLife(spaceshipLife);
         }
 
         private void PlayerSaveGameOver()

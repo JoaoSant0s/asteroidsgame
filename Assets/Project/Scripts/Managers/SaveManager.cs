@@ -124,7 +124,7 @@ namespace AsteroidsGame.Manager
 
         public bool ContainsGameplayInfo()
         {
-            return gameplayInfo != null;
+            return gameplayInfo != null && gameplayInfo.asteroidsAmount.Count > 0;
         }
     }
 

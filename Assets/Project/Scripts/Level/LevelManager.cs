@@ -17,6 +17,10 @@ namespace AsteroidsGame.Manager
         public delegate void MakeSpaceshipInvulnerable();
         public static MakeSpaceshipInvulnerable OnMakeSpaceshipInvulnerable;
 
+        public delegate void SavePlayerProperties();
+        public static SavePlayerProperties OnSavePlayerScore;
+        public static SavePlayerProperties OnSavePlayerLife;
+
         [Header("Components")]
         [SerializeField]
         private LevelView levelView;
@@ -60,9 +64,7 @@ namespace AsteroidsGame.Manager
 
             levelView.UpdateLevel(globalLevelIndex + 1);
 
-            var info = levelSave?.ContainsGameplayInfo();
-
-            if (info.Value)
+            if (levelSave != null && levelSave.ContainsGameplayInfo())
             {
                 SpawnLevelContent(levelSave.gameplayInfo);
             }
@@ -92,6 +94,8 @@ namespace AsteroidsGame.Manager
             if (currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
 
             SaveManager.Instance.SetPlayerLevel(new LevelSave(currentLevelIndex, globalLevelIndex));
+            OnSavePlayerScore?.Invoke();
+            OnSavePlayerLife?.Invoke();
 
             StartCoroutine(GoNextLevelRoutine());
         }
