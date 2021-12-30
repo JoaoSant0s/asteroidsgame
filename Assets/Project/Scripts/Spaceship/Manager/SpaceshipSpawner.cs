@@ -9,6 +9,7 @@ using AsteroidsGame.Actions;
 
 using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.General;
+using UnityEngine.Events;
 
 namespace AsteroidsGame.Manager
 {
@@ -19,6 +20,9 @@ namespace AsteroidsGame.Manager
 
         public delegate void PlayerGameOver();
         public static PlayerGameOver OnGameOver;
+
+        public delegate void EnabeRewardButton(UnityAction action);
+        public static EnabeRewardButton OnEnabeRewardButton;
 
         [SerializeField]
         private Spaceship spaceshipPrefab;
@@ -80,11 +84,16 @@ namespace AsteroidsGame.Manager
             action?.RunDefaultInvulnerability();
         }
 
+        private void ModifyLife(int increment)
+        {
+            spaceshipLife += increment;
+            UpdateSpaceshipLife?.Invoke(spaceshipLife);
+        }
+
         private void SpaceshipDestroyed()
         {
-            spaceshipLife--;
-
-            UpdateSpaceshipLife?.Invoke(spaceshipLife);
+            ModifyLife(-1);
+            CheckRewardLife();
             if (spaceshipLife <= 0)
             {
                 OnGameOver?.Invoke();
@@ -92,6 +101,18 @@ namespace AsteroidsGame.Manager
             }
 
             StartCoroutine(RespawnSpaceshipRoutine());
+        }
+
+        private void CheckRewardLife()
+        {
+            if (spaceshipLife > data.minRewardLifeLimit) return;
+
+            OnEnabeRewardButton?.Invoke(AddExtraLife);
+        }
+
+        private void AddExtraLife()
+        {
+            ModifyLife(data.rewardLifeGain);
         }
 
         private void SaveLife()
