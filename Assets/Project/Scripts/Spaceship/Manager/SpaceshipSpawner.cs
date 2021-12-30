@@ -6,10 +6,10 @@ using UnityEngine;
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
-using AsteroidsGame.UI.Popup;
 
 using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.General;
+using UnityEngine.Events;
 
 namespace AsteroidsGame.Manager
 {
@@ -17,6 +17,12 @@ namespace AsteroidsGame.Manager
     {
         public delegate void OnUpdateSpaceshipLife(int value);
         public static OnUpdateSpaceshipLife UpdateSpaceshipLife;
+
+        public delegate void PlayerGameOver();
+        public static PlayerGameOver OnGameOver;
+
+        public delegate void EnabeRewardButton(UnityAction action);
+        public static EnabeRewardButton OnEnabeRewardButton;
 
         [SerializeField]
         private Spaceship spaceshipPrefab;
@@ -36,6 +42,7 @@ namespace AsteroidsGame.Manager
         {
             SpaceshipCollisionListener.AsteroidCollided += SpaceshipDestroyed;
             LevelManager.OnMakeSpaceshipInvulnerable += MakeSpaceshipInvulnerable;
+            LevelManager.OnSavePlayerLife += SaveLife;
         }
 
         private void Start()
@@ -47,15 +54,16 @@ namespace AsteroidsGame.Manager
         {
             SpaceshipCollisionListener.AsteroidCollided -= SpaceshipDestroyed;
             LevelManager.OnMakeSpaceshipInvulnerable -= MakeSpaceshipInvulnerable;
+            LevelManager.OnSavePlayerLife -= SaveLife;
         }
 
         #endregion
 
         #region Public Methods
 
-        public void Reset()
+        public void SetLife(int newLife)
         {
-            spaceshipLife = data.maxSpaceshipLife;
+            spaceshipLife = newLife;
             UpdateSpaceshipLife?.Invoke(spaceshipLife);
         }
 
@@ -76,18 +84,40 @@ namespace AsteroidsGame.Manager
             action?.RunDefaultInvulnerability();
         }
 
+        private void ModifyLife(int increment)
+        {
+            spaceshipLife += increment;
+            UpdateSpaceshipLife?.Invoke(spaceshipLife);
+        }
+
         private void SpaceshipDestroyed()
         {
-            spaceshipLife--;
-
-            UpdateSpaceshipLife?.Invoke(spaceshipLife);
+            ModifyLife(-1);
+            CheckRewardLife();
             if (spaceshipLife <= 0)
             {
-                popupService.Show<GameOverScreenPopup>();
+                OnGameOver?.Invoke();
                 return;
             }
 
             StartCoroutine(RespawnSpaceshipRoutine());
+        }
+
+        private void CheckRewardLife()
+        {
+            if (spaceshipLife > data.minRewardLifeLimit) return;
+
+            OnEnabeRewardButton?.Invoke(AddExtraLife);
+        }
+
+        private void AddExtraLife()
+        {
+            ModifyLife(data.rewardLifeGain);
+        }
+
+        private void SaveLife()
+        {
+            SaveManager.Instance.SetPlayerLife(spaceshipLife);
         }
 
         private IEnumerator RespawnSpaceshipRoutine()

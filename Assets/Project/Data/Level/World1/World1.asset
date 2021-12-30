@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf49352041aca541b57bccb49d33df5, type: 3}
   m_Name: World1
   m_EditorClassIdentifier: 
+  levelToReturnAfterGameOver: 5
   nextLevelDelay: 1
   levels:
   - {fileID: 11400000, guid: 104c86c2e4d5e4b4fba5d7d56e430711, type: 2}

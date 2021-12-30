@@ -8,13 +8,20 @@ using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.Flag;
 using JoaoSant0s.ServicePackage.General;
 using AsteroidsGame.Data;
+using AsteroidsGame.Manager;
 
 namespace AsteroidsGame.UI.Popup
 {
     public class SplashScreenPopup : BasePopup
     {
+        [Header("Components")]
         [SerializeField]
-        private Button startButton;
+        private Button newRunButton;
+
+        [SerializeField]
+        private Button continueButton;
+
+        [Header("Data")]
 
         [SerializeField]
         private UINavigationKeyboardMapData navigationKeyoard;
@@ -28,25 +35,31 @@ namespace AsteroidsGame.UI.Popup
         private void Start()
         {
             flagService = Services.Get<FlagService>();
+            EnableButtons();
             SetButtonEvents();
         }
-#if UNITY_EDITOR
-
-        private void Update()
-        {
-            if (Input.GetKeyUp(navigationKeyoard.confirmAction))
-            {
-                NextAction();
-            }
-        }
-#endif
 
         #endregion
 
         #region Private Methods
+
+        private void EnableButtons()
+        {
+            if (!SaveManager.Instance.ContainsPlayerSave())
+            {
+                continueButton.gameObject.SetActive(false);
+            }
+        }
+
         private void SetButtonEvents()
         {
-            startButton.onClick.AddListener(() =>
+            newRunButton.onClick.AddListener(() =>
+            {
+                SaveManager.Instance.CreatePlayerSave();
+                NextAction();
+            });
+
+            continueButton.onClick.AddListener(() =>
             {
                 NextAction();
             });

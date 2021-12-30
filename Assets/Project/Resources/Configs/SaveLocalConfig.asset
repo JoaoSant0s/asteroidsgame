@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16812633b18309a48ad1d9aa6520d091, type: 3}
-  m_Name: SpaceshipSpawnerData
+  m_Script: {fileID: 11500000, guid: c5b68911258f70741b93d8ddf2de33ab, type: 3}
+  m_Name: SaveLocalConfig
   m_EditorClassIdentifier: 
-  maxSpaceshipLife: 4
-  respawnDelay: 2
+  savePrefix: asteroids
+  versionIndex: 0
