@@ -29,7 +29,7 @@ namespace AsteroidsGame.Actions
 
 #endregion
 
-        private void AccelerateDirection(int direction)
+        private void AccelerateDirection(float direction)
         {
             if(rb.velocity.magnitude >= context.Data.maxForwardVelocity) return;
 

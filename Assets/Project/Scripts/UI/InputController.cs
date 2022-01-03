@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AsteroidsGame.Data;
+using JoaoSant0s.CommonWrapper;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace AsteroidsGame.UI
 {
     public class InputController : MonoBehaviour
     {
-        public delegate void OnManipulateSpaceShip(int direction);
+        public delegate void OnManipulateSpaceShip(float direction);
         public static OnManipulateSpaceShip RotateSpaceShip;
         public static OnManipulateSpaceShip AccelerateSpaceShip;
 
@@ -16,13 +17,12 @@ namespace AsteroidsGame.UI
         public static OnActionSpaceShip ShootAction;
         public static OnActionSpaceShip HyperSpaceAction;
 
-        [Header("Hold Buttons")]
+        [Header("Joystick")]
 
         [SerializeField]
-        private ButtonHold buttonRotateLeft;
+        private FixedJoystick joystick;
 
-        [SerializeField]
-        private ButtonHold buttonRotateRight;
+        [Header("Hold Buttons")]       
 
         [SerializeField]
         private ButtonHold buttonAccelerate;
@@ -46,28 +46,17 @@ namespace AsteroidsGame.UI
             SetUIButtonsActions();
         }
 
-#if UNITY_EDITOR
         private void Update()
         {
-            ListeningKeyboardActions();
+            RotateSpaceship();
+            //ListeningKeyboardActions();
         }
-#endif
 
         #endregion
 
         #region Private Methods
         private void SetUIButtonsActions()
         {
-            buttonRotateLeft.HoldEvent.AddListener(() =>
-            {
-                RotateSpaceShip?.Invoke(1);
-            });
-
-            buttonRotateRight.HoldEvent.AddListener(() =>
-            {
-                RotateSpaceShip?.Invoke(-1);
-            });
-
             buttonAccelerate.HoldEvent.AddListener(() =>
             {
                 AccelerateSpaceShip?.Invoke(1);
@@ -82,6 +71,18 @@ namespace AsteroidsGame.UI
             {
                 HyperSpaceAction?.Invoke();
             });
+        }
+
+        private void RotateSpaceship()
+        {
+            if (joystick.Direction == Vector2.zero) return;
+
+            var direction = joystick.Direction;
+            float angleDeg = Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg;
+
+            var increaseAngle = (direction.x > 0) ? -90 : 90;
+
+            RotateSpaceShip?.Invoke(angleDeg + increaseAngle);
         }
 
         private void ListeningKeyboardActions()
@@ -99,16 +100,6 @@ namespace AsteroidsGame.UI
             if (Input.GetKey(spaceshipKeyboardMapping.accelerate))
             {
                 AccelerateSpaceShip?.Invoke(1);
-            }
-
-            if (Input.GetKey(spaceshipKeyboardMapping.rotateLeft))
-            {
-                RotateSpaceShip?.Invoke(1);
-            }
-
-            if (Input.GetKey(spaceshipKeyboardMapping.rotateRight))
-            {
-                RotateSpaceShip?.Invoke(-1);
             }
         }
 
