@@ -9,7 +9,7 @@ namespace AsteroidsGame.UI
 {
     public class InputController : MonoBehaviour
     {
-        public delegate void OnManipulateSpaceShip(float direction);
+        public delegate void OnManipulateSpaceShip(float angle);
         public static OnManipulateSpaceShip RotateSpaceShip;
         public static OnManipulateSpaceShip AccelerateSpaceShip;
 
@@ -22,7 +22,7 @@ namespace AsteroidsGame.UI
         [SerializeField]
         private FloatingJoystick joystick;
 
-        [Header("Hold Buttons")]       
+        [Header("Hold Buttons")]
 
         [SerializeField]
         private ButtonHold buttonAccelerate;
@@ -34,11 +34,6 @@ namespace AsteroidsGame.UI
 
         [SerializeField]
         private Button buttonHyperSpace;
-
-        [Header("Keyboard Map")]
-
-        [SerializeField]
-        private SpaceshipKeyboardMapData spaceshipKeyboardMapping;
 
         #region Unity Methods
         private void Awake()
@@ -56,7 +51,7 @@ namespace AsteroidsGame.UI
         #region Private Methods
         private void SetUIButtonsActions()
         {
-            buttonAccelerate.HoldEvent.AddListener(() =>
+            buttonAccelerate.onHoldEvent.AddListener(() =>
             {
                 AccelerateSpaceShip?.Invoke(1);
             });
@@ -83,7 +78,6 @@ namespace AsteroidsGame.UI
 
             RotateSpaceShip?.Invoke(angleDeg + increaseAngle);
         }
-
         #endregion
     }
 }

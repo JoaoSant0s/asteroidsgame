@@ -8,15 +8,16 @@ namespace AsteroidsGame.Actions
     public class SpaceshipHyperSpaceAction : MonoBehaviour
     {
         private Vector2 limits;
-       
-#region Unity Methods
+
+        #region Unity Methods
 
         private void Awake()
         {
             InputController.HyperSpaceAction += HyperSpace;
+            InputEditorController.HyperSpaceAction += HyperSpace;
         }
 
-        private void Start() 
+        private void Start()
         {
             limits = MainCanvas.Instance.Limits;
         }
@@ -24,9 +25,10 @@ namespace AsteroidsGame.Actions
         private void OnDestroy()
         {
             InputController.HyperSpaceAction -= HyperSpace;
+            InputEditorController.HyperSpaceAction -= HyperSpace;
         }
 
-#endregion
+        #endregion
 
         private void HyperSpace()
         {

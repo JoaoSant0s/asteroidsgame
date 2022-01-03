@@ -20,7 +20,7 @@ namespace AsteroidsGame.UI
 
         private bool isPressed;
 
-        public UnityEvent HoldEvent => holdEvent;
+        public UnityEvent onHoldEvent => holdEvent;
 
         #region Unity Methods        
 

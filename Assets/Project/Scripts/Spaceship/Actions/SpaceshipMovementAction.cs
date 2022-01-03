@@ -16,22 +16,29 @@ namespace AsteroidsGame.Actions
         [SerializeField]
         private SpaceshipContext context;
 
-#region Unity Methods
-        private void Awake() 
+        #region Unity Methods
+        private void Awake()
         {
             InputController.AccelerateSpaceShip += AccelerateDirection;
+            InputEditorController.AccelerateSpaceShip += AccelerateDirection;
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
             InputController.AccelerateSpaceShip -= AccelerateDirection;
+            InputEditorController.AccelerateSpaceShip -= AccelerateDirection;
         }
 
-#endregion
+        #endregion
 
         private void AccelerateDirection(float direction)
         {
-            if(rb.velocity.magnitude >= context.Data.maxForwardVelocity) return;
+            AccelerateDirection((int)direction);
+        }
+
+        private void AccelerateDirection(int direction)
+        {
+            if (rb.velocity.magnitude >= context.Data.maxForwardVelocity) return;
 
             rb.AddForce(transform.up * context.Data.forwardForce * Time.deltaTime);
         }
