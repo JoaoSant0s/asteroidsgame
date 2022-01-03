@@ -8,7 +8,7 @@ using JoaoSant0s.CommonWrapper;
 using AsteroidsGame.Manager;
 using UnityEngine.Events;
 
-namespace AsteroidsGame
+namespace AsteroidsGame.UI
 {
     [RequireComponent(typeof(Button))]
     public class RewardedVideoButton : MonoBehaviour
@@ -19,12 +19,14 @@ namespace AsteroidsGame
         private Button button;
         private UnityAction action;
 
+        private Coroutine waitForAdsRoutine;
+
         #region Unity Methods
 
         private void Awake()
         {
             button = GetComponent<Button>();
-            SpaceshipSpawner.OnEnabeRewardButton += ShowButton;
+            SpaceshipSpawner.OnEnabeRewardButton += EnableRewardButton;
             EnableButton(false);
         }
 
@@ -39,21 +41,42 @@ namespace AsteroidsGame
 
         private void OnDestroy()
         {
-            SpaceshipSpawner.OnEnabeRewardButton -= ShowButton;
+            SpaceshipSpawner.OnEnabeRewardButton -= EnableRewardButton;
         }
 
         #endregion
 
         #region Private Methods       
-        private void ShowButton(UnityAction newAction)
+        private void EnableRewardButton(bool enable, UnityAction newAction)
         {
-            if (button.gameObject.activeSelf) return;
+            if (enable)
+            {
+                TryEnableButton(newAction);
+            }
+            else
+            {
+                DisableButton();
+            }
+        }
+
+        private void TryEnableButton(UnityAction newAction)
+        {
             action = newAction;
 
-            AdManager.Instance.WaitRewardAdsReady(() =>
+            waitForAdsRoutine = AdManager.Instance.WaitRewardAdsReady(() =>
             {
                 EnableButton(true);
             });
+        }
+
+        private void DisableButton()
+        {
+            EnableButton(false);
+            action = null;
+            if (waitForAdsRoutine == null) return;
+
+            AdManager.Instance.StopCoroutine(waitForAdsRoutine);
+            waitForAdsRoutine = null;
         }
 
         private void EnableButton(bool enable)

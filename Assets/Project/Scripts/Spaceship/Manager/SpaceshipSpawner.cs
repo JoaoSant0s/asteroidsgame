@@ -10,6 +10,7 @@ using AsteroidsGame.Actions;
 using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.General;
 using UnityEngine.Events;
+using AsteroidsGame.UI;
 
 namespace AsteroidsGame.Manager
 {
@@ -21,7 +22,7 @@ namespace AsteroidsGame.Manager
         public delegate void PlayerGameOver();
         public static PlayerGameOver OnGameOver;
 
-        public delegate void EnabeRewardButton(UnityAction action);
+        public delegate void EnabeRewardButton(bool enable, UnityAction action = null);
         public static EnabeRewardButton OnEnabeRewardButton;
 
         [SerializeField]
@@ -41,6 +42,7 @@ namespace AsteroidsGame.Manager
         private void Awake()
         {
             SpaceshipCollisionListener.AsteroidCollided += SpaceshipDestroyed;
+            RewardedVideoButton.ShowRewardedVideo += RewardedVideoStarted;
             LevelManager.OnMakeSpaceshipInvulnerable += MakeSpaceshipInvulnerable;
             LevelManager.OnSavePlayerLife += SaveLife;
         }
@@ -53,6 +55,7 @@ namespace AsteroidsGame.Manager
         private void OnDestroy()
         {
             SpaceshipCollisionListener.AsteroidCollided -= SpaceshipDestroyed;
+            RewardedVideoButton.ShowRewardedVideo -= RewardedVideoStarted;
             LevelManager.OnMakeSpaceshipInvulnerable -= MakeSpaceshipInvulnerable;
             LevelManager.OnSavePlayerLife -= SaveLife;
         }
@@ -80,8 +83,13 @@ namespace AsteroidsGame.Manager
         private void MakeSpaceshipInvulnerable()
         {
             if (currentSpaceship == null) return;
-            var action = currentSpaceship.GetComponent<SpaceshipInvulnerableAction>();
-            action?.RunDefaultInvulnerability();
+            currentSpaceship.InvulnerableAction?.RunDefaultInvulnerability();
+        }
+
+        private void RewardedVideoStarted(UnityAction action)
+        {
+            if (currentSpaceship == null) return;
+            currentSpaceship.InvulnerableAction?.RunInfinityInvulnerability();
         }
 
         private void ModifyLife(int increment)
@@ -92,8 +100,9 @@ namespace AsteroidsGame.Manager
 
         private void SpaceshipDestroyed()
         {
+            OnEnabeRewardButton?.Invoke(false);
+
             ModifyLife(-1);
-            CheckRewardLife();
             if (spaceshipLife <= 0)
             {
                 OnGameOver?.Invoke();
@@ -107,11 +116,14 @@ namespace AsteroidsGame.Manager
         {
             if (spaceshipLife > data.minRewardLifeLimit) return;
 
-            OnEnabeRewardButton?.Invoke(AddExtraLife);
+            OnEnabeRewardButton?.Invoke(true, AddExtraLife);
         }
 
         private void AddExtraLife()
         {
+            if (currentSpaceship == null) return;
+
+            currentSpaceship.InvulnerableAction?.StopInvulnerability();
             ModifyLife(data.rewardLifeGain);
         }
 
@@ -124,6 +136,7 @@ namespace AsteroidsGame.Manager
         {
             yield return new WaitForSeconds(data.respawnDelay);
             SpawnSpaceship(true);
+            CheckRewardLife();
         }
 
         #endregion
