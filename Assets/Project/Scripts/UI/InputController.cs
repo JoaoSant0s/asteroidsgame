@@ -20,7 +20,7 @@ namespace AsteroidsGame.UI
         [Header("Joystick")]
 
         [SerializeField]
-        private FixedJoystick joystick;
+        private FloatingJoystick joystick;
 
         [Header("Hold Buttons")]       
 
