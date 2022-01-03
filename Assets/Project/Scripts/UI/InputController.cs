@@ -49,7 +49,6 @@ namespace AsteroidsGame.UI
         private void Update()
         {
             RotateSpaceship();
-            //ListeningKeyboardActions();
         }
 
         #endregion
@@ -83,24 +82,6 @@ namespace AsteroidsGame.UI
             var increaseAngle = (direction.x > 0) ? -90 : 90;
 
             RotateSpaceShip?.Invoke(angleDeg + increaseAngle);
-        }
-
-        private void ListeningKeyboardActions()
-        {
-            if (Input.GetKeyUp(spaceshipKeyboardMapping.shootAction))
-            {
-                ShootAction?.Invoke();
-            }
-
-            if (Input.GetKeyUp(spaceshipKeyboardMapping.hyperSpaceAction))
-            {
-                HyperSpaceAction?.Invoke();
-            }
-
-            if (Input.GetKey(spaceshipKeyboardMapping.accelerate))
-            {
-                AccelerateSpaceShip?.Invoke(1);
-            }
         }
 
         #endregion

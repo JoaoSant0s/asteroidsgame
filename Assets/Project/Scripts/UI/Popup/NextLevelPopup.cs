@@ -41,16 +41,6 @@ namespace AsteroidsGame.UI.Popup
             SetButtonEvents();
         }
 
-#if UNITY_EDITOR
-        private void Update()
-        {
-            if (Input.GetKeyUp(navigationKeyoard.confirmAction))
-            {
-                NextAction();
-            }
-        }
-#endif
-
         #endregion
 
         #region Public Methods
