@@ -17,8 +17,14 @@ namespace AsteroidsGame.Manager
     public class AsteroidSpawner : SingletonBehaviour<AsteroidSpawner>
     {
         public delegate void OnSpawnNextLevel();
-        public static OnSpawnNextLevel SpawnNextLevel;        
+        public static OnSpawnNextLevel SpawnNextLevel;
 
+        public delegate void OnAsteroidAmount(int asteroidsAmount);
+        public static OnAsteroidAmount TotalAsteroids;
+        public static OnAsteroidAmount CurrentAsteroids;
+
+        [SerializeField]
+        private AsteroidSpawnerData spawnerData;
         [SerializeField]
         private List<AsteroidTuple> asteroids;
 
@@ -31,10 +37,11 @@ namespace AsteroidsGame.Manager
 
         private List<Asteroid> generatedAsteroids;
 
-        public List<Asteroid> GeneratedAsteroids{
+        public List<Asteroid> GeneratedAsteroids
+        {
             get
             {
-                if(generatedAsteroids == null)
+                if (generatedAsteroids == null)
                 {
                     generatedAsteroids = new List<Asteroid>();
                 }
@@ -42,27 +49,28 @@ namespace AsteroidsGame.Manager
             }
         }
 
-#region Unity Methods
+        #region Unity Methods
 
-        protected override void Awake() 
+        protected override void Awake()
         {
             base.Awake();
-            
+
             BulletCollisionListener.AsteroidCollided += BulletshipCollideAsteroid;
         }
 
-        private void Start() 
+        private void Start()
         {
             poolService = Services.Get<PoolService>();
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
             BulletCollisionListener.AsteroidCollided -= BulletshipCollideAsteroid;
         }
 
-#endregion       
+        #endregion
 
+        #region Public Methods
         public void Reset()
         {
             for (int i = 0; i < GeneratedAsteroids.Count; i++)
@@ -72,23 +80,67 @@ namespace AsteroidsGame.Manager
             GeneratedAsteroids.Clear();
         }
 
-        public void SpawnAsteroid(TupleKeyData type, Vector2 position)
+        public void SpawnAsteroid(TupleKeyData type)
         {
-            var config = asteroids.Find( a => a.type == type);
-            
+            var config = spawnerData.asteroidConfigs.Find(a => a.type == type);
+            var position = SequencePosition();
+
             InstantiateAsteroid(config.asteroidIndex, position);
         }
 
-        public void SpawnAsteroid(TupleKeyData type)
+        public void UpdateAsteroidsCounter()
         {
-            var config = asteroids.Find( a => a.type == type);
-            var position = SequencePosition();            
+            var total = AsteroidsEstimatedAmount();
+            TotalAsteroids?.Invoke(total);
+            CurrentAsteroids?.Invoke(total);
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private int AsteroidsEstimatedAmount()
+        {
+            var total = 0;
+
+            for (int i = 0; i < GeneratedAsteroids.Count; i++)
+            {
+                total += AsteroidsAmount(GeneratedAsteroids[i]);
+            }
+
+            return total;
+        }
+
+        private int AsteroidsAmount(Asteroid asteroid)
+        {
+            var context = asteroid.GetComponent<AsteroidContext>();
+            var data = context.Data;
+
+            return AsteroidsAmount(data);
+        }
+
+        private int AsteroidsAmount(AsteroidData data)
+        {
+            var totalSequence = 1;
+
+            if (!data.canSpawnNextAsteroid) return totalSequence;
+
+            for (int i = 0; i < data.nextAsteroidAmount; i++)
+            {
+                totalSequence += AsteroidsAmount(spawnerData.GetAsteroidData(data.nextAsteroidType));
+            }
+
+            return totalSequence;
+        }
+        private void SpawnAsteroid(TupleKeyData type, Vector2 position)
+        {
+            var config = spawnerData.asteroidConfigs.Find(a => a.type == type);
 
             InstantiateAsteroid(config.asteroidIndex, position);
         }
 
         private void InstantiateAsteroid(int asteroidIndex, Vector3 position)
-        {            
+        {
             var asteroid = poolService.Get<Asteroid>(position, Quaternion.identity, asteroidIndex);
 
             GeneratedAsteroids.Add(asteroid);
@@ -99,7 +151,7 @@ namespace AsteroidsGame.Manager
             var position = spawnPoints[spawnPointIndex].position;
             spawnPointIndex++;
 
-            if(spawnPointIndex >= spawnPoints.Count) spawnPointIndex = 0;
+            if (spawnPointIndex >= spawnPoints.Count) spawnPointIndex = 0;
 
             return position + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0);
         }
@@ -109,6 +161,8 @@ namespace AsteroidsGame.Manager
             RemoveAsteroid(context.Asteroid);
             SpawnChildrenAsteroids(context.Asteroid, context.Data);
             context.Asteroid.Dispose();
+
+            CurrentAsteroids?.Invoke(AsteroidsEstimatedAmount());
 
             CheckLevelEnded();
         }
@@ -120,7 +174,7 @@ namespace AsteroidsGame.Manager
 
         private void SpawnChildrenAsteroids(Asteroid asteroid, AsteroidData data)
         {
-            if(!data.canSpawnNextAsteroid) return;
+            if (!data.canSpawnNextAsteroid) return;
 
             for (int i = 0; i < data.nextAsteroidAmount; i++)
             {
@@ -128,29 +182,22 @@ namespace AsteroidsGame.Manager
 
                 SpawnAsteroid(data.nextAsteroidType, position);
             }
-        } 
-        
-        private void CheckLevelEnded()
-        {            
-            if(GeneratedAsteroids.Count != 0) return;
+        }
 
-            StartCoroutine(SpawnNextLevelRoutine());            
+        private void CheckLevelEnded()
+        {
+            if (GeneratedAsteroids.Count != 0) return;
+
+            StartCoroutine(SpawnNextLevelRoutine());
         }
 
         private IEnumerator SpawnNextLevelRoutine()
-        {            
+        {
             yield return new WaitForSeconds(1.5f);
-            
-            SpawnNextLevel?.Invoke();            
+
+            SpawnNextLevel?.Invoke();
         }
-    }
 
-    [Serializable]
-    public struct AsteroidTuple
-    {
-        public TupleKeyData type;
-
-        [Min(0)]
-        public int asteroidIndex;
+        #endregion
     }
 }

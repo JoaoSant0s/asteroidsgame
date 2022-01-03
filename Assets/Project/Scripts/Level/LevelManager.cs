@@ -127,11 +127,10 @@ namespace AsteroidsGame.Manager
                 var config = level.Configs[i];
                 var amount = info.asteroidsAmount[i];
 
-                for (int j = 0; j < amount; j++)
-                {
-                    AsteroidSpawner.Instance.SpawnAsteroid(config.asteroidType);
-                }
+                SpawnAsteroidsAmount(config.asteroidType, amount);
             }
+
+            AsteroidSpawner.Instance.UpdateAsteroidsCounter();
         }
 
         private void SpawnLevelContent()
@@ -145,14 +144,19 @@ namespace AsteroidsGame.Manager
                 var amount = config.RandomAmount;
 
                 gameplayLevelInfo.asteroidsAmount.Add(amount);
-
-                for (int j = 0; j < amount; j++)
-                {
-                    AsteroidSpawner.Instance.SpawnAsteroid(config.asteroidType);
-                }
+                SpawnAsteroidsAmount(config.asteroidType, amount);
             }
 
             SaveManager.Instance.SetPlayerGameplayLevel(gameplayLevelInfo);
+            AsteroidSpawner.Instance.UpdateAsteroidsCounter();
+        }
+
+        private void SpawnAsteroidsAmount(TupleKeyData type, int amount)
+        {
+            for (int j = 0; j < amount; j++)
+            {
+                AsteroidSpawner.Instance.SpawnAsteroid(type);
+            }
         }
 
         private IEnumerator GoNextLevelRoutine()
