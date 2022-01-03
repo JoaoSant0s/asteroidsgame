@@ -57,7 +57,7 @@ namespace AsteroidsGame.UI.Popup
 
         public void SetVisual(int visualLevel)
         {
-            levelLabel.text = string.Format("Level {0}", visualLevel);
+            levelLabel.text = string.Format("Wave {0}", visualLevel);
         }
         public void SetGoAction(UnityAction action)
         {

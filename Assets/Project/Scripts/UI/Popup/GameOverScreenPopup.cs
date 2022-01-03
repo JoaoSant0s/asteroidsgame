@@ -61,7 +61,7 @@ namespace AsteroidsGame.UI.Popup
 
         public void UpdateMessage(int returnLevel)
         {
-            var pluralMessage = (returnLevel > 1) ? "levels" : "level";
+            var pluralMessage = (returnLevel > 1) ? "waves" : "wave";
 
             messageLabel.text = string.Format("Returning {0} {1}", returnLevel, pluralMessage);
         }
