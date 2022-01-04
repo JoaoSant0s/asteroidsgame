@@ -16,10 +16,20 @@ namespace AsteroidsGame.Data
     public class SpaceshipData : ScriptableObject
     {
         [Header("Configs")]
+
+        [Header("Editor")]
         public float rotateSpeed;
+
+        [Header("Gameplay")]
         public float forwardForce;
         public float maxForwardVelocity;
         public float invulnerabilityDuration;
+
+        [Header("Rigidbody")]
+
+        public float linearDrag;
+        
+        public float angularDrag;
 
         [Header("Effects")]
         public GameObject asteroidCollisionEffectPrefab;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf28217f0c2e7949a2d93d89bb43002, type: 3}
   m_Name: AsteroidType3Data
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 60
   destroyScore: 1
   canSpawnNextAsteroid: 0
   nextAsteroidAmount: 0

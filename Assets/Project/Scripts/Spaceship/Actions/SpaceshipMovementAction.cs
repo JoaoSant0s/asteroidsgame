@@ -23,6 +23,12 @@ namespace AsteroidsGame.Actions
             InputEditorController.AccelerateSpaceShip += AccelerateDirection;
         }
 
+        private void Start()
+        {
+            rb.angularDrag = context.Data.angularDrag;
+            rb.drag = context.Data.linearDrag;
+        }
+
         private void OnDestroy()
         {
             InputController.AccelerateSpaceShip -= AccelerateDirection;

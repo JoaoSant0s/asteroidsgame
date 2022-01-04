@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configs:
   - asteroidType: {fileID: 11400000, guid: 5bb348a445e532b4fb1325db5cde4f8e, type: 2}
-    asteroidAmount: {x: 1, y: 2}
+    asteroidAmount: {x: 5, y: 7}
   - asteroidType: {fileID: 11400000, guid: bdb02aafb654bda4bb555e793168ffcd, type: 2}
     asteroidAmount: {x: 6, y: 10}
