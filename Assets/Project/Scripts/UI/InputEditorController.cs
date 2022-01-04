@@ -10,7 +10,6 @@ namespace AsteroidsGame.UI
     public class InputEditorController : MonoBehaviour
     {
 #if UNITY_EDITOR
-
         public delegate void OnManipulateSpaceShip(int direction);
         public static OnManipulateSpaceShip RotateSpaceShip;
         public static OnManipulateSpaceShip AccelerateSpaceShip;
