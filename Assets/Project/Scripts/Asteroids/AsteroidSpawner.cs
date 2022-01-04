@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using NaughtyAttributes;
+
 using JoaoSant0s.CommonWrapper;
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Pool;
@@ -24,9 +26,8 @@ namespace AsteroidsGame.Manager
         public static OnAsteroidAmount CurrentAsteroids;
 
         [SerializeField]
+        [Expandable]
         private AsteroidSpawnerData spawnerData;
-        [SerializeField]
-        private List<AsteroidTuple> asteroids;
 
         [SerializeField]
         private List<Transform> spawnPoints;

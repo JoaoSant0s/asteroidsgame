@@ -114,7 +114,7 @@ namespace AsteroidsGame.Manager
 
         private void CheckRewardLife()
         {
-            if (spaceshipLife > data.minRewardLifeLimit) return;
+            if (spaceshipLife > data.minRewardAdsLifeLimit) return;
 
             OnEnabeRewardButton?.Invoke(true, AddExtraLife);
         }
@@ -124,7 +124,7 @@ namespace AsteroidsGame.Manager
             if (currentSpaceship == null) return;
 
             currentSpaceship.InvulnerableAction?.StopInvulnerability();
-            ModifyLife(data.rewardLifeGain);
+            ModifyLife(data.rewardAdsLifeGain);
         }
 
         private void SaveLife()

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpaceshipLife: 4
   respawnDelay: 2
-  minRewardLifeLimit: 2
-  rewardLifeGain: 1
+  minRewardAdsLifeLimit: 2
+  rewardAdsLifeGain: 1
