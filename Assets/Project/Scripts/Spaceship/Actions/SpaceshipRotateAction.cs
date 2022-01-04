@@ -17,13 +17,18 @@ namespace AsteroidsGame.Actions
         {
             InputController.RotateSpaceShip += RotateAngle;
 
+#if UNITY_EDITOR
             InputEditorController.RotateSpaceShip += RotateDirection;
+#endif
         }
 
         private void OnDestroy()
         {
             InputController.RotateSpaceShip -= RotateAngle;
+
+#if UNITY_EDITOR
             InputEditorController.RotateSpaceShip -= RotateDirection;
+#endif
         }
 
         #endregion
@@ -32,11 +37,13 @@ namespace AsteroidsGame.Actions
         {
             transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+#if UNITY_EDITOR
 
         private void RotateDirection(int direction)
         {
             transform.Rotate(0, 0, direction * context.Data.rotateSpeed * Time.deltaTime);
         }
+#endif
 
     }
 }

@@ -20,7 +20,9 @@ namespace AsteroidsGame.Actions
         private void Awake()
         {
             InputController.AccelerateSpaceShip += AccelerateDirection;
+#if UNITY_EDITOR
             InputEditorController.AccelerateSpaceShip += AccelerateDirection;
+#endif
         }
 
         private void Start()
@@ -32,7 +34,9 @@ namespace AsteroidsGame.Actions
         private void OnDestroy()
         {
             InputController.AccelerateSpaceShip -= AccelerateDirection;
+#if UNITY_EDITOR
             InputEditorController.AccelerateSpaceShip -= AccelerateDirection;
+#endif
         }
 
         #endregion
