@@ -21,10 +21,7 @@ namespace AsteroidsGame.UI.Popup
         [SerializeField]
         private Button continueButton;
 
-        [Header("Data")]
-
-        [SerializeField]
-        private UINavigationKeyboardMapData navigationKeyoard;
+        [Header("Data")]        
 
         [SerializeField]
         private FlagAsset enableGameplayFlag;

@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using AsteroidsGame.Data;
+using AsteroidsGame.UI.Popup;
+using JoaoSant0s.CommonWrapper;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Popup;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +12,7 @@ namespace AsteroidsGame.UI
 {
     public class InputController : MonoBehaviour
     {
-        public delegate void OnManipulateSpaceShip(int direction);
+        public delegate void OnManipulateSpaceShip(float angle);
         public static OnManipulateSpaceShip RotateSpaceShip;
         public static OnManipulateSpaceShip AccelerateSpaceShip;
 
@@ -16,13 +20,12 @@ namespace AsteroidsGame.UI
         public static OnActionSpaceShip ShootAction;
         public static OnActionSpaceShip HyperSpaceAction;
 
+        [Header("Joystick")]
+
+        [SerializeField]
+        private FloatingJoystick joystick;
+
         [Header("Hold Buttons")]
-
-        [SerializeField]
-        private ButtonHold buttonRotateLeft;
-
-        [SerializeField]
-        private ButtonHold buttonRotateRight;
 
         [SerializeField]
         private ButtonHold buttonAccelerate;
@@ -35,10 +38,11 @@ namespace AsteroidsGame.UI
         [SerializeField]
         private Button buttonHyperSpace;
 
-        [Header("Keyboard Map")]
-
         [SerializeField]
-        private SpaceshipKeyboardMapData spaceshipKeyboardMapping;
+        private Button buttonPause;
+
+        private PopupService popupService;
+
 
         #region Unity Methods
         private void Awake()
@@ -46,29 +50,22 @@ namespace AsteroidsGame.UI
             SetUIButtonsActions();
         }
 
-#if UNITY_EDITOR
+        private void Start()
+        {
+            popupService = Services.Get<PopupService>();
+        }
+
         private void Update()
         {
-            ListeningKeyboardActions();
+            RotateSpaceship();
         }
-#endif
 
         #endregion
 
         #region Private Methods
         private void SetUIButtonsActions()
         {
-            buttonRotateLeft.HoldEvent.AddListener(() =>
-            {
-                RotateSpaceShip?.Invoke(1);
-            });
-
-            buttonRotateRight.HoldEvent.AddListener(() =>
-            {
-                RotateSpaceShip?.Invoke(-1);
-            });
-
-            buttonAccelerate.HoldEvent.AddListener(() =>
+            buttonAccelerate.onHoldEvent.AddListener(() =>
             {
                 AccelerateSpaceShip?.Invoke(1);
             });
@@ -82,36 +79,24 @@ namespace AsteroidsGame.UI
             {
                 HyperSpaceAction?.Invoke();
             });
+
+            buttonPause.onClick.AddListener(() =>
+            {
+                popupService.Show<PausePopup>();
+            });
         }
 
-        private void ListeningKeyboardActions()
+        private void RotateSpaceship()
         {
-            if (Input.GetKeyUp(spaceshipKeyboardMapping.shootAction))
-            {
-                ShootAction?.Invoke();
-            }
+            if (joystick.Direction == Vector2.zero) return;
 
-            if (Input.GetKeyUp(spaceshipKeyboardMapping.hyperSpaceAction))
-            {
-                HyperSpaceAction?.Invoke();
-            }
+            var direction = joystick.Direction;
+            float angleDeg = Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg;
 
-            if (Input.GetKey(spaceshipKeyboardMapping.accelerate))
-            {
-                AccelerateSpaceShip?.Invoke(1);
-            }
+            var increaseAngle = (direction.x > 0) ? -90 : 90;
 
-            if (Input.GetKey(spaceshipKeyboardMapping.rotateLeft))
-            {
-                RotateSpaceShip?.Invoke(1);
-            }
-
-            if (Input.GetKey(spaceshipKeyboardMapping.rotateRight))
-            {
-                RotateSpaceShip?.Invoke(-1);
-            }
+            RotateSpaceShip?.Invoke(angleDeg + increaseAngle);
         }
-
         #endregion
     }
 }

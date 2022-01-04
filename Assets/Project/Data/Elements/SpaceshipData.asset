@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b2a1a6a88278c45856d942045523ac, type: 3}
   m_Name: SpaceshipData
   m_EditorClassIdentifier: 
-  rotateSpeed: 175
-  forwardForce: 75
+  rotateSpeed: 200
+  forwardForce: 85
   maxForwardVelocity: 3.5
   invulnerabilityDuration: 4
+  linearDrag: 0.2
+  angularDrag: 0.05
   asteroidCollisionEffectPrefab: {fileID: 2941703647786210198, guid: 7a9c924ea1fa0424bbcd48627dacd362, type: 3}
   shields:
   - type: 1
