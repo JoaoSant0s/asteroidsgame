@@ -37,7 +37,6 @@ namespace AsteroidsGame.Manager
 
         private PopupService popupService;
 
-
         #region Unity Methods
 
         private void Awake()

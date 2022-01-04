@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using AsteroidsGame.Data;
+using AsteroidsGame.UI.Popup;
 using JoaoSant0s.CommonWrapper;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Popup;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,10 +38,21 @@ namespace AsteroidsGame.UI
         [SerializeField]
         private Button buttonHyperSpace;
 
+        [SerializeField]
+        private Button buttonPause;
+
+        private PopupService popupService;
+
+
         #region Unity Methods
         private void Awake()
         {
             SetUIButtonsActions();
+        }
+
+        private void Start()
+        {
+            popupService = Services.Get<PopupService>();
         }
 
         private void Update()
@@ -64,6 +78,11 @@ namespace AsteroidsGame.UI
             buttonHyperSpace.onClick.AddListener(() =>
             {
                 HyperSpaceAction?.Invoke();
+            });
+
+            buttonPause.onClick.AddListener(() =>
+            {
+                popupService.Show<PausePopup>();
             });
         }
 

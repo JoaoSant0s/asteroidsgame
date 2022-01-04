@@ -30,9 +30,6 @@ namespace AsteroidsGame.UI.Popup
         [Header("Data")]
 
         [SerializeField]
-        private UINavigationKeyboardMapData navigationKeyoard;
-
-        [SerializeField]
         private FlagAsset enableGameplayFlag;
         private FlagService flagService;
 
