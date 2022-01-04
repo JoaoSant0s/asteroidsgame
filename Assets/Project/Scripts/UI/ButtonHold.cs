@@ -20,44 +20,55 @@ namespace AsteroidsGame.UI
 
         private bool isPressed;
 
-        public UnityEvent HoldEvent => holdEvent;
+        public UnityEvent onHoldEvent => holdEvent;
 
-#region Unity Methods        
+        #region Unity Methods        
 
         public void OnPointerDown(PointerEventData eventData)
-        {            
+        {
             isPressed = true;
             downEvent?.Invoke();
         }
 
         public void OnPointerUp(PointerEventData eventData)
-        {            
+        {
             isPressed = false;
             upEvent?.Invoke();
         }
 
-        private void Update() 
+        private void Update()
         {
             OnUpdateSelected();
-        }        
+        }
 
-#endregion
+        #endregion
 
-#region UI Methosd
+        #region UI Methods
 
         public void SetNotPressed()
         {
-            isPressed = false;
+            Reset();
         }
 
-#endregion
+        #endregion
 
-        public void OnUpdateSelected()
+
+        #region Private Methods
+
+        private void Reset()
         {
-            if(!isPressed) return;
+            isPressed = false;
+            upEvent?.Invoke();
+        }
+
+        private void OnUpdateSelected()
+        {
+            if (!isPressed) return;
 
             holdEvent?.Invoke();
         }
-        
+
+        #endregion
+
     }
 }

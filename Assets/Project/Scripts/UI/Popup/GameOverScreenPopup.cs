@@ -30,9 +30,6 @@ namespace AsteroidsGame.UI.Popup
         [Header("Data")]
 
         [SerializeField]
-        private UINavigationKeyboardMapData navigationKeyoard;
-
-        [SerializeField]
         private FlagAsset enableGameplayFlag;
         private FlagService flagService;
 
@@ -45,23 +42,13 @@ namespace AsteroidsGame.UI.Popup
             SetButtonEvents();
         }
 
-#if UNITY_EDITOR
-        private void Update()
-        {
-            if (Input.GetKeyUp(navigationKeyoard.confirmAction))
-            {
-                NextAction();
-            }
-        }
-#endif
-
         #endregion
 
         #region Public Methods
 
         public void UpdateMessage(int returnLevel)
         {
-            var pluralMessage = (returnLevel > 1) ? "levels" : "level";
+            var pluralMessage = (returnLevel > 1) ? "waves" : "wave";
 
             messageLabel.text = string.Format("Returning {0} {1}", returnLevel, pluralMessage);
         }

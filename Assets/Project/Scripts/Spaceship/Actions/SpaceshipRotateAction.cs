@@ -12,22 +12,30 @@ namespace AsteroidsGame.Actions
         [SerializeField]
         private SpaceshipContext context;
 
-#region Unity Methods
-        private void Awake() 
+        #region Unity Methods
+        private void Awake()
         {
-            InputController.RotateSpaceShip += RotateDirection;
+            InputController.RotateSpaceShip += RotateAngle;
+
+            InputEditorController.RotateSpaceShip += RotateDirection;
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
-            InputController.RotateSpaceShip -= RotateDirection;
+            InputController.RotateSpaceShip -= RotateAngle;
+            InputEditorController.RotateSpaceShip -= RotateDirection;
         }
 
-#endregion
+        #endregion
+
+        private void RotateAngle(float angle)
+        {
+            transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
 
         private void RotateDirection(int direction)
         {
-            transform.Rotate (0, 0, direction * context.Data.rotateSpeed * Time.deltaTime);            
+            transform.Rotate(0, 0, direction * context.Data.rotateSpeed * Time.deltaTime);
         }
 
     }

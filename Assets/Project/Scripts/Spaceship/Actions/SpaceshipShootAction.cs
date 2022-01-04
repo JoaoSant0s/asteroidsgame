@@ -23,6 +23,7 @@ namespace AsteroidsGame.Actions
         private void Awake()
         {
             InputController.ShootAction += Shoot;
+            InputEditorController.ShootAction += Shoot;
         }
 
         private void Start()
@@ -33,6 +34,7 @@ namespace AsteroidsGame.Actions
         private void OnDestroy()
         {
             InputController.ShootAction -= Shoot;
+            InputEditorController.ShootAction -= Shoot;
         }
 
         #endregion

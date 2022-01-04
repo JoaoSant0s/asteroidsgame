@@ -12,7 +12,7 @@ namespace AsteroidsGame.Data
 
         [Header("Reward")]
 
-        public int minRewardLifeLimit;
-        public int rewardLifeGain;
+        public int minRewardAdsLifeLimit;
+        public int rewardAdsLifeGain;
     }
 }

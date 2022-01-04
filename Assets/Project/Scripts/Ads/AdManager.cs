@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Advertisements;
 
-using AsteroidsGame.Data;
 using JoaoSant0s.CommonWrapper;
-using UnityEngine.Events;
+
+using AsteroidsGame.Data;
+using AsteroidsGame.UI;
+
 
 namespace AsteroidsGame
 {
     public class AdManager : SingletonBehaviour<AdManager>
     {
         private AdConfigData adConfig;
+
+        private string RewardedVideoId => adConfig.placementRewardedVideoId;
 
         #region Unity Methods
 
@@ -35,9 +40,14 @@ namespace AsteroidsGame
         #endregion
 
         #region Public Methods
-        public void WaitRewardAdsReady(UnityAction action)
+        public Coroutine WaitRewardAdsReady(UnityAction action)
         {
-            StartCoroutine(OWaitRewardAdsReadyRoutine(action));
+            return StartCoroutine(OWaitRewardAdsReadyRoutine(action));
+        }
+
+        public bool IsRewardVideoReady()
+        {
+            return IsAdvertisementReady(RewardedVideoId);
         }
 
         #endregion
@@ -55,15 +65,19 @@ namespace AsteroidsGame
 
         private void ShowRewardedVideo(UnityAction completeRewardAction)
         {
-            Advertisement.Show(adConfig.placementRewardedVideoId, new RewardedVideoObject(completeRewardAction));
+            Advertisement.Show(RewardedVideoId, new RewardedVideoObject(completeRewardAction));
         }
 
         private IEnumerator OWaitRewardAdsReadyRoutine(UnityAction action)
         {
-            var rewardId = adConfig.placementRewardedVideoId;
-            yield return new WaitUntil(() => Advertisement.IsReady(rewardId));
+            yield return new WaitUntil(() => IsAdvertisementReady(RewardedVideoId));
 
             action?.Invoke();
+        }
+
+        private bool IsAdvertisementReady(string placementId)
+        {
+            return Advertisement.IsReady(placementId);
         }
 
         #endregion

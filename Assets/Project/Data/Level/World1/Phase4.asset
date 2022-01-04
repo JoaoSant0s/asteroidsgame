@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Phase4
   m_EditorClassIdentifier: 
   configs:
-  - asteroidType: {fileID: 11400000, guid: 815d2f53c8daa2d4197748a13df74471, type: 2}
+  - asteroidType: {fileID: 11400000, guid: 5bb348a445e532b4fb1325db5cde4f8e, type: 2}
     asteroidAmount: {x: 2, y: 3}

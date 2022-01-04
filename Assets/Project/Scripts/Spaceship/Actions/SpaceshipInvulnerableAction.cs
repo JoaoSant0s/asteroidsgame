@@ -15,6 +15,8 @@ namespace AsteroidsGame.Actions
         [SerializeField]
         private SpaceshipShield spaceshipShield;
 
+        private Coroutine disableRoutine;
+
         #region Public Methods
 
         public void RunDefaultInvulnerability()
@@ -23,18 +25,44 @@ namespace AsteroidsGame.Actions
             context.IsInvulnerable = true;
 
             spaceshipShield.StartAnimation(context.Data.InvulnarableConfig());
-            StartCoroutine(DisableInvulnerabilityRoutine(context.Data.invulnerabilityDuration));
+            StopInvulnerability();
+        }
+
+        public void RunInfinityInvulnerability()
+        {
+            if (context.IsInvulnerable)
+            {
+                StopDisableRoutine();
+                return;
+            }
+
+            context.IsInvulnerable = true;
+            spaceshipShield.StartAnimation(context.Data.InvulnarableConfig());
+        }
+
+        public void StopInvulnerability()
+        {
+            disableRoutine = StartCoroutine(DisableInvulnerabilityRoutine(context.Data.invulnerabilityDuration));
         }
 
         #endregion
 
         #region Private Methods
 
+        private void StopDisableRoutine()
+        {
+            if (disableRoutine != null)
+            {
+                StopCoroutine(disableRoutine);
+                disableRoutine = null;
+            }
+        }
+
         private IEnumerator DisableInvulnerabilityRoutine(float duration)
         {
             yield return new WaitForSeconds(duration);
-            context.IsInvulnerable = false;
             spaceshipShield.StopAnimation();
+            context.IsInvulnerable = false;
         }
 
         #endregion

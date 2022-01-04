@@ -14,7 +14,7 @@ namespace AsteroidsGame.UI
 
         public void UpdateLevel(int visualLevel)
         {
-            levelLabel.text = string.Format("Level {0}", visualLevel);
+            levelLabel.text = string.Format("Wave {0}", visualLevel);
         }
     }
 }
