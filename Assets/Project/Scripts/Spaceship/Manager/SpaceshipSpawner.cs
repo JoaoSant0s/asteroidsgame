@@ -37,6 +37,8 @@ namespace AsteroidsGame.Manager
 
         private Spaceship currentSpaceship;
 
+        private bool extraLifeUsed;
+
         #region Unity Methods
 
         private void Awake()
@@ -106,30 +108,11 @@ namespace AsteroidsGame.Manager
             if (spaceshipLife <= 0)
             {
                 OnGameOver?.Invoke();
+                extraLifeUsed = false;
                 return;
             }
 
             StartCoroutine(RespawnSpaceshipRoutine());
-        }
-
-        private void CheckRewardLife()
-        {
-            if (spaceshipLife > data.minRewardAdsLifeLimit) return;
-
-            OnEnabeRewardButton?.Invoke(true, AddExtraLife);
-        }
-
-        private void AddExtraLife()
-        {
-            if (currentSpaceship == null) return;
-
-            currentSpaceship.InvulnerableAction?.StopInvulnerability();
-            ModifyLife(data.rewardAdsLifeGain);
-        }
-
-        private void SaveLife()
-        {
-            SaveManager.Instance.SetPlayerLife(spaceshipLife);
         }
 
         private IEnumerator RespawnSpaceshipRoutine()
@@ -137,6 +120,27 @@ namespace AsteroidsGame.Manager
             yield return new WaitForSeconds(data.respawnDelay);
             SpawnSpaceship(true);
             CheckRewardLife();
+        }
+
+        private void SaveLife()
+        {
+            SaveManager.Instance.SetPlayerLife(spaceshipLife);
+        }
+
+        private void CheckRewardLife()
+        {
+            if (spaceshipLife > data.minRewardAdsLifeLimit || extraLifeUsed) return;
+
+            OnEnabeRewardButton?.Invoke(true, AddExtraLife);
+        }
+
+        private void AddExtraLife()
+        {
+            if (currentSpaceship == null) return;
+            extraLifeUsed = true;
+
+            currentSpaceship.InvulnerableAction?.StopInvulnerability();
+            ModifyLife(data.rewardAdsLifeGain);
         }
 
         #endregion
