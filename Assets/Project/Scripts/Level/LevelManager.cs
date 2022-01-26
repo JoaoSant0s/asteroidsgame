@@ -124,29 +124,38 @@ namespace AsteroidsGame.Manager
             for (int i = 0; i < level.Configs.Count; i++)
             {
                 var config = level.Configs[i];
-                var amount = info.asteroidsAmount[i];
+
+                var wasSaved = info.asteroidsAmount.Count < i;
+
+                var amount = wasSaved ? info.asteroidsAmount[i] : config.RandomAmount;
+
+                if (!wasSaved)
+                {
+                    info.asteroidsAmount.Add(amount);
+                }
 
                 SpawnAsteroidsAmount(config.asteroidType, amount);
             }
 
+            SaveManager.Instance.SetPlayerGameplayLevel(info);
             AsteroidSpawner.Instance.UpdateAsteroidsCounter();
         }
 
         private void SpawnLevelContent()
         {
             var level = data.levels[currentLevelIndex];
-            var gameplayLevelInfo = new LevelGameplaySave();
+            var info = new LevelGameplaySave();
 
             for (int i = 0; i < level.Configs.Count; i++)
             {
                 var config = level.Configs[i];
                 var amount = config.RandomAmount;
 
-                gameplayLevelInfo.asteroidsAmount.Add(amount);
+                info.asteroidsAmount.Add(amount);
                 SpawnAsteroidsAmount(config.asteroidType, amount);
             }
 
-            SaveManager.Instance.SetPlayerGameplayLevel(gameplayLevelInfo);
+            SaveManager.Instance.SetPlayerGameplayLevel(info);
             AsteroidSpawner.Instance.UpdateAsteroidsCounter();
         }
 
