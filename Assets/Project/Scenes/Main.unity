@@ -739,6 +739,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353027011}
   m_CullTransparentMesh: 1
+--- !u!1 &379548689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 379548690}
+  m_Layer: 0
+  m_Name: BulletsArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &379548690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379548689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1016014101}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &504942124
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,7 +2069,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 379548690}
   m_Father: {fileID: 2021781687}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2057,6 +2088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceshipPrefab: {fileID: 1135018853, guid: f95fbc8f85d7aa948b5de3b8eb71b37e, type: 3}
   data: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
+  pulletsArea: {fileID: 379548690}
 --- !u!1 &1025142665
 GameObject:
   m_ObjectHideFlags: 0

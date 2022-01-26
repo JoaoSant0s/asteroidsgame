@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Events;
+
+using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.CommonWrapper;
 
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
-
-using JoaoSant0s.ServicePackage.Popup;
-using JoaoSant0s.ServicePackage.General;
-using UnityEngine.Events;
 using AsteroidsGame.UI;
 
 namespace AsteroidsGame.Manager
 {
-    public class SpaceshipSpawner : MonoBehaviour
+    public class SpaceshipSpawner : SingletonBehaviour<SpaceshipSpawner>
     {
         public delegate void OnUpdateSpaceshipLife(int value);
         public static OnUpdateSpaceshipLife UpdateSpaceshipLife;
@@ -31,6 +32,9 @@ namespace AsteroidsGame.Manager
         [SerializeField]
         private SpaceshipSpawnerData data;
 
+        [SerializeField]
+        private Transform pulletsArea;
+
         private int spaceshipLife;
 
         private PopupService popupService;
@@ -39,10 +43,13 @@ namespace AsteroidsGame.Manager
 
         private bool extraLifeUsed;
 
+        public Transform BulletsArea => pulletsArea;
+
         #region Unity Methods
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             SpaceshipCollisionListener.AsteroidCollided += SpaceshipDestroyed;
             RewardedVideoButton.ShowRewardedVideo += RewardedVideoStarted;
             LevelManager.OnMakeSpaceshipInvulnerable += MakeSpaceshipInvulnerable;

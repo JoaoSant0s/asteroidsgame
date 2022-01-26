@@ -142,7 +142,7 @@ namespace AsteroidsGame.Manager
 
         private void InstantiateAsteroid(int asteroidIndex, Vector3 position)
         {
-            var asteroid = poolService.Get<Asteroid>(transform, position, Quaternion.identity, asteroidIndex);
+            var asteroid = poolService.Get<Asteroid>(position, Quaternion.identity, transform, asteroidIndex);
 
             GeneratedAsteroids.Add(asteroid);
         }

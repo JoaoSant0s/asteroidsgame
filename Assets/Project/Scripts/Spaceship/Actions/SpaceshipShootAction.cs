@@ -8,6 +8,7 @@ using JoaoSant0s.ServicePackage.Pool;
 
 using AsteroidsGame.UI;
 using AsteroidsGame.Unit;
+using AsteroidsGame.Manager;
 
 namespace AsteroidsGame.Actions
 {
@@ -51,7 +52,8 @@ namespace AsteroidsGame.Actions
 
         private Bullet InstatiateBullet()
         {
-            var bullet = poolService.Get<Bullet>(null, bulletOrigin.position, Quaternion.identity);
+            var parent = SpaceshipSpawner.Instance.BulletsArea;
+            var bullet = poolService.Get<Bullet>(bulletOrigin.position, Quaternion.identity, parent);
             return bullet;
         }
     }
