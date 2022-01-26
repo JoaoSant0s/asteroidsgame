@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Events;
+
+using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.CommonWrapper;
 
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
-
-using JoaoSant0s.ServicePackage.Popup;
-using JoaoSant0s.ServicePackage.General;
-using UnityEngine.Events;
 using AsteroidsGame.UI;
 
 namespace AsteroidsGame.Manager
 {
-    public class SpaceshipSpawner : MonoBehaviour
+    public class SpaceshipSpawner : SingletonBehaviour<SpaceshipSpawner>
     {
         public delegate void OnUpdateSpaceshipLife(int value);
         public static OnUpdateSpaceshipLife UpdateSpaceshipLife;
@@ -31,16 +32,24 @@ namespace AsteroidsGame.Manager
         [SerializeField]
         private SpaceshipSpawnerData data;
 
+        [SerializeField]
+        private Transform pulletsArea;
+
         private int spaceshipLife;
 
         private PopupService popupService;
 
         private Spaceship currentSpaceship;
 
+        private bool extraLifeUsed;
+
+        public Transform BulletsArea => pulletsArea;
+
         #region Unity Methods
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             SpaceshipCollisionListener.AsteroidCollided += SpaceshipDestroyed;
             RewardedVideoButton.ShowRewardedVideo += RewardedVideoStarted;
             LevelManager.OnMakeSpaceshipInvulnerable += MakeSpaceshipInvulnerable;
@@ -106,30 +115,11 @@ namespace AsteroidsGame.Manager
             if (spaceshipLife <= 0)
             {
                 OnGameOver?.Invoke();
+                extraLifeUsed = false;
                 return;
             }
 
             StartCoroutine(RespawnSpaceshipRoutine());
-        }
-
-        private void CheckRewardLife()
-        {
-            if (spaceshipLife > data.minRewardAdsLifeLimit) return;
-
-            OnEnabeRewardButton?.Invoke(true, AddExtraLife);
-        }
-
-        private void AddExtraLife()
-        {
-            if (currentSpaceship == null) return;
-
-            currentSpaceship.InvulnerableAction?.StopInvulnerability();
-            ModifyLife(data.rewardAdsLifeGain);
-        }
-
-        private void SaveLife()
-        {
-            SaveManager.Instance.SetPlayerLife(spaceshipLife);
         }
 
         private IEnumerator RespawnSpaceshipRoutine()
@@ -137,6 +127,27 @@ namespace AsteroidsGame.Manager
             yield return new WaitForSeconds(data.respawnDelay);
             SpawnSpaceship(true);
             CheckRewardLife();
+        }
+
+        private void SaveLife()
+        {
+            SaveManager.Instance.SetPlayerLife(spaceshipLife);
+        }
+
+        private void CheckRewardLife()
+        {
+            if (spaceshipLife > data.minRewardAdsLifeLimit || extraLifeUsed) return;
+
+            OnEnabeRewardButton?.Invoke(true, AddExtraLife);
+        }
+
+        private void AddExtraLife()
+        {
+            if (currentSpaceship == null) return;
+            extraLifeUsed = true;
+
+            currentSpaceship.InvulnerableAction?.StopInvulnerability();
+            ModifyLife(data.rewardAdsLifeGain);
         }
 
         #endregion
