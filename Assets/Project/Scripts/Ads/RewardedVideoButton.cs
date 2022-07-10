@@ -7,16 +7,19 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 using AsteroidsGame.Manager;
+using JoaoSant0s.ServicePackage.General;
 
 namespace AsteroidsGame.UI
 {
     [RequireComponent(typeof(Button))]
     public class RewardedVideoButton : MonoBehaviour
     {
-        public static event Action<UnityAction> ShowRewardedVideo;
+        public static event Action ShowRewardedVideo;
 
         private Button button;
-        private UnityAction action;
+        private UnityAction callbackAction;
+
+        private AdsService adsService;
 
         private Coroutine waitForAdsRoutine;
 
@@ -24,16 +27,19 @@ namespace AsteroidsGame.UI
 
         private void Awake()
         {
-            button = GetComponent<Button>();
+            this.adsService = Services.Get<AdsService>();
+
+            this.button = GetComponent<Button>();
             SpaceshipSpawner.OnEnabeRewardButton += EnableRewardButton;
             EnableButton(false);
         }
 
         private void Start()
         {
-            button.onClick.AddListener(() =>
+            this.button.onClick.AddListener(() =>
             {
-                ShowRewardedVideo?.Invoke(action);
+                this.adsService.ShowRewardedVideo(this.callbackAction);
+                ShowRewardedVideo?.Invoke();
                 EnableButton(false);
             });
         }
@@ -60,9 +66,9 @@ namespace AsteroidsGame.UI
 
         private void TryEnableButton(UnityAction newAction)
         {
-            action = newAction;
+            this.callbackAction = newAction;
 
-            waitForAdsRoutine = AdManager.Instance.WaitRewardAdsReady(() =>
+            this.waitForAdsRoutine = this.adsService.WaitRewardAdsReady(() =>
             {
                 EnableButton(true);
             });
@@ -71,16 +77,16 @@ namespace AsteroidsGame.UI
         private void DisableButton()
         {
             EnableButton(false);
-            action = null;
-            if (waitForAdsRoutine == null) return;
+            this.callbackAction = null;
+            if (this.waitForAdsRoutine == null) return;
 
-            AdManager.Instance.StopCoroutine(waitForAdsRoutine);
-            waitForAdsRoutine = null;
+            this.adsService.StopCoroutine(this.waitForAdsRoutine);
+            this.waitForAdsRoutine = null;
         }
 
         private void EnableButton(bool enable)
         {
-            button.gameObject.SetActive(enable);
+            this.button.gameObject.SetActive(enable);
         }
 
         #endregion

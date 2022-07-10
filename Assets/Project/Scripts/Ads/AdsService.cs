@@ -9,32 +9,21 @@ using JoaoSant0s.CommonWrapper;
 
 using AsteroidsGame.Data;
 using AsteroidsGame.UI;
-
+using JoaoSant0s.ServicePackage.General;
 
 namespace AsteroidsGame
 {
-    public class AdManager : SingletonBehaviour<AdManager>
+    public class AdsService : Service
     {
         private AdConfigData adConfig;
 
         private string RewardedVideoId => adConfig.placementRewardedVideoId;
 
-        #region Unity Methods
-
-        protected override void Awake()
+        #region Public Override Methods
+        public override void Init()
         {
-            base.Awake();
             adConfig = Resources.Load<AdConfigData>("AdConfig");
-        }
-
-        private void Start()
-        {
             StartUnityAds();
-        }
-
-        private void OnDestroy()
-        {
-            RewardedVideoButton.ShowRewardedVideo -= ShowRewardedVideo;
         }
 
         #endregion
@@ -45,9 +34,9 @@ namespace AsteroidsGame
             return StartCoroutine(OWaitRewardAdsReadyRoutine(action));
         }
 
-        public bool IsRewardVideoReady()
+        public void ShowRewardedVideo(UnityAction completeRewardAction)
         {
-            return IsAdvertisementReady(RewardedVideoId);
+            Advertisement.Show(RewardedVideoId, new RewardedVideoObject(completeRewardAction));
         }
 
         #endregion
@@ -59,13 +48,6 @@ namespace AsteroidsGame
 #if UNITY_ANDROID
             Advertisement.Initialize(adConfig.playStoreGameId);
 #endif
-
-            RewardedVideoButton.ShowRewardedVideo += ShowRewardedVideo;
-        }
-
-        private void ShowRewardedVideo(UnityAction completeRewardAction)
-        {
-            Advertisement.Show(RewardedVideoId, new RewardedVideoObject(completeRewardAction));
         }
 
         private IEnumerator OWaitRewardAdsReadyRoutine(UnityAction action)

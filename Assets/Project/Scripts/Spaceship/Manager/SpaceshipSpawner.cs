@@ -91,7 +91,7 @@ namespace AsteroidsGame.Manager
             currentSpaceship.InvulnerableAction?.RunDefaultInvulnerability();
         }
 
-        private void RewardedVideoStarted(UnityAction action)
+        private void RewardedVideoStarted()
         {
             if (currentSpaceship == null) return;
             currentSpaceship.InvulnerableAction?.RunInfinityInvulnerability();
