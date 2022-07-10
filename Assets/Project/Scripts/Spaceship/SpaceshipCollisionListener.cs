@@ -5,14 +5,14 @@ using UnityEngine;
 using NaughtyAttributes;
 
 using AsteroidsGame.Unit;
+using System;
 
 namespace AsteroidsGame.Actions
 {
     [RequireComponent(typeof(Collider2D))]
     public class SpaceshipCollisionListener : MonoBehaviour
-    {
-        public delegate void OnSpaceshipCollideAsteroid();
-        public static OnSpaceshipCollideAsteroid AsteroidCollided;
+    {        
+        public static event Action AsteroidCollided;
 
         [Tag]
         [SerializeField]

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,15 +6,13 @@ using UnityEngine;
 using NaughtyAttributes;
 
 using AsteroidsGame.Unit;
-using AsteroidsGame.Data;
 
 namespace AsteroidsGame.Actions
 {
     [RequireComponent(typeof(Collider2D))]
     public class BulletCollisionListener : MonoBehaviour
-    {
-        public delegate void OnBulletshipCollideAsteroid(AsteroidContext context);
-        public static OnBulletshipCollideAsteroid AsteroidCollided;
+    {    
+        public static event Action<AsteroidContext> AsteroidCollided;
                 
         [Tag]
         [SerializeField]

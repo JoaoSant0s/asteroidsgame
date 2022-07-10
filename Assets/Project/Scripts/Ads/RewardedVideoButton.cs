@@ -1,20 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.UI;
-
-using JoaoSant0s.CommonWrapper;
-using AsteroidsGame.Manager;
 using UnityEngine.Events;
+
+using AsteroidsGame.Manager;
 
 namespace AsteroidsGame.UI
 {
     [RequireComponent(typeof(Button))]
     public class RewardedVideoButton : MonoBehaviour
     {
-        public delegate void OnShowRewardedVideo(UnityAction action);
-        public static event OnShowRewardedVideo ShowRewardedVideo;
+        public static event Action<UnityAction> ShowRewardedVideo;
 
         private Button button;
         private UnityAction action;

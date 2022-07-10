@@ -12,6 +12,5 @@ namespace AsteroidsGame.Unit
         private BulletData data;
 
         public BulletData Data => data;
-        
     }
 }

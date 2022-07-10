@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,14 +11,12 @@ using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.Flag;
 using JoaoSant0s.ServicePackage.General;
 
-using AsteroidsGame.Data;
 
 namespace AsteroidsGame.UI.Popup
 {
     public class GameOverScreenPopup : BasePopup
     {
-        public delegate void OnRestartGame();
-        public static OnRestartGame RestartGame;
+        public static event Action RestartGame;
 
         [Header("Components")]
 

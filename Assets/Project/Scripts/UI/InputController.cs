@@ -1,24 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using AsteroidsGame.Data;
-using AsteroidsGame.UI.Popup;
-using JoaoSant0s.CommonWrapper;
-using JoaoSant0s.ServicePackage.General;
-using JoaoSant0s.ServicePackage.Popup;
+
 using UnityEngine;
 using UnityEngine.UI;
+
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Popup;
+
+using AsteroidsGame.UI.Popup;
 
 namespace AsteroidsGame.UI
 {
     public class InputController : MonoBehaviour
     {
-        public delegate void OnManipulateSpaceShip(float angle);
-        public static OnManipulateSpaceShip RotateSpaceShip;
-        public static OnManipulateSpaceShip AccelerateSpaceShip;
+        public static event Action<float> RotateSpaceShip;
+        public static event Action<float> AccelerateSpaceShip;
 
-        public delegate void OnActionSpaceShip();
-        public static OnActionSpaceShip ShootAction;
-        public static OnActionSpaceShip HyperSpaceAction;
+        public static event Action ShootAction;
+        public static event Action HyperSpaceAction;
 
         [Header("Joystick")]
 

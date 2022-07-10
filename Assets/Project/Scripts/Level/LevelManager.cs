@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,12 +15,9 @@ namespace AsteroidsGame.Manager
 {
     public class LevelManager : MonoBehaviour
     {
-        public delegate void MakeSpaceshipInvulnerable();
-        public static MakeSpaceshipInvulnerable OnMakeSpaceshipInvulnerable;
-
-        public delegate void SavePlayerProperties();
-        public static SavePlayerProperties OnSavePlayerScore;
-        public static SavePlayerProperties OnSavePlayerLife;
+        public static event Action OnMakeSpaceshipInvulnerable;
+        public static event Action OnSavePlayerScore;
+        public static event Action OnSavePlayerLife;
 
         [Header("Components")]
         [SerializeField]

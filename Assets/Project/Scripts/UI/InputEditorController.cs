@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using AsteroidsGame.Data;
+using System;
 
 namespace AsteroidsGame.UI
 {
     public class InputEditorController : MonoBehaviour
     {
 #if UNITY_EDITOR
-        public delegate void OnManipulateSpaceShip(int direction);
-        public static OnManipulateSpaceShip RotateSpaceShip;
-        public static OnManipulateSpaceShip AccelerateSpaceShip;
-
-        public delegate void OnActionSpaceShip();
-        public static OnActionSpaceShip ShootAction;
-        public static OnActionSpaceShip HyperSpaceAction;
+        public static event Action<int> RotateSpaceShip;
+        public static event Action<int> AccelerateSpaceShip;
+        public static event Action ShootAction;
+        public static event Action HyperSpaceAction;
 
         [Header("Keyboard Map")]
 

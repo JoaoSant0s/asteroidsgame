@@ -18,12 +18,9 @@ namespace AsteroidsGame.Manager
 {
     public class AsteroidSpawner : SingletonBehaviour<AsteroidSpawner>
     {
-        public delegate void OnSpawnNextLevel();
-        public static OnSpawnNextLevel SpawnNextLevel;
-
-        public delegate void OnAsteroidAmount(int asteroidsAmount);
-        public static OnAsteroidAmount TotalAsteroids;
-        public static OnAsteroidAmount CurrentAsteroids;
+        public static event Action SpawnNextLevel;
+        public static event Action<int> TotalAsteroids;
+        public static event Action<int> CurrentAsteroids;
 
         [SerializeField]
         [Expandable]

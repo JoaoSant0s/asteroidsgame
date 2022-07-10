@@ -12,19 +12,15 @@ using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
 using AsteroidsGame.UI;
+using System;
 
 namespace AsteroidsGame.Manager
 {
     public class SpaceshipSpawner : SingletonBehaviour<SpaceshipSpawner>
     {
-        public delegate void OnUpdateSpaceshipLife(int value);
-        public static OnUpdateSpaceshipLife UpdateSpaceshipLife;
-
-        public delegate void PlayerGameOver();
-        public static PlayerGameOver OnGameOver;
-
-        public delegate void EnabeRewardButton(bool enable, UnityAction action = null);
-        public static EnabeRewardButton OnEnabeRewardButton;
+        public static event Action<int> UpdateSpaceshipLife;
+        public static event Action OnGameOver;
+        public static event Action<bool, UnityAction> OnEnabeRewardButton;
 
         [SerializeField]
         private Spaceship spaceshipPrefab;
@@ -109,7 +105,7 @@ namespace AsteroidsGame.Manager
 
         private void SpaceshipDestroyed()
         {
-            OnEnabeRewardButton?.Invoke(false);
+            OnEnabeRewardButton?.Invoke(false, () => { });
 
             ModifyLife(-1);
             if (spaceshipLife <= 0)
