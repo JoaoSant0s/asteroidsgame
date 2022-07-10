@@ -8,7 +8,7 @@ using AsteroidsGame.Manager;
 
 namespace AsteroidsGame.UI
 {
-    public class AsteroidCounter : MonoBehaviour
+    public class AsteroidCounterView : MonoBehaviour
     {
         [SerializeField]
         private TextMeshProUGUI counterLabel;

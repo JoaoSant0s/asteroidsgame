@@ -13,8 +13,8 @@ namespace AsteroidsGame.Manager
 {
     public class ScoreManager : MonoBehaviour
     {
-        [SerializeField]
-        private ScoreCounter scoreLabel;
+        public static event Action<int> OnScoreUpdated;
+
         private int scorePoints;
 
         #region Unitye Methods
@@ -36,7 +36,7 @@ namespace AsteroidsGame.Manager
         public void SetScore(int newScore)
         {
             scorePoints = newScore;
-            UpdateScoreLabel();
+            ScoreUpdated();
         }
 
         #endregion
@@ -46,7 +46,7 @@ namespace AsteroidsGame.Manager
         private void BulletshipCollideAsteroid(AsteroidContext context)
         {
             scorePoints += context.Data.destroyScore;
-            UpdateScoreLabel();
+            ScoreUpdated();
         }
 
         private void SaveScore()
@@ -54,9 +54,9 @@ namespace AsteroidsGame.Manager
             SaveManager.Instance.SetPlayerScore(scorePoints);
         }
 
-        private void UpdateScoreLabel()
+        private void ScoreUpdated()
         {
-            scoreLabel.UpdateScore(string.Format("{0}", scorePoints));
+            OnScoreUpdated?.Invoke(scorePoints);
         }
 
         #endregion

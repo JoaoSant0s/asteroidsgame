@@ -18,7 +18,7 @@ namespace AsteroidsGame.Manager
 {
     public class SpaceshipSpawner : SingletonBehaviour<SpaceshipSpawner>
     {
-        public static event Action<int> UpdateSpaceshipLife;
+        public static event Action<int, int> UpdateSpaceshipLife;
         public static event Action OnGameOver;
         public static event Action<bool, UnityAction> OnEnabeRewardButton;
 
@@ -71,8 +71,9 @@ namespace AsteroidsGame.Manager
 
         public void SetLife(int newLife)
         {
+            var previousLife = spaceshipLife;
             spaceshipLife = newLife;
-            UpdateSpaceshipLife?.Invoke(spaceshipLife);
+            UpdateSpaceshipLife?.Invoke(previousLife, spaceshipLife);
         }
 
         public void SpawnSpaceship(bool makeInvulnarable = false)
@@ -99,8 +100,9 @@ namespace AsteroidsGame.Manager
 
         private void ModifyLife(int increment)
         {
+            var previousLifeAmount = spaceshipLife;
             spaceshipLife += increment;
-            UpdateSpaceshipLife?.Invoke(spaceshipLife);
+            UpdateSpaceshipLife?.Invoke(previousLifeAmount, spaceshipLife);
         }
 
         private void SpaceshipDestroyed()

@@ -8,36 +8,50 @@ using AsteroidsGame.Manager;
 
 namespace AsteroidsGame.UI
 {
-    public class LifeBar : MonoBehaviour
+    public class LifeBarView : MonoBehaviour
     {
         [SerializeField]
         private Image lifeIcon;
 
         #region Unity Methods
 
-        private void Awake() 
+        private void Awake()
         {
             SpaceshipSpawner.UpdateSpaceshipLife += RefreshLifeIcons;
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
             SpaceshipSpawner.UpdateSpaceshipLife -= RefreshLifeIcons;
         }
 
-#endregion
+        #endregion
 
-        private void RefreshLifeIcons(int value)
+        #region Private Methods
+
+        private void RefreshLifeIcons(int previousLife, int newLife)
         {
-            foreach (Transform child in transform) 
+            CleanLifeElements();
+
+            CreateLifeElements(newLife);
+        }
+
+        private void CleanLifeElements()
+        {
+            foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
             }
-            
-            for (int i = 0; i < value; i++)
+        }
+
+        private void CreateLifeElements(int newLife)
+        {
+            for (int i = 0; i < newLife; i++)
             {
                 Instantiate(lifeIcon, transform);
             }
         }
+
+        #endregion
     }
 }

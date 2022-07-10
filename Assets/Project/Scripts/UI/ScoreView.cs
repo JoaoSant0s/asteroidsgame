@@ -4,31 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
-
 using AsteroidsGame.Manager;
 
 namespace AsteroidsGame.UI
 {
-    public class LevelView : MonoBehaviour
+    public class ScoreView : MonoBehaviour
     {
         [SerializeField]
-        private TextMeshProUGUI levelLabel;
+        private TextMeshProUGUI scoreLabel;
 
         #region Unitye Methods
         protected void Awake()
         {
-            LevelManager.OnLevelStarted += UpdateLevelLabel;
+            ScoreManager.OnScoreUpdated += UpdateScoreLabel;
         }
 
         private void OnDestroy()
         {
-            LevelManager.OnLevelStarted -= UpdateLevelLabel;
+            ScoreManager.OnScoreUpdated -= UpdateScoreLabel;
         }
         #endregion
 
-        public void UpdateLevelLabel(int visualLevel)
+        public void UpdateScoreLabel(int score)
         {
-            levelLabel.text = string.Format("Wave {0}", visualLevel);
+            scoreLabel.text = string.Format("{0}", score);
         }
     }
 }

@@ -18,10 +18,7 @@ namespace AsteroidsGame.Manager
         public static event Action OnMakeSpaceshipInvulnerable;
         public static event Action OnSavePlayerScore;
         public static event Action OnSavePlayerLife;
-
-        [Header("Components")]
-        [SerializeField]
-        private LevelView levelView;
+        public static event Action<int> OnLevelStarted;
 
         [Header("Configs")]
         [SerializeField]
@@ -64,7 +61,7 @@ namespace AsteroidsGame.Manager
 
             SetPlayerLevelIndex(levelSave);
 
-            levelView.UpdateLevel(globalLevelIndex + 1);
+            OnLevelStarted?.Invoke(globalLevelIndex + 1);
 
             if (levelSave != null && levelSave.ContainsGameplayInfo())
             {
