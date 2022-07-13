@@ -21,6 +21,13 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.joaosantos.package-custom-variables": {
+      "version": "0.0.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.joaosantos.package-services": {
       "version": "2.4.0",
       "depth": 0,
