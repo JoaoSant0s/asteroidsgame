@@ -65,7 +65,7 @@ namespace AsteroidsGame.Level
 
             SetPlayerLevelIndex(levelSave);
 
-            globalLevelVariable.Modify(globalLevelIndex);
+            this.globalLevelVariable.Modify(globalLevelIndex);
 
             if (levelSave.ContainsGameplayInfo())
             {
