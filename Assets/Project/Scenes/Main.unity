@@ -2443,7 +2443,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ab8636d95991244b0666499d514502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreLabel: {fileID: 304507660}
 --- !u!1 &1538376858
 GameObject:
   m_ObjectHideFlags: 0
@@ -2858,9 +2857,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4476b909bc6d4364787016389abf6bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelView: {fileID: 1943020697}
   data: {fileID: 11400000, guid: 254eeeff025d3fa49ab2b40aab62d157, type: 2}
   spaceshipData: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
+  globalLevelVariable: {fileID: 11400000, guid: 9d299de9cd8547141b897095df6cc063, type: 2}
 --- !u!4 &1911586693
 Transform:
   m_ObjectHideFlags: 0
@@ -2925,6 +2924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLabel: {fileID: 736775578}
+  globalLevelVariable: {fileID: 11400000, guid: 9d299de9cd8547141b897095df6cc063, type: 2}
 --- !u!1 &1973801864
 GameObject:
   m_ObjectHideFlags: 0

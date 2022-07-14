@@ -6,6 +6,7 @@ using UnityEngine;
 
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.CustomVariable;
 
 using AsteroidsGame.Data;
 using AsteroidsGame.UI.Popup;
@@ -18,7 +19,6 @@ namespace AsteroidsGame.Level
         public static event Action OnMakeSpaceshipInvulnerable;
         public static event Action OnSavePlayerScore;
         public static event Action OnSavePlayerLife;
-        public static event Action<int> OnLevelStarted;
 
         [Header("Configs")]
         [SerializeField]
@@ -26,6 +26,10 @@ namespace AsteroidsGame.Level
 
         [SerializeField]
         private SpaceshipSpawnerData spaceshipData;
+
+        [Header("Variables")]
+        [SerializeField]
+        private IntVariable globalLevelVariable;
 
         private int currentLevelIndex = 0;
         private int globalLevelIndex = 0;
@@ -55,15 +59,15 @@ namespace AsteroidsGame.Level
 
         #region Public Methods
 
-        public void StartCurrentLevel(LevelSave levelSave = null)
+        public void StartCurrentLevel(LevelSave levelSave)
         {
             OnMakeSpaceshipInvulnerable?.Invoke();
 
             SetPlayerLevelIndex(levelSave);
 
-            OnLevelStarted?.Invoke(globalLevelIndex + 1);
+            globalLevelVariable.Modify(globalLevelIndex);
 
-            if (levelSave != null && levelSave.ContainsGameplayInfo())
+            if (levelSave.ContainsGameplayInfo())
             {
                 SpawnLevelContent(levelSave.gameplayInfo);
             }
@@ -168,7 +172,15 @@ namespace AsteroidsGame.Level
 
             var popup = popupService.Show<NextLevelPopup>();
             popup.SetVisual(globalLevelIndex + 1);
-            popup.SetGoAction(() => StartCurrentLevel());
+            popup.SetGoAction(CreateCurrentLevel);
+        }
+
+        private void CreateCurrentLevel()
+        {
+            OnMakeSpaceshipInvulnerable?.Invoke();
+
+            globalLevelVariable.Modify(globalLevelIndex);
+            SpawnLevelContent();
         }
 
         #endregion

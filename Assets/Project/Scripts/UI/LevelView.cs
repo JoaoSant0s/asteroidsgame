@@ -5,30 +5,39 @@ using UnityEngine;
 
 using TMPro;
 
+using JoaoSant0s.CustomVariable;
+
 using AsteroidsGame.Level;
 
 namespace AsteroidsGame.UI
 {
     public class LevelView : MonoBehaviour
     {
+        [Header("Components")]
         [SerializeField]
         private TextMeshProUGUI levelLabel;
 
+        [Header("Variables")]
+
+        [SerializeField]
+        private IntVariable globalLevelVariable;
+
         #region Unitye Methods
+
         protected void Awake()
         {
-            LevelManager.OnLevelStarted += UpdateLevelLabel;
+            this.globalLevelVariable.OnValueModified += UpdateLevelLabel;
         }
 
         private void OnDestroy()
         {
-            LevelManager.OnLevelStarted -= UpdateLevelLabel;
+            this.globalLevelVariable.OnValueModified -= UpdateLevelLabel;
         }
         #endregion
 
-        public void UpdateLevelLabel(int visualLevel)
+        public void UpdateLevelLabel(int previousLevel, int newLevel)
         {
-            levelLabel.text = string.Format("Wave {0}", visualLevel);
+            levelLabel.text = string.Format("Wave {0}", newLevel + 1);
         }
     }
 }
