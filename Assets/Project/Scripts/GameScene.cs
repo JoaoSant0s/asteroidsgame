@@ -7,6 +7,7 @@ using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Popup;
 
 using AsteroidsGame.UI.Popup;
+using AsteroidsGame.Level;
 
 namespace AsteroidsGame.Manager
 {

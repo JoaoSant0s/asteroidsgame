@@ -6,7 +6,9 @@ using UnityEngine;
 
 using NaughtyAttributes;
 
-namespace AsteroidsGame.Data
+using AsteroidsGame.Data;
+
+namespace AsteroidsGame.Level
 {
     [CreateAssetMenu(fileName = "LevelData", menuName = "AsteroidsGame/Level/LevelData")]
     public class LevelData : ScriptableObject

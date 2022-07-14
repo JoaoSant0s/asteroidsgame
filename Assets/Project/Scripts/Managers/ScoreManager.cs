@@ -1,13 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
 
 using AsteroidsGame.Actions;
-using AsteroidsGame.UI.Popup;
 using AsteroidsGame.Unit;
-using AsteroidsGame.UI;
-using System;
+using AsteroidsGame.Level;
 
 namespace AsteroidsGame.Manager
 {

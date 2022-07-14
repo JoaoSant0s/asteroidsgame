@@ -5,7 +5,7 @@ using UnityEngine;
 
 using TMPro;
 
-using AsteroidsGame.Manager;
+using AsteroidsGame.Level;
 
 namespace AsteroidsGame.UI
 {

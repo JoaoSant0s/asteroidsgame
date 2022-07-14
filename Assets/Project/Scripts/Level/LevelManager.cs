@@ -8,10 +8,10 @@ using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Popup;
 
 using AsteroidsGame.Data;
-using AsteroidsGame.UI;
 using AsteroidsGame.UI.Popup;
+using AsteroidsGame.Manager;
 
-namespace AsteroidsGame.Manager
+namespace AsteroidsGame.Level
 {
     public class LevelManager : MonoBehaviour
     {

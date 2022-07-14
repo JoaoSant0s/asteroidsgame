@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace AsteroidsGame.Data
+namespace AsteroidsGame.Level
 {
     [CreateAssetMenu(fileName = "LevelCollectionData", menuName = "AsteroidsGame/Level/LevelCollectionData")]
     public class LevelCollectionData : ScriptableObject
