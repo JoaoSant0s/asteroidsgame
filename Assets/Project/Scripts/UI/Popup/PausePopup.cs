@@ -44,8 +44,8 @@ namespace AsteroidsGame.UI.Popup
         private void NextAction()
         {
             flagService.Raise(enableGameplayFlag);
-            Hide();
             Time.timeScale = 1;
+            Close();
         }
 
         #endregion

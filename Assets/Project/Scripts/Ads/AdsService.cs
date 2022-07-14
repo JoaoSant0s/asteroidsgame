@@ -20,7 +20,8 @@ namespace AsteroidsGame
         private string RewardedVideoId => adConfig.placementRewardedVideoId;
 
         #region Public Override Methods
-        public override void Init()
+
+        public override void OnInit()
         {
             adConfig = Resources.Load<AdConfigData>("AdConfig");
             StartUnityAds();

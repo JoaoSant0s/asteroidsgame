@@ -21,7 +21,7 @@ namespace AsteroidsGame.UI.Popup
         [SerializeField]
         private Button continueButton;
 
-        [Header("Data")]        
+        [Header("Data")]
 
         [SerializeField]
         private FlagAsset enableGameplayFlag;
@@ -65,7 +65,7 @@ namespace AsteroidsGame.UI.Popup
         private void NextAction()
         {
             flagService.Raise(enableGameplayFlag);
-            Hide();
+            Close();
         }
 
         #endregion

@@ -66,7 +66,7 @@ namespace AsteroidsGame.UI.Popup
         {
             flagService.Raise(enableGameplayFlag);
             action?.Invoke();
-            Hide();
+            Close();
         }
 
         #endregion

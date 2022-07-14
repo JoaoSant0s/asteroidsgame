@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.UI.Popup;
-
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Popup;
+
+using AsteroidsGame.UI.Popup;
 
 namespace AsteroidsGame.Manager
 {
@@ -51,7 +51,7 @@ namespace AsteroidsGame.Manager
 
             var popup = popupService.Show<SplashScreenPopup>();
 
-            popup.OnBeforeHide += StartGame;
+            popup.OnBeforeClose += StartGame;
         }
 
         private void RestartGame()
