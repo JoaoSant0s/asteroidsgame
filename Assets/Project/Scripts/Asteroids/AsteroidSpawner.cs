@@ -9,11 +9,12 @@ using NaughtyAttributes;
 using JoaoSant0s.CommonWrapper;
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Pool;
+using JoaoSant0s.CustomVariable;
 
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
-using JoaoSant0s.CustomVariable;
+using AsteroidsGame.CustomVariable;
 
 namespace AsteroidsGame.Manager
 {
@@ -27,6 +28,9 @@ namespace AsteroidsGame.Manager
 
         [SerializeField]
         private IntVariable currentAsteroidsVariable;
+
+        [SerializeField]
+        private AsteroidContextVariable asteroidContextVariable;
 
         [Header("Data")]
         [SerializeField]
@@ -61,8 +65,7 @@ namespace AsteroidsGame.Manager
         protected override void Awake()
         {
             base.Awake();
-
-            BulletCollisionListener.AsteroidCollided += BulletshipCollideAsteroid;
+            this.asteroidContextVariable.OnValueModified += BulletshipCollideAsteroid;
         }
 
         private void Start()
@@ -72,7 +75,7 @@ namespace AsteroidsGame.Manager
 
         private void OnDestroy()
         {
-            BulletCollisionListener.AsteroidCollided -= BulletshipCollideAsteroid;
+            this.asteroidContextVariable.OnValueModified -= BulletshipCollideAsteroid;
         }
 
         #endregion
@@ -163,11 +166,11 @@ namespace AsteroidsGame.Manager
             return position + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0);
         }
 
-        private void BulletshipCollideAsteroid(AsteroidContext context)
+        private void BulletshipCollideAsteroid(AsteroidContext previousContext, AsteroidContext newContext)
         {
-            RemoveAsteroid(context.Asteroid);
-            SpawnChildrenAsteroids(context.Asteroid, context.Data);
-            context.Asteroid.Dispose();
+            RemoveAsteroid(newContext.Asteroid);
+            SpawnChildrenAsteroids(newContext.Asteroid, newContext.Data);
+            newContext.Asteroid.Dispose();
 
             var estimatedAsteroidsAmount = AsteroidsEstimatedAmount();
             this.currentAsteroidsVariable.Modify(estimatedAsteroidsAmount);

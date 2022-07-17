@@ -9,29 +9,29 @@ using JoaoSant0s.CustomVariable;
 using AsteroidsGame.Actions;
 using AsteroidsGame.Unit;
 using AsteroidsGame.Level;
+using AsteroidsGame.CustomVariable;
 
 namespace AsteroidsGame.Manager
 {
     public class ScoreManager : MonoBehaviour
     {
-        public static event Action<int> OnScoreUpdated;
-
         [Header("Variables")]
         [SerializeField]
         private IntVariable scoreVariable;
 
-        //private int scorePoints;
+        [SerializeField]
+        private AsteroidContextVariable asteroidContextVariable;
 
         #region Unitye Methods
         protected void Awake()
         {
-            BulletCollisionListener.AsteroidCollided += BulletshipCollideAsteroid;
+            this.asteroidContextVariable.OnValueModified += BulletshipCollideAsteroid;
             LevelManager.OnSavePlayerScore += SaveScore;
         }
 
         private void OnDestroy()
         {
-            BulletCollisionListener.AsteroidCollided -= BulletshipCollideAsteroid;
+            this.asteroidContextVariable.OnValueModified -= BulletshipCollideAsteroid;
             LevelManager.OnSavePlayerScore -= SaveScore;
         }
         #endregion
@@ -47,9 +47,9 @@ namespace AsteroidsGame.Manager
 
         #region Private Methods
 
-        private void BulletshipCollideAsteroid(AsteroidContext context)
+        private void BulletshipCollideAsteroid(AsteroidContext previousContext, AsteroidContext newContext)
         {
-            this.scoreVariable.Add(context.Data.destroyScore);
+            this.scoreVariable.Add(newContext.Data.destroyScore);
         }
 
         private void SaveScore()

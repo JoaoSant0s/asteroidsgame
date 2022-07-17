@@ -2446,6 +2446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreVariable: {fileID: 11400000, guid: c1f06cd9491c92b4ea24de9a40fac355, type: 2}
+  asteroidContextVariable: {fileID: 11400000, guid: 82d98af8342c46c438e0abfda07404de, type: 2}
 --- !u!1 &1538376858
 GameObject:
   m_ObjectHideFlags: 0
@@ -3555,6 +3556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalAsteroidsVariable: {fileID: 11400000, guid: 63fd6cd59cebd164d9e308a305f36834, type: 2}
   currentAsteroidsVariable: {fileID: 11400000, guid: 714bebcfc089ad242bd697a9c5632f75, type: 2}
+  asteroidContextVariable: {fileID: 11400000, guid: 82d98af8342c46c438e0abfda07404de, type: 2}
   spawnerData: {fileID: 11400000, guid: 165c7c13aff3ba5468d031fb0f8d4a8c, type: 2}
   spawnPoints:
   - {fileID: 2131720066}
