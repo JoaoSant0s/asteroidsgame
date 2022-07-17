@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using JoaoSant0s.CustomVariable;
+
 using AsteroidsGame.Actions;
 using AsteroidsGame.Unit;
 using AsteroidsGame.Level;
@@ -14,7 +16,11 @@ namespace AsteroidsGame.Manager
     {
         public static event Action<int> OnScoreUpdated;
 
-        private int scorePoints;
+        [Header("Variables")]
+        [SerializeField]
+        private IntVariable scoreVariable;
+
+        //private int scorePoints;
 
         #region Unitye Methods
         protected void Awake()
@@ -34,8 +40,7 @@ namespace AsteroidsGame.Manager
 
         public void SetScore(int newScore)
         {
-            scorePoints = newScore;
-            ScoreUpdated();
+            this.scoreVariable.Modify(newScore);
         }
 
         #endregion
@@ -44,18 +49,12 @@ namespace AsteroidsGame.Manager
 
         private void BulletshipCollideAsteroid(AsteroidContext context)
         {
-            scorePoints += context.Data.destroyScore;
-            ScoreUpdated();
+            this.scoreVariable.Add(context.Data.destroyScore);
         }
 
         private void SaveScore()
         {
-            SaveManager.Instance.SetPlayerScore(scorePoints);
-        }
-
-        private void ScoreUpdated()
-        {
-            OnScoreUpdated?.Invoke(scorePoints);
+            SaveManager.Instance.SetPlayerScore(this.scoreVariable.Value);
         }
 
         #endregion

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
+using JoaoSant0s.CustomVariable;
+
 using AsteroidsGame.Manager;
 
 namespace AsteroidsGame.UI
@@ -13,21 +15,25 @@ namespace AsteroidsGame.UI
         [SerializeField]
         private TextMeshProUGUI scoreLabel;
 
+        [Header("Variables")]
+        [SerializeField]
+        private IntVariable scoreVariable;
+
         #region Unitye Methods
         protected void Awake()
         {
-            ScoreManager.OnScoreUpdated += UpdateScoreLabel;
+            this.scoreVariable.OnValueModified += UpdateScoreLabel;
         }
 
         private void OnDestroy()
         {
-            ScoreManager.OnScoreUpdated -= UpdateScoreLabel;
+            this.scoreVariable.OnValueModified -= UpdateScoreLabel;
         }
         #endregion
 
-        public void UpdateScoreLabel(int score)
+        public void UpdateScoreLabel(int previousScore, int newScore)
         {
-            scoreLabel.text = string.Format("{0}", score);
+            scoreLabel.text = string.Format("{0}", newScore);
         }
     }
 }
