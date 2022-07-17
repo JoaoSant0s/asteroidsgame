@@ -16,7 +16,6 @@ namespace AsteroidsGame.UI
         private Image lifeIcon;
 
         [Header("Variables")]
-
         [SerializeField]
         private IntVariable lifeVariable;
 

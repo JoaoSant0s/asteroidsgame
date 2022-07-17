@@ -18,7 +18,6 @@ namespace AsteroidsGame.UI
         private TextMeshProUGUI levelLabel;
 
         [Header("Variables")]
-
         [SerializeField]
         private IntVariable globalLevelVariable;
 
