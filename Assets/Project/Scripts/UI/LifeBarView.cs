@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using JoaoSant0s.CustomVariable;
+
 using AsteroidsGame.Manager;
 
 namespace AsteroidsGame.UI
@@ -13,16 +15,21 @@ namespace AsteroidsGame.UI
         [SerializeField]
         private Image lifeIcon;
 
+        [Header("Variables")]
+
+        [SerializeField]
+        private IntVariable lifeVariable;
+
         #region Unity Methods
 
-        private void Awake()
+        protected void Awake()
         {
-            SpaceshipSpawner.UpdateSpaceshipLife += RefreshLifeIcons;
+            this.lifeVariable.OnValueModified += RefreshLifeIcons;
         }
 
         private void OnDestroy()
         {
-            SpaceshipSpawner.UpdateSpaceshipLife -= RefreshLifeIcons;
+            this.lifeVariable.OnValueModified -= RefreshLifeIcons;
         }
 
         #endregion
