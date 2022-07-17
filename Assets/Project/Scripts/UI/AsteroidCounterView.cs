@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
+using JoaoSant0s.CustomVariable;
+
 using AsteroidsGame.Manager;
 
 namespace AsteroidsGame.UI
@@ -13,37 +15,44 @@ namespace AsteroidsGame.UI
         [SerializeField]
         private TextMeshProUGUI counterLabel;
 
+        [Header("Variables")]
+        [SerializeField]
+        private IntVariable totalAsteroidsVariable;
+
+        [SerializeField]
+        private IntVariable currentAsteroidsVariable;
+
         private int totalAsteroids;
         private int currentAsteroids;
 
         #region Unity Methods
 
-        private void Awake()
+        protected void Awake()
         {
-            AsteroidSpawner.TotalAsteroids += UpdateTotalAsteroids;
-            AsteroidSpawner.CurrentAsteroids += UpdateCurrentAsteroids;
+            this.totalAsteroidsVariable.OnValueModified += UpdateTotalAsteroids;
+            this.currentAsteroidsVariable.OnValueModified += UpdateCurrentAsteroids;
+
         }
 
         private void OnDestroy()
         {
-            AsteroidSpawner.TotalAsteroids -= UpdateTotalAsteroids;
-            AsteroidSpawner.CurrentAsteroids += UpdateCurrentAsteroids;
-        }
+            this.totalAsteroidsVariable.OnValueModified -= UpdateTotalAsteroids;
+            this.currentAsteroidsVariable.OnValueModified -= UpdateCurrentAsteroids;
+        }       
 
         #endregion
 
         #region Private Methods
 
-        private void UpdateTotalAsteroids(int total)
+        private void UpdateTotalAsteroids(int previousAsteroidsTotal, int newAsteroidsTotal)
         {
-            totalAsteroids = total;
-
+            totalAsteroids = newAsteroidsTotal;
             UpdateView();
         }
 
-        private void UpdateCurrentAsteroids(int current)
+        private void UpdateCurrentAsteroids(int previousAsteroidsAmount, int currentAsteroidsAmount)
         {
-            currentAsteroids = current;
+            currentAsteroids = currentAsteroidsAmount;
             UpdateView();
         }
 

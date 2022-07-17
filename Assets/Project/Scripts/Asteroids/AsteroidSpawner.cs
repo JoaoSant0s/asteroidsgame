@@ -13,18 +13,27 @@ using JoaoSant0s.ServicePackage.Pool;
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
+using JoaoSant0s.CustomVariable;
 
 namespace AsteroidsGame.Manager
 {
     public class AsteroidSpawner : SingletonBehaviour<AsteroidSpawner>
     {
         public static event Action SpawnNextLevel;
-        public static event Action<int> TotalAsteroids;
-        public static event Action<int> CurrentAsteroids;
 
+        [Header("Variables")]
+        [SerializeField]
+        private IntVariable totalAsteroidsVariable;
+
+        [SerializeField]
+        private IntVariable currentAsteroidsVariable;
+
+        [Header("Data")]
         [SerializeField]
         [Expandable]
         private AsteroidSpawnerData spawnerData;
+
+        [Header("References")]
 
         [SerializeField]
         private List<Transform> spawnPoints;
@@ -89,8 +98,8 @@ namespace AsteroidsGame.Manager
         public void UpdateAsteroidsCounter()
         {
             var total = AsteroidsEstimatedAmount();
-            TotalAsteroids?.Invoke(total);
-            CurrentAsteroids?.Invoke(total);
+            this.totalAsteroidsVariable.Modify(total);
+            this.currentAsteroidsVariable.Modify(total);
         }
 
         #endregion
@@ -160,7 +169,8 @@ namespace AsteroidsGame.Manager
             SpawnChildrenAsteroids(context.Asteroid, context.Data);
             context.Asteroid.Dispose();
 
-            CurrentAsteroids?.Invoke(AsteroidsEstimatedAmount());
+            var estimatedAsteroidsAmount = AsteroidsEstimatedAmount();
+            this.currentAsteroidsVariable.Modify(estimatedAsteroidsAmount);
 
             CheckLevelEnded();
         }

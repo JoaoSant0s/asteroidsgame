@@ -3082,6 +3082,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterLabel: {fileID: 104950206}
+  totalAsteroidsVariable: {fileID: 11400000, guid: 63fd6cd59cebd164d9e308a305f36834, type: 2}
+  currentAsteroidsVariable: {fileID: 11400000, guid: 714bebcfc089ad242bd697a9c5632f75, type: 2}
 --- !u!1001 &1986247462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3551,6 +3553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e92a05db502204d83d694a584b44c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalAsteroidsVariable: {fileID: 11400000, guid: 63fd6cd59cebd164d9e308a305f36834, type: 2}
+  currentAsteroidsVariable: {fileID: 11400000, guid: 714bebcfc089ad242bd697a9c5632f75, type: 2}
   spawnerData: {fileID: 11400000, guid: 165c7c13aff3ba5468d031fb0f8d4a8c, type: 2}
   spawnPoints:
   - {fileID: 2131720066}
