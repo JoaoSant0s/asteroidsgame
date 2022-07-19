@@ -14,10 +14,15 @@ namespace AsteroidsGame.Actions
 {
     public class SpaceshipShootAction : MonoBehaviour
     {
+        public delegate Transform OnGetBulletArea();
+        public static event OnGetBulletArea GetBulletArea;
+
         [SerializeField]
         private Transform bulletOrigin;
 
         private PoolService poolService;
+
+        private Transform bulletsArea;
 
         #region Unity Methods
 
@@ -32,6 +37,7 @@ namespace AsteroidsGame.Actions
         private void Start()
         {
             poolService = Services.Get<PoolService>();
+            bulletsArea = GetBulletArea?.Invoke();
         }
 
         private void OnDestroy()
@@ -52,8 +58,7 @@ namespace AsteroidsGame.Actions
 
         private Bullet InstatiateBullet()
         {
-            var parent = SpaceshipSpawner.Instance.BulletsArea;
-            var bullet = poolService.Get<Bullet>(bulletOrigin.position, Quaternion.identity, parent);
+            var bullet = poolService.Get<Bullet>(bulletOrigin.position, Quaternion.identity, bulletsArea);
             return bullet;
         }
     }

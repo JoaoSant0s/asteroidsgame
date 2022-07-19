@@ -2087,9 +2087,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa25d1dfdb09db4d9093229ef48c8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletsArea: {fileID: 379548690}
   spaceshipPrefab: {fileID: 1135018853, guid: f95fbc8f85d7aa948b5de3b8eb71b37e, type: 3}
-  data: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
-  pulletsArea: {fileID: 379548690}
+  spaceshipSpawnerData: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
   lifeVariable: {fileID: 11400000, guid: 5811fad299e46a74881e49165488274c, type: 2}
 --- !u!1 &1025142665
 GameObject:
