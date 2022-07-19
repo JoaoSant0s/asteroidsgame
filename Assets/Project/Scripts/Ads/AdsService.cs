@@ -11,7 +11,7 @@ using AsteroidsGame.Data;
 using AsteroidsGame.UI;
 using JoaoSant0s.ServicePackage.General;
 
-namespace AsteroidsGame
+namespace AsteroidsGame.Ads
 {
     public class AdsService : Service
     {

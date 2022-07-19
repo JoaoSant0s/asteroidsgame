@@ -8,6 +8,7 @@ using JoaoSant0s.ServicePackage.Popup;
 
 using AsteroidsGame.UI.Popup;
 using AsteroidsGame.Level;
+using AsteroidsGame.Save;
 
 namespace AsteroidsGame.Manager
 {
@@ -28,10 +29,15 @@ namespace AsteroidsGame.Manager
 
         private PopupService popupService;
 
+        private PlayerPersistenceService playerPersistence;
+
+
         #region Unity Methods
         private void Start()
         {
             popupService = Services.Get<PopupService>();
+            playerPersistence = Services.Get<PlayerPersistenceService>();
+
             GameOverScreenPopup.RestartGame += RestartGame;
 
             StartCoroutine(ShowSplashScreenRoutine());
@@ -64,13 +70,13 @@ namespace AsteroidsGame.Manager
 
         private void StartGame()
         {
-            var playerSave = SaveManager.Instance.GetPlayerSave();
+            var playerSave = playerPersistence.GetPlayerSave();
 
             spaceshipSpawner.SetLife(playerSave.life);
             scoreManager.SetScore(playerSave.score);
 
             spaceshipSpawner.SpawnSpaceship();
-            levelManager.StartCurrentLevel(playerSave.level);
+            levelManager.StartCurrentLevel(playerPersistence.GetLevelSave());
         }
 
         #endregion

@@ -15,6 +15,7 @@ using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
 using AsteroidsGame.UI;
 using AsteroidsGame.Level;
+using AsteroidsGame.Save;
 
 namespace AsteroidsGame.Manager
 {
@@ -37,6 +38,8 @@ namespace AsteroidsGame.Manager
         private IntVariable lifeVariable;
 
         private PopupService popupService;
+        private PlayerPersistenceService playerPersistence;
+
         private Spaceship currentSpaceship;
         private bool extraLifeUsed;
 
@@ -56,6 +59,7 @@ namespace AsteroidsGame.Manager
         private void Start()
         {
             popupService = Services.Get<PopupService>();
+            playerPersistence = Services.Get<PlayerPersistenceService>();
         }
 
         private void OnDestroy()
@@ -99,7 +103,7 @@ namespace AsteroidsGame.Manager
 
         private void SaveLife()
         {
-            SaveManager.Instance.SetPlayerLife(this.lifeVariable.Value);
+            playerPersistence.SetPlayerLife(this.lifeVariable.Value);
         }
 
         private void SpaceshipDestroyed()

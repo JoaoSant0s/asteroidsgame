@@ -6,8 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-using AsteroidsGame.Manager;
 using JoaoSant0s.ServicePackage.General;
+
+using AsteroidsGame.Manager;
+using AsteroidsGame.Ads;
 
 namespace AsteroidsGame.UI
 {

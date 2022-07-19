@@ -6,10 +6,11 @@ using UnityEngine;
 
 using JoaoSant0s.CustomVariable;
 
-using AsteroidsGame.Actions;
 using AsteroidsGame.Unit;
 using AsteroidsGame.Level;
 using AsteroidsGame.CustomVariable;
+using AsteroidsGame.Save;
+using JoaoSant0s.ServicePackage.General;
 
 namespace AsteroidsGame.Manager
 {
@@ -22,11 +23,18 @@ namespace AsteroidsGame.Manager
         [SerializeField]
         private AsteroidContextVariable asteroidContextVariable;
 
+        private PlayerPersistenceService playerPersistence;
+
         #region Unitye Methods
         protected void Awake()
         {
             this.asteroidContextVariable.OnValueModified += BulletshipCollideAsteroid;
             LevelManager.OnSavePlayerScore += SaveScore;
+        }
+
+        private void Start()
+        {
+            playerPersistence = Services.Get<PlayerPersistenceService>();
         }
 
         private void OnDestroy()
@@ -54,7 +62,7 @@ namespace AsteroidsGame.Manager
 
         private void SaveScore()
         {
-            SaveManager.Instance.SetPlayerScore(this.scoreVariable.Value);
+            playerPersistence.SetPlayerScore(this.scoreVariable.Value);
         }
 
         #endregion

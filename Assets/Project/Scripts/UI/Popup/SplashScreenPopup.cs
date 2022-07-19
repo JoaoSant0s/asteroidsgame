@@ -9,6 +9,7 @@ using JoaoSant0s.ServicePackage.Flag;
 using JoaoSant0s.ServicePackage.General;
 using AsteroidsGame.Data;
 using AsteroidsGame.Manager;
+using AsteroidsGame.Save;
 
 namespace AsteroidsGame.UI.Popup
 {
@@ -27,11 +28,14 @@ namespace AsteroidsGame.UI.Popup
         private FlagAsset enableGameplayFlag;
 
         private FlagService flagService;
+        private PlayerPersistenceService playerPersistence;
 
         #region Unity Methods
         private void Start()
         {
             flagService = Services.Get<FlagService>();
+            playerPersistence = Services.Get<PlayerPersistenceService>();
+
             EnableButtons();
             SetButtonEvents();
         }
@@ -42,7 +46,7 @@ namespace AsteroidsGame.UI.Popup
 
         private void EnableButtons()
         {
-            if (!SaveManager.Instance.ContainsPlayerSave())
+            if (!playerPersistence.ContainsPlayerSave())
             {
                 continueButton.gameObject.SetActive(false);
             }
@@ -52,7 +56,7 @@ namespace AsteroidsGame.UI.Popup
         {
             newRunButton.onClick.AddListener(() =>
             {
-                SaveManager.Instance.CreatePlayerSave();
+                playerPersistence.CreatePlayerSave();
                 NextAction();
             });
 

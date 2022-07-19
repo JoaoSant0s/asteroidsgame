@@ -11,6 +11,7 @@ using JoaoSant0s.CustomVariable;
 using AsteroidsGame.Data;
 using AsteroidsGame.UI.Popup;
 using AsteroidsGame.Manager;
+using AsteroidsGame.Save;
 
 namespace AsteroidsGame.Level
 {
@@ -35,6 +36,7 @@ namespace AsteroidsGame.Level
         private int globalLevelIndex = 0;
 
         private PopupService popupService;
+        private PlayerPersistenceService playerPersistence;
 
         #region Unity Methods
 
@@ -47,6 +49,7 @@ namespace AsteroidsGame.Level
         private void Start()
         {
             popupService = Services.Get<PopupService>();
+            playerPersistence = Services.Get<PlayerPersistenceService>();
         }
 
         private void OnDestroy()
@@ -59,7 +62,7 @@ namespace AsteroidsGame.Level
 
         #region Public Methods
 
-        public void StartCurrentLevel(LevelSave levelSave)
+        public void StartCurrentLevel(LevelSaveData levelSave)
         {
             OnMakeSpaceshipInvulnerable?.Invoke();
 
@@ -83,18 +86,14 @@ namespace AsteroidsGame.Level
 
         private void OnGameOver()
         {
-            var save = SaveManager.Instance.GetPlayerSave();
-
-            save.life = spaceshipData.maxSpaceshipLife;
-            save.level.ReturningLevelBy(data.levelToReturnAfterGameOver);
-
-            SaveManager.Instance.SetPlayer(save);
+            playerPersistence.SetPlayerLife(spaceshipData.maxSpaceshipLife);
+            playerPersistence.ReturningLevelBy(data.levelToReturnAfterGameOver);
 
             var popup = popupService.Show<GameOverScreenPopup>();
             popup.UpdateMessage(data.levelToReturnAfterGameOver);
         }
 
-        private void SetPlayerLevelIndex(LevelSave levelSave = null)
+        private void SetPlayerLevelIndex(LevelSaveData levelSave = null)
         {
             if (levelSave == null) return;
 
@@ -109,7 +108,7 @@ namespace AsteroidsGame.Level
 
             if (currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
 
-            SaveManager.Instance.SetPlayerLevel(new LevelSave(currentLevelIndex, globalLevelIndex));
+            playerPersistence.SetLevel(currentLevelIndex, globalLevelIndex);
             OnSavePlayerScore?.Invoke();
             OnSavePlayerLife?.Invoke();
 
@@ -136,7 +135,7 @@ namespace AsteroidsGame.Level
                 SpawnAsteroidsAmount(config.asteroidType, amount);
             }
 
-            SaveManager.Instance.SetPlayerGameplayLevel(info);
+            playerPersistence.SetGameplayLevel(info);
             AsteroidSpawner.Instance.UpdateAsteroidsCounter();
         }
 
@@ -154,7 +153,7 @@ namespace AsteroidsGame.Level
                 SpawnAsteroidsAmount(config.asteroidType, amount);
             }
 
-            SaveManager.Instance.SetPlayerGameplayLevel(info);
+            playerPersistence.SetGameplayLevel(info);
             AsteroidSpawner.Instance.UpdateAsteroidsCounter();
         }
 
