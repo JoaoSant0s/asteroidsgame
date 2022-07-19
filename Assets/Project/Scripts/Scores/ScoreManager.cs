@@ -12,7 +12,7 @@ using AsteroidsGame.CustomVariable;
 using AsteroidsGame.Save;
 using AsteroidsGame.Asteroids;
 
-namespace AsteroidsGame.Manager
+namespace AsteroidsGame.Scores
 {
     public class ScoreManager : MonoBehaviour
     {

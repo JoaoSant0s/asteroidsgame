@@ -10,6 +10,7 @@ using AsteroidsGame.UI.Popup;
 using AsteroidsGame.Levels;
 using AsteroidsGame.Save;
 using AsteroidsGame.Asteroids;
+using AsteroidsGame.Scores;
 
 namespace AsteroidsGame.Manager
 {
