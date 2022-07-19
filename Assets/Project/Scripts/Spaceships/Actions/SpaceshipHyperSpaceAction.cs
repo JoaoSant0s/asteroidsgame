@@ -6,7 +6,7 @@ using UnityEngine;
 using AsteroidsGame.UI;
 using AsteroidsGame.UtilWrapper;
 
-namespace AsteroidsGame.Actions
+namespace AsteroidsGame.Spaceships.Actions
 {
     public class SpaceshipHyperSpaceAction : MonoBehaviour
     {

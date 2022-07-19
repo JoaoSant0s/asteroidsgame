@@ -7,11 +7,9 @@ using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Pool;
 
 using AsteroidsGame.UI;
-using AsteroidsGame.Unit;
-using AsteroidsGame.Manager;
 using AsteroidsGame.Bullets;
 
-namespace AsteroidsGame.Actions
+namespace AsteroidsGame.Spaceships.Actions
 {
     public class SpaceshipShootAction : MonoBehaviour
     {

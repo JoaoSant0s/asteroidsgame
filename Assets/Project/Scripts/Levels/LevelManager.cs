@@ -8,9 +8,9 @@ using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.CustomVariable;
 
-using AsteroidsGame.Data;
+using AsteroidsGame.Spaceships.Data;
 using AsteroidsGame.UI.Popup;
-using AsteroidsGame.Manager;
+using AsteroidsGame.Spaceships;
 using AsteroidsGame.Save;
 using AsteroidsGame.Asteroids;
 using AsteroidsGame.UtilWrapper.Data;

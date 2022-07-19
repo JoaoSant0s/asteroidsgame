@@ -11,6 +11,7 @@ using AsteroidsGame.Levels;
 using AsteroidsGame.Save;
 using AsteroidsGame.Asteroids;
 using AsteroidsGame.Scores;
+using AsteroidsGame.Spaceships;
 
 namespace AsteroidsGame.Manager
 {

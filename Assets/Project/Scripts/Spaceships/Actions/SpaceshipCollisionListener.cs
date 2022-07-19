@@ -1,13 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 using NaughtyAttributes;
 
-using AsteroidsGame.Unit;
-using System;
-
-namespace AsteroidsGame.Actions
+namespace AsteroidsGame.Spaceships.Actions
 {
     [RequireComponent(typeof(Collider2D))]
     public class SpaceshipCollisionListener : MonoBehaviour

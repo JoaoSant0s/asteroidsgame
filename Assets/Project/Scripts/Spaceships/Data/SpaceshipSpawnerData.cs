@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AsteroidsGame.Data
+namespace AsteroidsGame.Spaceships.Data
 {
     [CreateAssetMenu(fileName = "SpaceshipSpawnerData", menuName = "AsteroidsGame/Spaceship/SpaceshipSpawnerData")]
     public class SpaceshipSpawnerData : ScriptableObject

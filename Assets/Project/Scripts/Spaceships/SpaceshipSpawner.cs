@@ -9,14 +9,13 @@ using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.CustomVariable;
 
-using AsteroidsGame.Unit;
-using AsteroidsGame.Data;
-using AsteroidsGame.Actions;
+using AsteroidsGame.Spaceships.Data;
+using AsteroidsGame.Spaceships.Actions;
 using AsteroidsGame.Levels;
 using AsteroidsGame.Save;
 using AsteroidsGame.Ads.UI;
 
-namespace AsteroidsGame.Manager
+namespace AsteroidsGame.Spaceships
 {
     public class SpaceshipSpawner : MonoBehaviour
     {

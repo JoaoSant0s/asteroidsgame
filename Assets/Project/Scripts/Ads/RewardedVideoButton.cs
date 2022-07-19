@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 using JoaoSant0s.ServicePackage.General;
 
-using AsteroidsGame.Manager;
+using AsteroidsGame.Spaceships;
 
 namespace AsteroidsGame.Ads.UI
 {

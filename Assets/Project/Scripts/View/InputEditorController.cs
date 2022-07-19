@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.Data;
+using AsteroidsGame.UI.Data;
 
 namespace AsteroidsGame.UI
 {

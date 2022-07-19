@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AsteroidsGame.Data
+namespace AsteroidsGame.UI.Data
 {
     [CreateAssetMenu(fileName = "SpaceshipKeyboardMapData", menuName = "AsteroidsGame/Spaceship/SpaceshipKeyboardMapData")]
 

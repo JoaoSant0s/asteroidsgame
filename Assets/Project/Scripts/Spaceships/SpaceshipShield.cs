@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.Data;
+using AsteroidsGame.Spaceships.Data;
 
-namespace AsteroidsGame.Unit
+namespace AsteroidsGame.Spaceships
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class SpaceshipShield : MonoBehaviour

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using AsteroidsGame.Data;
+using AsteroidsGame.Spaceships.Data;
 
-namespace AsteroidsGame.Unit
+namespace AsteroidsGame.Spaceships
 {
     public class SpaceshipContext : MonoBehaviour
     {

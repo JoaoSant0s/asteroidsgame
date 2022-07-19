@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using AsteroidsGame.UI;
-using AsteroidsGame.Unit;
 
-namespace AsteroidsGame.Actions
+namespace AsteroidsGame.Spaceships.Actions
 {
     public class SpaceshipMovementAction : MonoBehaviour
     {

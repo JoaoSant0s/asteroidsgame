@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+
+using AsteroidsGame.Spaceships.Data;
 
 namespace AsteroidsGame.Data
 {

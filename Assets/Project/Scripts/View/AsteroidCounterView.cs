@@ -37,7 +37,7 @@ namespace AsteroidsGame.UI
         {
             this.totalAsteroidsVariable.OnValueModified -= UpdateTotalAsteroids;
             this.currentAsteroidsVariable.OnValueModified -= UpdateCurrentAsteroids;
-        }       
+        }
 
         #endregion
 
