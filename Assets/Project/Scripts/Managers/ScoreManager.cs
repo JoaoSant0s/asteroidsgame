@@ -6,11 +6,11 @@ using UnityEngine;
 
 using JoaoSant0s.CustomVariable;
 
-using AsteroidsGame.Unit;
 using AsteroidsGame.Level;
 using AsteroidsGame.CustomVariable;
 using AsteroidsGame.Save;
 using JoaoSant0s.ServicePackage.General;
+using AsteroidsGame.Asteroid;
 
 namespace AsteroidsGame.Manager
 {

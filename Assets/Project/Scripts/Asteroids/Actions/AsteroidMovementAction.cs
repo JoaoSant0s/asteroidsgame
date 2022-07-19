@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using AsteroidsGame.UtilWrapper;
-using AsteroidsGame.Unit;
 
-namespace AsteroidsGame.Actions
+namespace AsteroidsGame.Asteroid.Actions
 {
     public class AsteroidMovementAction : MonoBehaviour
     {

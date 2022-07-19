@@ -7,6 +7,7 @@ using NaughtyAttributes;
 
 using AsteroidsGame.Unit;
 using AsteroidsGame.CustomVariable;
+using AsteroidsGame.Asteroid;
 
 namespace AsteroidsGame.Actions
 {

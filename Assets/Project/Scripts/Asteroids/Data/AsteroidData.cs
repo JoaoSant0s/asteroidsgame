@@ -4,7 +4,9 @@ using UnityEngine;
 
 using NaughtyAttributes;
 
-namespace AsteroidsGame.Data
+using AsteroidsGame.Data;
+
+namespace AsteroidsGame.Asteroid.Data
 {
     [CreateAssetMenu(fileName = "AsteroidData", menuName = "AsteroidsGame/Asteroid/AsteroidData")]
     public class AsteroidData : ScriptableObject

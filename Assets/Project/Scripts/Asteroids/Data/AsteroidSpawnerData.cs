@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace AsteroidsGame.Data
+using AsteroidsGame.Data;
+
+namespace AsteroidsGame.Asteroid.Data
 {
 
     [CreateAssetMenu(fileName = "AsteroidSpawnerData", menuName = "AsteroidsGame/Asteroid/AsteroidSpawnerData")]

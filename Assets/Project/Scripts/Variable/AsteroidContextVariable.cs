@@ -6,7 +6,7 @@ using UnityEngine;
 
 using JoaoSant0s.CustomVariable;
 
-using AsteroidsGame.Unit;
+using AsteroidsGame.Asteroid;
 
 namespace AsteroidsGame.CustomVariable
 {
