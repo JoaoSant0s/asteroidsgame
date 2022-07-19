@@ -5,7 +5,7 @@ using UnityEngine;
 
 using JoaoSant0s.CommonWrapper;
 
-namespace AsteroidsGame.UI
+namespace AsteroidsGame.UtilWrapper
 {
     public class MainCanvas : SingletonBehaviour<MainCanvas>
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 using NaughtyAttributes;
 
-using AsteroidsGame.Data;
+using AsteroidsGame.UtilWrapper.Data;
 
 namespace AsteroidsGame.Asteroids.Data
 {

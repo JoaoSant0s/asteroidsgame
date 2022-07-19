@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace AsteroidsGame.Data
+namespace AsteroidsGame.UtilWrapper.Data
 {
     [CreateAssetMenu(fileName = "TupleKeyData", menuName = "AsteroidsGame/Common/TupleKeyData")]
     public class TupleKeyData : ScriptableObject

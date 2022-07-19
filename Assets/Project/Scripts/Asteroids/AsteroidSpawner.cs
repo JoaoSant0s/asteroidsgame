@@ -10,10 +10,10 @@ using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Pool;
 using JoaoSant0s.CustomVariable;
 
-using AsteroidsGame.Data;
 using AsteroidsGame.Asteroids.Data;
 using AsteroidsGame.CustomVariable;
 using AsteroidsGame.Level;
+using AsteroidsGame.UtilWrapper.Data;
 
 namespace AsteroidsGame.Asteroids
 {

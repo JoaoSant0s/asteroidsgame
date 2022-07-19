@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AsteroidsGame.UI
+namespace AsteroidsGame.UtilWrapper.UI
 {
     [RequireComponent(typeof(Image))]
     public class ImageColor : MonoBehaviour
@@ -16,10 +16,10 @@ namespace AsteroidsGame.UI
 
         [SerializeField]
         private Color alternativeColor;
-        
+
         private Image image;
 
-        private void Awake() 
+        private void Awake()
         {
             image = GetComponent<Image>();
         }
