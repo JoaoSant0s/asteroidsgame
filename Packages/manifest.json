@@ -2,7 +2,7 @@
   "dependencies": {
     "com.dbrizov.naughtyattributes": "2.1.4",
     "com.demigiant.dotween": "1.2.632",
-    "com.joaosantos.package-common-wrapper": "2.2.1",
+    "com.joaosantos.package-common-wrapper": "2.2.2",
     "com.joaosantos.package-custom-variables": "0.0.1",
     "com.joaosantos.package-services": "2.4.1",
     "com.unity.2d.animation": "5.0.6",
