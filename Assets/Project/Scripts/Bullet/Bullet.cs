@@ -5,9 +5,9 @@ using UnityEngine;
 
 using JoaoSant0s.ServicePackage.Pool;
 
-using AsteroidsGame.Actions;
+using AsteroidsGame.Bullets.Actions;
 
-namespace AsteroidsGame.Unit
+namespace AsteroidsGame.Bullets
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : PoolBase

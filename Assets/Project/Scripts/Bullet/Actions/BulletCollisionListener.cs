@@ -5,11 +5,10 @@ using UnityEngine;
 
 using NaughtyAttributes;
 
-using AsteroidsGame.Unit;
 using AsteroidsGame.CustomVariable;
 using AsteroidsGame.Asteroid;
 
-namespace AsteroidsGame.Actions
+namespace AsteroidsGame.Bullets.Actions
 {
     [RequireComponent(typeof(Collider2D))]
     public class BulletCollisionListener : MonoBehaviour

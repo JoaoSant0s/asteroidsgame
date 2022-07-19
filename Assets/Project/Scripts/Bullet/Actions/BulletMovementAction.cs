@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.Unit;
-
-namespace AsteroidsGame.Actions
+namespace AsteroidsGame.Bullets.Actions
 {
     public class BulletMovementAction : MonoBehaviour
     {

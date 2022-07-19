@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
-namespace AsteroidsGame.Data
+namespace AsteroidsGame.Bullets.Data
 {
     [CreateAssetMenu(fileName = "BulletData", menuName = "AsteroidsGame/Bullet/BulletData")]
     public class BulletData : ScriptableObject

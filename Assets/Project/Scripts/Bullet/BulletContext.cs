@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
-using AsteroidsGame.Data;
+using AsteroidsGame.Bullets.Data;
 
-namespace AsteroidsGame.Unit
+namespace AsteroidsGame.Bullets
 {
     public class BulletContext : MonoBehaviour
     {

@@ -9,6 +9,7 @@ using JoaoSant0s.ServicePackage.Pool;
 using AsteroidsGame.UI;
 using AsteroidsGame.Unit;
 using AsteroidsGame.Manager;
+using AsteroidsGame.Bullets;
 
 namespace AsteroidsGame.Actions
 {
