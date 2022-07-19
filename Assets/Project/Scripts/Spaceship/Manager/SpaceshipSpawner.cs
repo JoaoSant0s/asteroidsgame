@@ -8,14 +8,13 @@ using UnityEngine.Events;
 using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.CustomVariable;
-using JoaoSant0s.CommonWrapper;
 
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
 using AsteroidsGame.Actions;
-using AsteroidsGame.UI;
 using AsteroidsGame.Level;
 using AsteroidsGame.Save;
+using AsteroidsGame.Ads.UI;
 
 namespace AsteroidsGame.Manager
 {

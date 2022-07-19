@@ -5,10 +5,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Advertisements;
 
-using JoaoSant0s.CommonWrapper;
-
-using AsteroidsGame.Data;
-using AsteroidsGame.UI;
 using JoaoSant0s.ServicePackage.General;
 
 namespace AsteroidsGame.Ads

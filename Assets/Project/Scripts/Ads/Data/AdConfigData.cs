@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-namespace AsteroidsGame.Data
+namespace AsteroidsGame.Ads
 {
     [CreateAssetMenu(fileName = "AdConfig", menuName = "AsteroidsGame/Ad/AdConfig")]
     public class AdConfigData : ScriptableObject

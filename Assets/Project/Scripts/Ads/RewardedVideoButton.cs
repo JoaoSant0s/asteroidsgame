@@ -9,9 +9,8 @@ using UnityEngine.Events;
 using JoaoSant0s.ServicePackage.General;
 
 using AsteroidsGame.Manager;
-using AsteroidsGame.Ads;
 
-namespace AsteroidsGame.UI
+namespace AsteroidsGame.Ads.UI
 {
     [RequireComponent(typeof(Button))]
     public class RewardedVideoButton : MonoBehaviour

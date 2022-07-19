@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 using JoaoSant0s.CommonWrapper;
 
-namespace AsteroidsGame
+namespace AsteroidsGame.Ads
 {
     public class RewardedVideoObject : IUnityAdsShowListener, IUnityAdsListener
     {
