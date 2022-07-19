@@ -7,8 +7,6 @@ using TMPro;
 
 using JoaoSant0s.CustomVariable;
 
-using AsteroidsGame.Level;
-
 namespace AsteroidsGame.UI
 {
     public class LevelView : MonoBehaviour

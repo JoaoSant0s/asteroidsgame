@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
-using JoaoSant0s.CustomVariable;
 
-using AsteroidsGame.Manager;
+using JoaoSant0s.CustomVariable;
 
 namespace AsteroidsGame.UI
 {
