@@ -6,7 +6,7 @@ using UnityEngine;
 using TMPro;
 using JoaoSant0s.CustomVariable;
 
-namespace AsteroidsGame.UI
+namespace AsteroidsGame.UI.View
 {
     public class ScoreView : MonoBehaviour
     {

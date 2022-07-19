@@ -1090,6 +1090,7 @@ GameObject:
   - component: {fileID: 573413877}
   - component: {fileID: 573413881}
   - component: {fileID: 573413880}
+  - component: {fileID: 573413882}
   - component: {fileID: 573413879}
   - component: {fileID: 573413878}
   m_Layer: 5
@@ -1213,6 +1214,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573413876}
   m_CullTransparentMesh: 1
+--- !u!114 &573413882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573413876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c5392a01aeddc47b820d836bd8bf72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &628204188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,6 +1236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 628204189}
   - component: {fileID: 628204193}
+  - component: {fileID: 628204194}
   - component: {fileID: 628204192}
   - component: {fileID: 628204191}
   - component: {fileID: 628204190}
@@ -1350,6 +1364,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628204188}
   m_CullTransparentMesh: 1
+--- !u!114 &628204194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628204188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014a2dd9138f97e4d9b29339f465d9ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &647585150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,8 +1970,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AsteroidsGame.UI.ButtonHold, Assembly-CSharp
+      - m_Target: {fileID: 628204192}
+        m_TargetAssemblyTypeName: JoaoSant0s.CommonWrapper.ButtonHold, com.joaosantos.package-common-wrapper.Runtime
         m_MethodName: SetNotPressed
         m_Mode: 1
         m_Arguments:
@@ -2300,10 +2326,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 1807560482}
-  buttonAccelerate: {fileID: 628204192}
   buttonShoot: {fileID: 353027013}
   buttonHyperSpace: {fileID: 545380410}
-  buttonPause: {fileID: 573413879}
 --- !u!1 &1495962558
 GameObject:
   m_ObjectHideFlags: 0

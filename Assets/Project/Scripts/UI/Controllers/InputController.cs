@@ -16,7 +16,6 @@ namespace AsteroidsGame.UI
     public class InputController : MonoBehaviour
     {
         public static event Action<float> RotateSpaceShip;
-        public static event Action<float> AccelerateSpaceShip;
 
         public static event Action ShootAction;
         public static event Action HyperSpaceAction;
@@ -28,9 +27,6 @@ namespace AsteroidsGame.UI
 
         [Header("Hold Buttons")]
 
-        [SerializeField]
-        private ButtonHold buttonAccelerate;
-
         [Header("Simple Buttons")]
 
         [SerializeField]
@@ -39,20 +35,10 @@ namespace AsteroidsGame.UI
         [SerializeField]
         private Button buttonHyperSpace;
 
-        [SerializeField]
-        private Button buttonPause;
-
-        private PopupService popupService;
-
         #region Unity Methods
         private void Awake()
         {
             SetUIButtonsActions();
-        }
-
-        private void Start()
-        {
-            popupService = Services.Get<PopupService>();
         }
 
         private void Update()
@@ -65,11 +51,6 @@ namespace AsteroidsGame.UI
         #region Private Methods
         private void SetUIButtonsActions()
         {
-            buttonAccelerate.onHoldEvent.AddListener(() =>
-            {
-                AccelerateSpaceShip?.Invoke(1);
-            });
-
             buttonShoot.onClick.AddListener(() =>
             {
                 ShootAction?.Invoke();
@@ -78,11 +59,6 @@ namespace AsteroidsGame.UI
             buttonHyperSpace.onClick.AddListener(() =>
             {
                 HyperSpaceAction?.Invoke();
-            });
-
-            buttonPause.onClick.AddListener(() =>
-            {
-                popupService.Show<PausePopup>();
             });
         }
 

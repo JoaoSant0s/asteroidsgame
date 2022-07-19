@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 using JoaoSant0s.CustomVariable;
 
-namespace AsteroidsGame.UI
+namespace AsteroidsGame.UI.View
 {
     public class LifeBarView : MonoBehaviour
     {

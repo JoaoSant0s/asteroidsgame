@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using AsteroidsGame.UI;
+using AsteroidsGame.UI.Inputs;
 
 namespace AsteroidsGame.Spaceships.Actions
 {
@@ -16,9 +17,9 @@ namespace AsteroidsGame.Spaceships.Actions
         private SpaceshipContext context;
 
         #region Unity Methods
-        private void Awake()
+        private void OnEnable()
         {
-            InputController.AccelerateSpaceShip += AccelerateDirection;
+            AccelerateButton.AccelerateSpaceShip += AccelerateDirection;
 #if UNITY_EDITOR
             InputEditorController.AccelerateSpaceShip += AccelerateDirection;
 #endif
@@ -30,9 +31,9 @@ namespace AsteroidsGame.Spaceships.Actions
             rb.drag = context.Data.linearDrag;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            InputController.AccelerateSpaceShip -= AccelerateDirection;
+            AccelerateButton.AccelerateSpaceShip -= AccelerateDirection;
 #if UNITY_EDITOR
             InputEditorController.AccelerateSpaceShip -= AccelerateDirection;
 #endif
