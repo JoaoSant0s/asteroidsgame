@@ -1621,6 +1621,7 @@ MonoBehaviour:
   levelManager: {fileID: 1911586692}
   scoreManager: {fileID: 1496268954}
   spaceshipSpawner: {fileID: 1016014102}
+  asteroidSpawner: {fileID: 2068886610}
 --- !u!4 &793252770
 Transform:
   m_ObjectHideFlags: 0

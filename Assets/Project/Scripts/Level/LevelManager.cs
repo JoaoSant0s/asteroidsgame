@@ -20,6 +20,8 @@ namespace AsteroidsGame.Level
         public static event Action OnMakeSpaceshipInvulnerable;
         public static event Action OnSavePlayerScore;
         public static event Action OnSavePlayerLife;
+        public static event Action OnLevelSpawned;
+        public static event Action<TupleKeyData> OnSpawnAsteroid;
 
         [Header("Configs")]
         [SerializeField]
@@ -136,7 +138,7 @@ namespace AsteroidsGame.Level
             }
 
             playerPersistence.SetGameplayLevel(info);
-            AsteroidSpawner.Instance.UpdateAsteroidsCounter();
+            OnLevelSpawned?.Invoke();
         }
 
         private void SpawnLevelContent()
@@ -154,14 +156,14 @@ namespace AsteroidsGame.Level
             }
 
             playerPersistence.SetGameplayLevel(info);
-            AsteroidSpawner.Instance.UpdateAsteroidsCounter();
+            OnLevelSpawned?.Invoke();
         }
 
         private void SpawnAsteroidsAmount(TupleKeyData type, int amount)
         {
             for (int j = 0; j < amount; j++)
             {
-                AsteroidSpawner.Instance.SpawnAsteroid(type);
+                OnSpawnAsteroid?.Invoke(type);
             }
         }
 

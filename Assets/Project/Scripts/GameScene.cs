@@ -14,7 +14,7 @@ namespace AsteroidsGame.Manager
 {
     public class GameScene : MonoBehaviour
     {
-        [Header("Managers")]
+        [Header("Components")]
 
         [SerializeField]
         private LevelManager levelManager;
@@ -22,10 +22,11 @@ namespace AsteroidsGame.Manager
         [SerializeField]
         private ScoreManager scoreManager;
 
-        [Header("Others")]
-
         [SerializeField]
         private SpaceshipSpawner spaceshipSpawner;
+
+        [SerializeField]
+        private AsteroidSpawner asteroidSpawner;
 
         private PopupService popupService;
 
@@ -63,7 +64,7 @@ namespace AsteroidsGame.Manager
 
         private void RestartGame()
         {
-            AsteroidSpawner.Instance.Reset();
+            asteroidSpawner.Reset();
 
             StartGame();
         }

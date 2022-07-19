@@ -6,19 +6,18 @@ using UnityEngine;
 
 using NaughtyAttributes;
 
-using JoaoSant0s.CommonWrapper;
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Pool;
 using JoaoSant0s.CustomVariable;
 
 using AsteroidsGame.Unit;
 using AsteroidsGame.Data;
-using AsteroidsGame.Actions;
 using AsteroidsGame.CustomVariable;
+using AsteroidsGame.Level;
 
 namespace AsteroidsGame.Manager
 {
-    public class AsteroidSpawner : SingletonBehaviour<AsteroidSpawner>
+    public class AsteroidSpawner : MonoBehaviour
     {
         public static event Action SpawnNextLevel;
 
@@ -62,10 +61,11 @@ namespace AsteroidsGame.Manager
 
         #region Unity Methods
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
             this.asteroidContextVariable.OnValueModified += BulletshipCollideAsteroid;
+            LevelManager.OnLevelSpawned += UpdateAsteroidsCounter;
+            LevelManager.OnSpawnAsteroid += SpawnAsteroid;
         }
 
         private void Start()
@@ -76,6 +76,8 @@ namespace AsteroidsGame.Manager
         private void OnDestroy()
         {
             this.asteroidContextVariable.OnValueModified -= BulletshipCollideAsteroid;
+            LevelManager.OnLevelSpawned -= UpdateAsteroidsCounter;
+            LevelManager.OnSpawnAsteroid -= SpawnAsteroid;
         }
 
         #endregion
