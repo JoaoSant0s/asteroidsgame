@@ -5,7 +5,7 @@ using UnityEngine;
 
 using JoaoSant0s.ServicePackage.Pool;
 
-namespace AsteroidsGame.Asteroid
+namespace AsteroidsGame.Asteroids
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Asteroid : PoolBase

@@ -12,7 +12,7 @@ using AsteroidsGame.Data;
 using AsteroidsGame.UI.Popup;
 using AsteroidsGame.Manager;
 using AsteroidsGame.Save;
-using AsteroidsGame.Asteroid;
+using AsteroidsGame.Asteroids;
 
 namespace AsteroidsGame.Level
 {

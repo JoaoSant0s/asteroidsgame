@@ -9,7 +9,7 @@ using JoaoSant0s.ServicePackage.Popup;
 using AsteroidsGame.UI.Popup;
 using AsteroidsGame.Level;
 using AsteroidsGame.Save;
-using AsteroidsGame.Asteroid;
+using AsteroidsGame.Asteroids;
 
 namespace AsteroidsGame.Manager
 {

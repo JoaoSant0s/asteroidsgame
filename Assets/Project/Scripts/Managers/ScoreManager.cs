@@ -10,7 +10,7 @@ using AsteroidsGame.Level;
 using AsteroidsGame.CustomVariable;
 using AsteroidsGame.Save;
 using JoaoSant0s.ServicePackage.General;
-using AsteroidsGame.Asteroid;
+using AsteroidsGame.Asteroids;
 
 namespace AsteroidsGame.Manager
 {

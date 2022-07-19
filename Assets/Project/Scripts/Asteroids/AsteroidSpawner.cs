@@ -11,11 +11,11 @@ using JoaoSant0s.ServicePackage.Pool;
 using JoaoSant0s.CustomVariable;
 
 using AsteroidsGame.Data;
-using AsteroidsGame.Asteroid.Data;
+using AsteroidsGame.Asteroids.Data;
 using AsteroidsGame.CustomVariable;
 using AsteroidsGame.Level;
 
-namespace AsteroidsGame.Asteroid
+namespace AsteroidsGame.Asteroids
 {
     public class AsteroidSpawner : MonoBehaviour
     {

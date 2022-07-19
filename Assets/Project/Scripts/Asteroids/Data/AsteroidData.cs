@@ -6,7 +6,7 @@ using NaughtyAttributes;
 
 using AsteroidsGame.Data;
 
-namespace AsteroidsGame.Asteroid.Data
+namespace AsteroidsGame.Asteroids.Data
 {
     [CreateAssetMenu(fileName = "AsteroidData", menuName = "AsteroidsGame/Asteroid/AsteroidData")]
     public class AsteroidData : ScriptableObject

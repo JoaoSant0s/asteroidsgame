@@ -6,7 +6,7 @@ using UnityEngine;
 using NaughtyAttributes;
 
 using AsteroidsGame.CustomVariable;
-using AsteroidsGame.Asteroid;
+using AsteroidsGame.Asteroids;
 
 namespace AsteroidsGame.Bullets.Actions
 {

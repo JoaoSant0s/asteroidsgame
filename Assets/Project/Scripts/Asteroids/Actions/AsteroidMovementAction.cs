@@ -5,7 +5,7 @@ using UnityEngine;
 
 using AsteroidsGame.UtilWrapper;
 
-namespace AsteroidsGame.Asteroid.Actions
+namespace AsteroidsGame.Asteroids.Actions
 {
     public class AsteroidMovementAction : MonoBehaviour
     {
