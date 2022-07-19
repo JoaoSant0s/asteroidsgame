@@ -12,7 +12,7 @@ using JoaoSant0s.CustomVariable;
 
 using AsteroidsGame.Asteroids.Data;
 using AsteroidsGame.CustomVariable;
-using AsteroidsGame.Level;
+using AsteroidsGame.Levels;
 using AsteroidsGame.UtilWrapper.Data;
 
 namespace AsteroidsGame.Asteroids

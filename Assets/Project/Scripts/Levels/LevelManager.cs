@@ -14,8 +14,9 @@ using AsteroidsGame.Manager;
 using AsteroidsGame.Save;
 using AsteroidsGame.Asteroids;
 using AsteroidsGame.UtilWrapper.Data;
+using AsteroidsGame.Levels.Data;
 
-namespace AsteroidsGame.Level
+namespace AsteroidsGame.Levels
 {
     public class LevelManager : MonoBehaviour
     {

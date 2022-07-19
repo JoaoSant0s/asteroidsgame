@@ -8,7 +8,7 @@ using NaughtyAttributes;
 
 using AsteroidsGame.UtilWrapper.Data;
 
-namespace AsteroidsGame.Level
+namespace AsteroidsGame.Levels.Data
 {
     [CreateAssetMenu(fileName = "LevelData", menuName = "AsteroidsGame/Level/LevelData")]
     public class LevelData : ScriptableObject
