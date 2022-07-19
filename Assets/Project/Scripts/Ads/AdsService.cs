@@ -7,6 +7,8 @@ using UnityEngine.Advertisements;
 
 using JoaoSant0s.ServicePackage.General;
 
+using AsteroidsGame.Ads.Data;
+
 namespace AsteroidsGame.Ads
 {
     public class AdsService : Service
