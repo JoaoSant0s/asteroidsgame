@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71be17b4b1aec3418456aac6bdc1747, type: 3}
   m_Name: PlayerPersistenceConfig
   m_EditorClassIdentifier: 
-  playerSaveKey: player_save
-  levelSaveKey: level_save
+  playerSaveKey: player_save_1
+  levelSaveKey: level_save_1
   spaceshipSpawnerData: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
