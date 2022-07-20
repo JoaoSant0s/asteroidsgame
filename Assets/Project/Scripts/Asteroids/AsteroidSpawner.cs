@@ -6,28 +6,37 @@ using UnityEngine;
 
 using NaughtyAttributes;
 
-using JoaoSant0s.CommonWrapper;
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Pool;
+using JoaoSant0s.CustomVariable;
 
-using AsteroidsGame.Unit;
-using AsteroidsGame.Data;
-using AsteroidsGame.Actions;
+using AsteroidsGame.Asteroids.Data;
+using AsteroidsGame.CustomVariable;
+using AsteroidsGame.Levels;
+using AsteroidsGame.UtilWrapper.Data;
 
-namespace AsteroidsGame.Manager
+namespace AsteroidsGame.Asteroids
 {
-    public class AsteroidSpawner : SingletonBehaviour<AsteroidSpawner>
+    public class AsteroidSpawner : MonoBehaviour
     {
-        public delegate void OnSpawnNextLevel();
-        public static OnSpawnNextLevel SpawnNextLevel;
+        public static event Action SpawnNextLevel;
 
-        public delegate void OnAsteroidAmount(int asteroidsAmount);
-        public static OnAsteroidAmount TotalAsteroids;
-        public static OnAsteroidAmount CurrentAsteroids;
+        [Header("Variables")]
+        [SerializeField]
+        private IntVariable totalAsteroidsVariable;
 
+        [SerializeField]
+        private IntVariable currentAsteroidsVariable;
+
+        [SerializeField]
+        private AsteroidContextVariable asteroidContextVariable;
+
+        [Header("Data")]
         [SerializeField]
         [Expandable]
         private AsteroidSpawnerData spawnerData;
+
+        [Header("References")]
 
         [SerializeField]
         private List<Transform> spawnPoints;
@@ -52,11 +61,11 @@ namespace AsteroidsGame.Manager
 
         #region Unity Methods
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-
-            BulletCollisionListener.AsteroidCollided += BulletshipCollideAsteroid;
+            this.asteroidContextVariable.OnValueModified += BulletshipCollideAsteroid;
+            LevelManager.OnLevelSpawned += UpdateAsteroidsCounter;
+            LevelManager.OnSpawnAsteroid += SpawnAsteroid;
         }
 
         private void Start()
@@ -66,7 +75,9 @@ namespace AsteroidsGame.Manager
 
         private void OnDestroy()
         {
-            BulletCollisionListener.AsteroidCollided -= BulletshipCollideAsteroid;
+            this.asteroidContextVariable.OnValueModified -= BulletshipCollideAsteroid;
+            LevelManager.OnLevelSpawned -= UpdateAsteroidsCounter;
+            LevelManager.OnSpawnAsteroid -= SpawnAsteroid;
         }
 
         #endregion
@@ -92,8 +103,8 @@ namespace AsteroidsGame.Manager
         public void UpdateAsteroidsCounter()
         {
             var total = AsteroidsEstimatedAmount();
-            TotalAsteroids?.Invoke(total);
-            CurrentAsteroids?.Invoke(total);
+            this.totalAsteroidsVariable.Modify(total);
+            this.currentAsteroidsVariable.Modify(total);
         }
 
         #endregion
@@ -157,13 +168,14 @@ namespace AsteroidsGame.Manager
             return position + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0);
         }
 
-        private void BulletshipCollideAsteroid(AsteroidContext context)
+        private void BulletshipCollideAsteroid(AsteroidContext previousContext, AsteroidContext newContext)
         {
-            RemoveAsteroid(context.Asteroid);
-            SpawnChildrenAsteroids(context.Asteroid, context.Data);
-            context.Asteroid.Dispose();
+            RemoveAsteroid(newContext.Asteroid);
+            SpawnChildrenAsteroids(newContext.Asteroid, newContext.Data);
+            newContext.Asteroid.Dispose();
 
-            CurrentAsteroids?.Invoke(AsteroidsEstimatedAmount());
+            var estimatedAsteroidsAmount = AsteroidsEstimatedAmount();
+            this.currentAsteroidsVariable.Modify(estimatedAsteroidsAmount);
 
             CheckLevelEnded();
         }

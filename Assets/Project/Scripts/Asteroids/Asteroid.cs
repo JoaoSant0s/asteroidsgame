@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Pool;
 
-namespace AsteroidsGame.Unit
+namespace AsteroidsGame.Asteroids
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Asteroid : PoolBase

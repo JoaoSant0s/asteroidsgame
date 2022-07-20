@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.dbrizov.naughtyattributes": {
-      "version": "2.1.1",
+      "version": "2.1.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -15,14 +15,21 @@
       "url": "https://package.openupm.com"
     },
     "com.joaosantos.package-common-wrapper": {
-      "version": "2.2.0",
+      "version": "2.2.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
+    "com.joaosantos.package-custom-variables": {
+      "version": "0.0.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
     "com.joaosantos.package-services": {
-      "version": "2.4.0",
+      "version": "2.4.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {},

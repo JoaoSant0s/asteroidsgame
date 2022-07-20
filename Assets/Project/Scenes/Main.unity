@@ -618,6 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreLabel: {fileID: 201039828}
+  scoreVariable: {fileID: 11400000, guid: c1f06cd9491c92b4ea24de9a40fac355, type: 2}
 --- !u!1 &353027011
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,10 +629,11 @@ GameObject:
   m_Component:
   - component: {fileID: 353027012}
   - component: {fileID: 353027015}
+  - component: {fileID: 353027016}
   - component: {fileID: 353027014}
   - component: {fileID: 353027013}
   m_Layer: 5
-  m_Name: ButtonShot
+  m_Name: ButtonShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -739,6 +741,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353027011}
   m_CullTransparentMesh: 1
+--- !u!114 &353027016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353027011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 905c03b45ff68144db76a81c9d794122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &379548689
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +896,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &536719037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+  m_PrefabInstance: {fileID: 1807560480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &536719038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536719037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ee19151e83049489403e392618cd2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &538939538
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,10 +998,11 @@ GameObject:
   m_Component:
   - component: {fileID: 545380409}
   - component: {fileID: 545380412}
+  - component: {fileID: 545380413}
   - component: {fileID: 545380411}
   - component: {fileID: 545380410}
   m_Layer: 5
-  m_Name: ButtonHyperSpace
+  m_Name: ButtonHyperspace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1078,6 +1110,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545380408}
   m_CullTransparentMesh: 1
+--- !u!114 &545380413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545380408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b0df0f49888904f9865e8823fd2d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &573413876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,6 +1133,7 @@ GameObject:
   - component: {fileID: 573413877}
   - component: {fileID: 573413881}
   - component: {fileID: 573413880}
+  - component: {fileID: 573413882}
   - component: {fileID: 573413879}
   - component: {fileID: 573413878}
   m_Layer: 5
@@ -1212,6 +1257,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573413876}
   m_CullTransparentMesh: 1
+--- !u!114 &573413882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573413876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c5392a01aeddc47b820d836bd8bf72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &628204188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 628204189}
   - component: {fileID: 628204193}
+  - component: {fileID: 628204194}
   - component: {fileID: 628204192}
   - component: {fileID: 628204191}
   - component: {fileID: 628204190}
@@ -1312,7 +1370,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628204191}
-        m_TargetAssemblyTypeName: AsteroidsGame.UtilWrapper.ImageColor, Assembly-CSharp
+        m_TargetAssemblyTypeName: AsteroidsGame.UI.ImageColor, Assembly-CSharp
         m_MethodName: SetAlternativeColor
         m_Mode: 1
         m_Arguments:
@@ -1330,7 +1388,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628204191}
-        m_TargetAssemblyTypeName: AsteroidsGame.UtilWrapper.ImageColor, Assembly-CSharp
+        m_TargetAssemblyTypeName: AsteroidsGame.UI.ImageColor, Assembly-CSharp
         m_MethodName: SetMainColor
         m_Mode: 1
         m_Arguments:
@@ -1349,6 +1407,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628204188}
   m_CullTransparentMesh: 1
+--- !u!114 &628204194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628204188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014a2dd9138f97e4d9b29339f465d9ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &647585150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1690,7 @@ MonoBehaviour:
   levelManager: {fileID: 1911586692}
   scoreManager: {fileID: 1496268954}
   spaceshipSpawner: {fileID: 1016014102}
+  asteroidSpawner: {fileID: 2068886610}
 --- !u!4 &793252770
 Transform:
   m_ObjectHideFlags: 0
@@ -1632,7 +1703,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2021781687}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &902405818
 GameObject:
@@ -1943,7 +2014,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 628204192}
-        m_TargetAssemblyTypeName: AsteroidsGame.UI.ButtonHold, Assembly-CSharp
+        m_TargetAssemblyTypeName: JoaoSant0s.CommonWrapper.ButtonHold, com.joaosantos.package-common-wrapper.Runtime
         m_MethodName: SetNotPressed
         m_Mode: 1
         m_Arguments:
@@ -2086,9 +2157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa25d1dfdb09db4d9093229ef48c8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletsArea: {fileID: 379548690}
   spaceshipPrefab: {fileID: 1135018853, guid: f95fbc8f85d7aa948b5de3b8eb71b37e, type: 3}
-  data: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
-  pulletsArea: {fileID: 379548690}
+  spaceshipSpawnerData: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
+  lifeVariable: {fileID: 11400000, guid: 5811fad299e46a74881e49165488274c, type: 2}
 --- !u!1 &1025142665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,7 +2313,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1439252836}
-  - component: {fileID: 1439252838}
   - component: {fileID: 1439252837}
   m_Layer: 5
   m_Name: GameplayUI
@@ -2284,23 +2355,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceshipKeyboardMapping: {fileID: 11400000, guid: 50733cab5bd0b524284837f1221fc2d0, type: 2}
---- !u!114 &1439252838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439252835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94dcf982852a5b4d96537e56842d630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joystick: {fileID: 1807560482}
-  buttonAccelerate: {fileID: 628204192}
-  buttonShoot: {fileID: 353027013}
-  buttonHyperSpace: {fileID: 545380410}
-  buttonPause: {fileID: 573413879}
 --- !u!1 &1495962558
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,50 +2497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ab8636d95991244b0666499d514502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreLabel: {fileID: 304507660}
---- !u!1 &1499524199
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1499524201}
-  - component: {fileID: 1499524200}
-  m_Layer: 0
-  m_Name: AdsManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1499524200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499524199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad51ec76f5a9bf6448eb42cc0e124074, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1499524201
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499524199}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2021781687}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  scoreVariable: {fileID: 11400000, guid: c1f06cd9491c92b4ea24de9a40fac355, type: 2}
+  asteroidContextVariable: {fileID: 11400000, guid: 82d98af8342c46c438e0abfda07404de, type: 2}
 --- !u!1 &1538376858
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,6 +2630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeIcon: {fileID: 1381827210602075572, guid: 69b046dae54188f4f8f8d85d79fa6009, type: 3}
+  lifeVariable: {fileID: 11400000, guid: 5811fad299e46a74881e49165488274c, type: 2}
 --- !u!222 &1570672854
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2830,6 +2843,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floating Joystick
       objectReference: {fileID: 0}
+    - target: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170153791668043271, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8170153791961219459, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_Color.b
       value: 0.67058825
@@ -2853,6 +2874,10 @@ PrefabInstance:
     - target: {fileID: 8170153792821263252, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_Color.r
       value: 0.20392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170153792821263259, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
@@ -2861,17 +2886,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
   m_PrefabInstance: {fileID: 1807560480}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1807560482 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
-  m_PrefabInstance: {fileID: 1807560480}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1911586691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2901,9 +2915,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4476b909bc6d4364787016389abf6bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelView: {fileID: 1943020697}
   data: {fileID: 11400000, guid: 254eeeff025d3fa49ab2b40aab62d157, type: 2}
   spaceshipData: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
+  globalLevelVariable: {fileID: 11400000, guid: 9d299de9cd8547141b897095df6cc063, type: 2}
 --- !u!4 &1911586693
 Transform:
   m_ObjectHideFlags: 0
@@ -2968,6 +2982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLabel: {fileID: 736775578}
+  globalLevelVariable: {fileID: 11400000, guid: 9d299de9cd8547141b897095df6cc063, type: 2}
 --- !u!1 &1973801864
 GameObject:
   m_ObjectHideFlags: 0
@@ -3121,6 +3136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterLabel: {fileID: 104950206}
+  totalAsteroidsVariable: {fileID: 11400000, guid: 63fd6cd59cebd164d9e308a305f36834, type: 2}
+  currentAsteroidsVariable: {fileID: 11400000, guid: 714bebcfc089ad242bd697a9c5632f75, type: 2}
 --- !u!1001 &1986247462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3223,51 +3240,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1381827210602075575, guid: 69b046dae54188f4f8f8d85d79fa6009, type: 3}
   m_PrefabInstance: {fileID: 1986247462}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2008752891
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2008752893}
-  - component: {fileID: 2008752892}
-  m_Layer: 0
-  m_Name: SaveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2008752892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2008752891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ec9de697fbce78428303cf41d77d17e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
-  saveConfig: {fileID: 11400000, guid: 1d667bed82959004f817a435481a0a2f, type: 2}
---- !u!4 &2008752893
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2008752891}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2021781687}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014249825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3435,8 +3407,6 @@ Transform:
   - {fileID: 1016014101}
   - {fileID: 1496268953}
   - {fileID: 1911586693}
-  - {fileID: 2008752893}
-  - {fileID: 1499524201}
   - {fileID: 793252770}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -3591,6 +3561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e92a05db502204d83d694a584b44c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalAsteroidsVariable: {fileID: 11400000, guid: 63fd6cd59cebd164d9e308a305f36834, type: 2}
+  currentAsteroidsVariable: {fileID: 11400000, guid: 714bebcfc089ad242bd697a9c5632f75, type: 2}
+  asteroidContextVariable: {fileID: 11400000, guid: 82d98af8342c46c438e0abfda07404de, type: 2}
   spawnerData: {fileID: 11400000, guid: 165c7c13aff3ba5468d031fb0f8d4a8c, type: 2}
   spawnPoints:
   - {fileID: 2131720066}

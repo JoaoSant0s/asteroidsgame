@@ -131,6 +131,7 @@ MonoBehaviour:
   asteroidTag: Asteroid
   context: {fileID: 1576592489839253266}
   bullet: {fileID: 4574333110036720673}
+  asteroidContextVariable: {fileID: 11400000, guid: 82d98af8342c46c438e0abfda07404de, type: 2}
 --- !u!114 &1664267252640217619
 MonoBehaviour:
   m_ObjectHideFlags: 0

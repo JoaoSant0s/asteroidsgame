@@ -1,23 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.UI;
-
-using JoaoSant0s.CommonWrapper;
-using AsteroidsGame.Manager;
 using UnityEngine.Events;
 
-namespace AsteroidsGame.UI
+using JoaoSant0s.ServicePackage.General;
+
+using AsteroidsGame.Spaceships;
+
+namespace AsteroidsGame.Ads.UI.Inputs
 {
     [RequireComponent(typeof(Button))]
     public class RewardedVideoButton : MonoBehaviour
     {
-        public delegate void OnShowRewardedVideo(UnityAction action);
-        public static event OnShowRewardedVideo ShowRewardedVideo;
+        public static event Action ShowRewardedVideo;
 
         private Button button;
-        private UnityAction action;
+        private UnityAction callbackAction;
+
+        private AdsService adsService;
 
         private Coroutine waitForAdsRoutine;
 
@@ -25,16 +28,19 @@ namespace AsteroidsGame.UI
 
         private void Awake()
         {
-            button = GetComponent<Button>();
+            this.adsService = Services.Get<AdsService>();
+
+            this.button = GetComponent<Button>();
             SpaceshipSpawner.OnEnabeRewardButton += EnableRewardButton;
             EnableButton(false);
         }
 
         private void Start()
         {
-            button.onClick.AddListener(() =>
+            this.button.onClick.AddListener(() =>
             {
-                ShowRewardedVideo?.Invoke(action);
+                this.adsService.ShowRewardedVideo(this.callbackAction);
+                ShowRewardedVideo?.Invoke();
                 EnableButton(false);
             });
         }
@@ -61,9 +67,9 @@ namespace AsteroidsGame.UI
 
         private void TryEnableButton(UnityAction newAction)
         {
-            action = newAction;
+            this.callbackAction = newAction;
 
-            waitForAdsRoutine = AdManager.Instance.WaitRewardAdsReady(() =>
+            this.waitForAdsRoutine = this.adsService.WaitRewardAdsReady(() =>
             {
                 EnableButton(true);
             });
@@ -72,16 +78,16 @@ namespace AsteroidsGame.UI
         private void DisableButton()
         {
             EnableButton(false);
-            action = null;
-            if (waitForAdsRoutine == null) return;
+            this.callbackAction = null;
+            if (this.waitForAdsRoutine == null) return;
 
-            AdManager.Instance.StopCoroutine(waitForAdsRoutine);
-            waitForAdsRoutine = null;
+            this.adsService.StopCoroutine(this.waitForAdsRoutine);
+            this.waitForAdsRoutine = null;
         }
 
         private void EnableButton(bool enable)
         {
-            button.gameObject.SetActive(enable);
+            this.button.gameObject.SetActive(enable);
         }
 
         #endregion

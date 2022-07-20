@@ -3,16 +3,21 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using AsteroidsGame.UI.Popup;
-
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Popup;
+
+using AsteroidsGame.UI.Popup;
+using AsteroidsGame.Levels;
+using AsteroidsGame.Save;
+using AsteroidsGame.Asteroids;
+using AsteroidsGame.Scores;
+using AsteroidsGame.Spaceships;
 
 namespace AsteroidsGame.Manager
 {
     public class GameScene : MonoBehaviour
     {
-        [Header("Managers")]
+        [Header("Components")]
 
         [SerializeField]
         private LevelManager levelManager;
@@ -20,17 +25,23 @@ namespace AsteroidsGame.Manager
         [SerializeField]
         private ScoreManager scoreManager;
 
-        [Header("Others")]
-
         [SerializeField]
         private SpaceshipSpawner spaceshipSpawner;
 
+        [SerializeField]
+        private AsteroidSpawner asteroidSpawner;
+
         private PopupService popupService;
+
+        private PlayerPersistenceService playerPersistence;
+
 
         #region Unity Methods
         private void Start()
         {
             popupService = Services.Get<PopupService>();
+            playerPersistence = Services.Get<PlayerPersistenceService>();
+
             GameOverScreenPopup.RestartGame += RestartGame;
 
             StartCoroutine(ShowSplashScreenRoutine());
@@ -51,25 +62,25 @@ namespace AsteroidsGame.Manager
 
             var popup = popupService.Show<SplashScreenPopup>();
 
-            popup.OnBeforeHide += StartGame;
+            popup.OnBeforeClose += StartGame;
         }
 
         private void RestartGame()
         {
-            AsteroidSpawner.Instance.Reset();
+            asteroidSpawner.Reset();
 
             StartGame();
         }
 
         private void StartGame()
         {
-            var playerSave = SaveManager.Instance.GetPlayerSave();
+            var playerSave = playerPersistence.GetPlayerSave();
 
             spaceshipSpawner.SetLife(playerSave.life);
             scoreManager.SetScore(playerSave.score);
 
             spaceshipSpawner.SpawnSpaceship();
-            levelManager.StartCurrentLevel(playerSave.level);
+            levelManager.StartCurrentLevel(playerPersistence.GetLevelSave());
         }
 
         #endregion
