@@ -8,6 +8,7 @@ using JoaoSant0s.ServicePackage.Pool;
 
 using AsteroidsGame.UI;
 using AsteroidsGame.Bullets;
+using AsteroidsGame.UI.Inputs;
 
 namespace AsteroidsGame.Spaceships.Actions
 {
@@ -27,7 +28,7 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void Awake()
         {
-            InputController.ShootAction += Shoot;
+            ShootButton.ShootAction += Shoot;
 #if UNITY_EDITOR
             InputEditorController.ShootAction += Shoot;
 #endif
@@ -41,7 +42,7 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void OnDestroy()
         {
-            InputController.ShootAction -= Shoot;
+            ShootButton.ShootAction -= Shoot;
 #if UNITY_EDITOR
             InputEditorController.ShootAction -= Shoot;
 #endif

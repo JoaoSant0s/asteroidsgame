@@ -10,7 +10,7 @@ using JoaoSant0s.ServicePackage.General;
 
 using AsteroidsGame.Spaceships;
 
-namespace AsteroidsGame.Ads.UI
+namespace AsteroidsGame.Ads.UI.Inputs
 {
     [RequireComponent(typeof(Button))]
     public class RewardedVideoButton : MonoBehaviour

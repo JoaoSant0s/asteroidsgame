@@ -5,6 +5,7 @@ using UnityEngine;
 
 using AsteroidsGame.UI;
 using AsteroidsGame.UtilWrapper;
+using AsteroidsGame.UI.Inputs;
 
 namespace AsteroidsGame.Spaceships.Actions
 {
@@ -16,7 +17,7 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void Awake()
         {
-            InputController.HyperSpaceAction += HyperSpace;
+            HyperspaceButton.HyperSpaceAction += HyperSpace;
 #if UNITY_EDITOR
             InputEditorController.HyperSpaceAction += HyperSpace;
 #endif
@@ -29,7 +30,7 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void OnDestroy()
         {
-            InputController.HyperSpaceAction -= HyperSpace;
+            HyperspaceButton.HyperSpaceAction -= HyperSpace;
 #if UNITY_EDITOR
             InputEditorController.HyperSpaceAction -= HyperSpace;
 #endif

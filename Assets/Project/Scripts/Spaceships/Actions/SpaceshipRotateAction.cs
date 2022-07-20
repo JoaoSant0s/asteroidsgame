@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using AsteroidsGame.UI;
+using AsteroidsGame.UI.Inputs;
 
 namespace AsteroidsGame.Spaceships.Actions
 {
@@ -14,7 +15,7 @@ namespace AsteroidsGame.Spaceships.Actions
         #region Unity Methods
         private void Awake()
         {
-            InputController.RotateSpaceShip += RotateAngle;
+            JoystickControl.RotateSpaceShip += RotateAngle;
 
 #if UNITY_EDITOR
             InputEditorController.RotateSpaceShip += RotateDirection;
@@ -23,7 +24,7 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void OnDestroy()
         {
-            InputController.RotateSpaceShip -= RotateAngle;
+            JoystickControl.RotateSpaceShip -= RotateAngle;
 
 #if UNITY_EDITOR
             InputEditorController.RotateSpaceShip -= RotateDirection;

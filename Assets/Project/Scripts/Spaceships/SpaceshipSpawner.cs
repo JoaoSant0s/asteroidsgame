@@ -13,7 +13,7 @@ using AsteroidsGame.Spaceships.Data;
 using AsteroidsGame.Spaceships.Actions;
 using AsteroidsGame.Levels;
 using AsteroidsGame.Save;
-using AsteroidsGame.Ads.UI;
+using AsteroidsGame.Ads.UI.Inputs;
 
 namespace AsteroidsGame.Spaceships
 {
