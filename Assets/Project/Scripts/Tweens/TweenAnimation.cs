@@ -11,8 +11,26 @@ namespace AsteroidsGame.Animations
     public abstract class TweenAnimation : MonoBehaviour
     {
         [Header("Control")]
+
         [SerializeField]
         protected bool autoRun = false;
+
+        [Header("Sequence Tween Config")]
+
+        [SerializeField]
+        protected float delay = 0;
+
+        [SerializeField]
+        protected float interval = 0;
+
+        [SerializeField]
+        protected int loops = -1;
+
+        [SerializeField]
+        protected LoopType loopType;
+        
+        [SerializeField]
+        protected AnimationCurve curve;
 
         protected Sequence sequence;
 

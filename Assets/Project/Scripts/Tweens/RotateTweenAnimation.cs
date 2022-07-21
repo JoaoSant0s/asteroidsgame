@@ -12,20 +12,21 @@ namespace AsteroidsGame.Animations
     {
         [Header("Rotate Tween Animation")]
 
-        public Vector3 startRotate;
-        public Vector3 endValueRotate = Vector3.one;
-        public float duration = 1;
-        public RotateMode rotateMode = RotateMode.Fast;
+        [SerializeField]
+        protected Vector3 startRotate;
 
-        [Header("Animation Loop")]
+        [Header("Tween Config")]
 
-        public float delay = 0;
-        public float interval = 0;
-        public int loops = -1;
-        public LoopType loopType;
-        public AnimationCurve curve;
+        [SerializeField]
+        protected Vector3 endValueRotate = Vector3.one;
 
-        #region Public Methods        
+        [SerializeField]
+        protected float duration = 1;
+
+        [SerializeField]
+        protected RotateMode rotateMode = RotateMode.Fast;
+
+        #region Public Override Methods        
 
         public override void Run()
         {
