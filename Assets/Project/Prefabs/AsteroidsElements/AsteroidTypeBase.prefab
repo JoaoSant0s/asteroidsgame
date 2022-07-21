@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 31e24de314623fd43b02aeb921db5f32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -156,10 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoRun: 0
-  startRotate: {x: 0, y: 0, z: 0}
-  endValueRotate: {x: 0, y: 0, z: 0.5}
-  duration: 0.1
-  rotateMode: 0
   delay: 0
   interval: 0
   loops: -1
@@ -188,6 +184,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  startRotate: {x: 0, y: 0, z: 0}
+  endValueRotate: {x: 0, y: 0, z: 0.5}
+  duration: 0.1
+  rotateMode: 0
 --- !u!50 &8969033533035778296
 Rigidbody2D:
   serializedVersion: 4
