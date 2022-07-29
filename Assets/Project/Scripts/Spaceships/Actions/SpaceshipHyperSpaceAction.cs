@@ -11,10 +11,6 @@ namespace AsteroidsGame.Spaceships.Actions
 {
     public class SpaceshipHyperSpaceAction : MonoBehaviour
     {
-        [Header("Components")]
-        [SerializeField]
-        private SpaceshipTurbine turbine;
-
         private Vector2 limits;
 
         #region Unity Methods
@@ -50,7 +46,6 @@ namespace AsteroidsGame.Spaceships.Actions
             var newPosition = new Vector3(xPosition, yPosition, transform.position.z);
 
             transform.position = newPosition;
-            this.turbine.ClearFire();
         }
     }
 }

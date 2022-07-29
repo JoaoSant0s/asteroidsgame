@@ -56,21 +56,15 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void AccelerateDirection(int direction)
         {
-            StartTurbine();
+            this.turbine.EnableFire(true);
             if (rb.velocity.magnitude >= context.Data.maxForwardVelocity) return;
 
             rb.AddForce(transform.up * context.Data.forwardForce * Time.deltaTime);
         }
 
-        private void StartTurbine()
-        {
-            this.turbine.EnableEmitting(true);
-        }
-
         private void StopTurbine()
         {
-            this.turbine.EnableEmitting(false);
-            this.turbine.ClearFire();
+            this.turbine.EnableFire(false);
         }
     }
 }

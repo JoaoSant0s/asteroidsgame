@@ -8,38 +8,20 @@ namespace AsteroidsGame.Spaceships
 {
     public class SpaceshipTurbine : MonoBehaviour
     {
-        [Header("Components")]
+        [Header("Behaviours")]
 
         [SerializeField]
-        private TrailRenderer fireTrail;
+        private GameObject turbineLeftBehaviour;
 
         [SerializeField]
-        private MoveToOppositeSide moveToOppositiveSide;
-
-        #region Unity Methods
-
-        private void Start()
-        {
-            this.moveToOppositiveSide.OnPositionChanged += ClearFire;
-        }
-
-        private void OnDestroy()
-        {
-            this.moveToOppositiveSide.OnPositionChanged -= ClearFire;
-        }
-
-        #endregion
+        private GameObject turbineRightBehaviour;
 
         #region Public Methods
 
-        public void EnableEmitting(bool enable)
+        public void EnableFire(bool enable)
         {
-            this.fireTrail.emitting = enable;
-        }
-
-        public void ClearFire()
-        {
-            this.fireTrail.Clear();
+            this.turbineLeftBehaviour.SetActive(enable);
+            this.turbineRightBehaviour.SetActive(enable);
         }
 
         #endregion
