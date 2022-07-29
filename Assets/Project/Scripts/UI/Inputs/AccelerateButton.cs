@@ -19,12 +19,12 @@ namespace AsteroidsGame.UI.Inputs
 
         private void Awake()
         {
-            buttonAccelerate = GetComponent<ButtonHold>();
+            this.buttonAccelerate = GetComponent<ButtonHold>();
         }
 
         private void Start()
         {
-            buttonAccelerate.onHoldEvent.AddListener(() =>
+            this.buttonAccelerate.onHoldEvent.AddListener(() =>
             {
                 AccelerateSpaceShip?.Invoke(1);
             });

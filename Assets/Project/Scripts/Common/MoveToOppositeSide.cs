@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,6 +8,9 @@ namespace AsteroidsGame.UtilWrapper
 {
     public class MoveToOppositeSide : MonoBehaviour
     {
+        public event Action OnPositionChanged;
+
+        [Header("Components")]
         [SerializeField]
         private BoxCollider2D boxCollider2D;
 
@@ -26,6 +30,7 @@ namespace AsteroidsGame.UtilWrapper
             if (!CollideScreenSide(transform.position, out nextPosition)) return;
 
             transform.position = nextPosition;
+            OnPositionChanged?.Invoke();
         }
 
         #endregion

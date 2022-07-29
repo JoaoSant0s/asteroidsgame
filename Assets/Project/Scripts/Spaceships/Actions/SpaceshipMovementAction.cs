@@ -10,8 +10,12 @@ namespace AsteroidsGame.Spaceships.Actions
 {
     public class SpaceshipMovementAction : MonoBehaviour
     {
+        [Header("Components")]
         [SerializeField]
         private Rigidbody2D rb;
+
+        [SerializeField]
+        private SpaceshipTurbine turbine;
 
         [SerializeField]
         private SpaceshipContext context;
