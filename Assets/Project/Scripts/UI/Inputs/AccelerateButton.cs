@@ -11,7 +11,9 @@ namespace AsteroidsGame.UI.Inputs
     [RequireComponent(typeof(ButtonHold))]
     public class AccelerateButton : MonoBehaviour
     {
-        public static event Action<float> AccelerateSpaceShip;
+        public static event Action StartAccelerateSpaceShip;
+        public static event Action<float> AcceleratingSpaceShip;
+        public static event Action StopAccelerateSpaceShip;
 
         private ButtonHold buttonAccelerate;
 
@@ -24,9 +26,14 @@ namespace AsteroidsGame.UI.Inputs
 
         private void Start()
         {
-            this.buttonAccelerate.onHoldEvent.AddListener(() =>
+            this.buttonAccelerate.OnHoldEvent.AddListener(() =>
             {
-                AccelerateSpaceShip?.Invoke(1);
+                AcceleratingSpaceShip?.Invoke(1);
+            });
+
+            this.buttonAccelerate.OnUpEvent.AddListener(() =>
+            {
+                StopAccelerateSpaceShip?.Invoke();
             });
         }
 

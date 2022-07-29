@@ -32,6 +32,11 @@ namespace AsteroidsGame.Spaceships
 
         #region Public Methods
 
+        public void EnableEmitting(bool enable)
+        {
+            this.fireTrail.emitting = enable;
+        }
+
         public void ClearFire()
         {
             this.fireTrail.Clear();

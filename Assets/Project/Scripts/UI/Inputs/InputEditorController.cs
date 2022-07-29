@@ -12,7 +12,9 @@ namespace AsteroidsGame.UI
     {
 #if UNITY_EDITOR
         public static event Action<int> RotateSpaceShip;
+        public static event Action StartAccelerateSpaceShip;
         public static event Action<int> AccelerateSpaceShip;
+        public static event Action StopAccelerateSpaceShip;
         public static event Action ShootAction;
         public static event Action HyperSpaceAction;
 
@@ -41,7 +43,11 @@ namespace AsteroidsGame.UI
                 HyperSpaceAction?.Invoke();
             }
 
-            if (Input.GetKey(spaceshipKeyboardMapping.accelerate))
+            if (Input.GetKeyUp(spaceshipKeyboardMapping.accelerate))
+            {
+                StopAccelerateSpaceShip?.Invoke();
+            }
+            else if (Input.GetKey(spaceshipKeyboardMapping.accelerate))
             {
                 AccelerateSpaceShip?.Invoke(1);
             }

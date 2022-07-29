@@ -23,9 +23,11 @@ namespace AsteroidsGame.Spaceships.Actions
         #region Unity Methods
         private void OnEnable()
         {
-            AccelerateButton.AccelerateSpaceShip += AccelerateDirection;
+            AccelerateButton.AcceleratingSpaceShip += AccelerateDirection;
+            AccelerateButton.StopAccelerateSpaceShip += StopTurbine;
 #if UNITY_EDITOR
             InputEditorController.AccelerateSpaceShip += AccelerateDirection;
+            InputEditorController.StopAccelerateSpaceShip += StopTurbine;
 #endif
         }
 
@@ -37,9 +39,11 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void OnDisable()
         {
-            AccelerateButton.AccelerateSpaceShip -= AccelerateDirection;
+            AccelerateButton.AcceleratingSpaceShip -= AccelerateDirection;
+            AccelerateButton.StopAccelerateSpaceShip -= StopTurbine;
 #if UNITY_EDITOR
             InputEditorController.AccelerateSpaceShip -= AccelerateDirection;
+            InputEditorController.StopAccelerateSpaceShip -= StopTurbine;
 #endif
         }
 
@@ -52,9 +56,21 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void AccelerateDirection(int direction)
         {
+            StartTurbine();
             if (rb.velocity.magnitude >= context.Data.maxForwardVelocity) return;
 
             rb.AddForce(transform.up * context.Data.forwardForce * Time.deltaTime);
+        }
+
+        private void StartTurbine()
+        {
+            this.turbine.EnableEmitting(true);
+        }
+
+        private void StopTurbine()
+        {
+            this.turbine.EnableEmitting(false);
+            this.turbine.ClearFire();
         }
     }
 }
