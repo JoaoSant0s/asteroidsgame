@@ -498,6 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 9370e1c13e94dd24daaef3c1c5d28d9c, type: 2}
+  Invulnerable: {fileID: 11400000, guid: 9bdb6d2329e9c124192403ec2dbe5782, type: 2}
 --- !u!114 &4710790814476915514
 MonoBehaviour:
   m_ObjectHideFlags: 0

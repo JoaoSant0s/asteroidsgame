@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using JoaoSant0s.CustomVariable;
+
 using AsteroidsGame.Spaceships.Data;
 
 namespace AsteroidsGame.Spaceships
@@ -12,7 +14,6 @@ namespace AsteroidsGame.Spaceships
         private SpaceshipData data;
 
         public SpaceshipData Data => data;
-
-        public bool IsInvulnerable { get; set; }
+        public BoolVariable Invulnerable;
     }
 }

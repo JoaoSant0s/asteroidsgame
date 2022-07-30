@@ -24,7 +24,7 @@ namespace AsteroidsGame.Spaceships.Actions
         void OnTriggerStay2D(Collider2D col)
         {
             if (!col.CompareTag(asteroidTag)) return;
-            if (context.IsInvulnerable) return;
+            if (context.Invulnerable.Value) return;
 
             Instantiate(context.Data.asteroidCollisionEffectPrefab, col.transform.position, Quaternion.identity);
             RegisterSpaceshipCollision();

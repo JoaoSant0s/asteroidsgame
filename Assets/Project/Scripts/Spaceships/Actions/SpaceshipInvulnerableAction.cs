@@ -19,8 +19,8 @@ namespace AsteroidsGame.Spaceships.Actions
 
         public void RunDefaultInvulnerability()
         {
-            if (context.IsInvulnerable) return;
-            context.IsInvulnerable = true;
+            if (context.Invulnerable.Value) return;
+            context.Invulnerable.Set(true);
 
             spaceshipShield.StartAnimation(context.Data.InvulnarableConfig());
             StopInvulnerability();
@@ -28,13 +28,13 @@ namespace AsteroidsGame.Spaceships.Actions
 
         public void RunInfinityInvulnerability()
         {
-            if (context.IsInvulnerable)
+            if (context.Invulnerable.Value)
             {
                 StopDisableRoutine();
                 return;
             }
 
-            context.IsInvulnerable = true;
+            context.Invulnerable.Set(true);
             spaceshipShield.StartAnimation(context.Data.InvulnarableConfig());
         }
 
@@ -60,7 +60,7 @@ namespace AsteroidsGame.Spaceships.Actions
         {
             yield return new WaitForSeconds(duration);
             spaceshipShield.StopAnimation();
-            context.IsInvulnerable = false;
+            context.Invulnerable.Set(false);
         }
 
         #endregion
