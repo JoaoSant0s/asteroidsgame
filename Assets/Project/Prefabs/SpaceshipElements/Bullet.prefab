@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 561719594910354107}
   - component: {fileID: 1664267252640217619}
   - component: {fileID: 5203716581880347640}
+  - component: {fileID: 4922611347047179598}
   - component: {fileID: 503133799310881423}
   - component: {fileID: 8185994816809954071}
   m_Layer: 0
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c2eaf7d6b752d5c4181680a54db57155, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -160,6 +161,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider2D: {fileID: 8185994816809954071}
+--- !u!114 &4922611347047179598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816637670580614812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4cb5a756a8f4c4583321b17252c3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoRun: 0
+  delay: 0
+  interval: 0
+  loops: -1
+  loopType: 1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  startScale: {x: 1, y: 1, z: 1}
+  punch: {x: 1, y: 1, z: 1}
+  scale: 0.75
+  time: 0.5
+  vibrato: 3
+  elasticity: 1
 --- !u!50 &503133799310881423
 Rigidbody2D:
   serializedVersion: 4
