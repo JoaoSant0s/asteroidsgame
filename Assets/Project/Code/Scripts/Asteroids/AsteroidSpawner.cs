@@ -90,9 +90,13 @@ namespace AsteroidsGame.Asteroids
                 GeneratedAsteroids[i].Dispose();
             }
             GeneratedAsteroids.Clear();
-        }
+        }        
 
-        public void SpawnAsteroid(TupleKeyData type)
+        #endregion
+
+        #region Private Methods
+
+        private void SpawnAsteroid(TupleKeyData type)
         {
             var config = spawnerData.asteroidConfigs.Find(a => a.type == type);
             var position = SequencePosition();
@@ -100,16 +104,12 @@ namespace AsteroidsGame.Asteroids
             InstantiateAsteroid(config.asteroidIndex, position);
         }
 
-        public void UpdateAsteroidsCounter()
+        private void UpdateAsteroidsCounter()
         {
             var total = AsteroidsEstimatedAmount();
             this.totalAsteroidsVariable.Modify(total);
             this.currentAsteroidsVariable.Modify(total);
         }
-
-        #endregion
-
-        #region Private Methods
 
         private int AsteroidsEstimatedAmount()
         {
