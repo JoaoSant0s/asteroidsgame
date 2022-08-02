@@ -35,7 +35,6 @@ namespace AsteroidsGame.Manager
 
         private PlayerPersistenceService playerPersistence;
 
-
         #region Unity Methods
         private void Start()
         {

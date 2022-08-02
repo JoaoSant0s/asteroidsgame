@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71648a6c5dd69a14eba3df85566b5900, type: 3}
-  m_Name: SpaceshipInvisibleVariable
+  m_Name: SpaceshipInvencibleVariable
   m_EditorClassIdentifier: 
   value: 0

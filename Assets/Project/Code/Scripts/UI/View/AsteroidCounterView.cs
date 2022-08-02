@@ -30,7 +30,6 @@ namespace AsteroidsGame.UI.View
         {
             this.totalAsteroidsVariable.OnValueModified += UpdateTotalAsteroids;
             this.currentAsteroidsVariable.OnValueModified += UpdateCurrentAsteroids;
-
         }
 
         private void OnDestroy()

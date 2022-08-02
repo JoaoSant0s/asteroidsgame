@@ -126,9 +126,8 @@ namespace AsteroidsGame.Asteroids
         private int AsteroidsAmount(Asteroid asteroid)
         {
             var context = asteroid.GetComponent<AsteroidContext>();
-            var data = context.Data;
 
-            return AsteroidsAmount(data);
+            return AsteroidsAmount(context.Data);
         }
 
         private int AsteroidsAmount(AsteroidData data)
@@ -144,6 +143,7 @@ namespace AsteroidsGame.Asteroids
 
             return totalSequence;
         }
+
         private void SpawnAsteroid(TupleKeyData type, Vector2 position)
         {
             var config = spawnerData.asteroidConfigs.Find(a => a.type == type);
@@ -161,9 +161,8 @@ namespace AsteroidsGame.Asteroids
         private Vector3 SequencePosition()
         {
             var position = spawnPoints[spawnPointIndex].position;
-            spawnPointIndex++;
 
-            if (spawnPointIndex >= spawnPoints.Count) spawnPointIndex = 0;
+            spawnPointIndex = ++spawnPointIndex % spawnPoints.Count;
 
             return position + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0);
         }

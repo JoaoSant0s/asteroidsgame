@@ -30,6 +30,7 @@ namespace AsteroidsGame.UI.View
         {
             this.globalLevelVariable.OnValueModified -= UpdateLevelLabel;
         }
+
         #endregion
 
         public void UpdateLevelLabel(int previousLevel, int newLevel)

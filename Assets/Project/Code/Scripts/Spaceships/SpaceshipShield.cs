@@ -50,8 +50,7 @@ namespace AsteroidsGame.Spaceships
             {
                 spriteRender.sprite = config.sprites[index];
                 yield return new WaitForSeconds(config.animationInterval);
-                index++;
-                index = index % size;
+                index = ++index % size;
             }
         }
 
