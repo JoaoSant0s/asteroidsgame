@@ -21,7 +21,7 @@ namespace AsteroidsGame.Ads
 
         public override void OnInit()
         {
-            adConfig = Resources.Load<AdConfigData>("AdConfig");
+            adConfig = Resources.Load<AdConfigData>("GameConfigs/AdConfig");
             StartUnityAds();
         }
 

@@ -25,7 +25,7 @@ namespace AsteroidsGame.Save
 
         public override void OnInit()
         {
-            this.playerPersistenceConfig = Resources.Load<SaveConfig>("PlayerPersistenceConfig");
+            this.playerPersistenceConfig = Resources.Load<SaveConfig>("GameConfigs/PlayerPersistenceConfig");
             this.saveService = Services.Get<SaveLocalService>();
 
             BuildLocalPlayerSave();

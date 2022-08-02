@@ -1,16 +1,24 @@
 {
-    "name": "ScriptsAssembly.Tests",
+    "name": "AsteroidsAssembly.Tests",
     "rootNamespace": "",
     "references": [
-        "GUID:5118362bfd050b5439436a9577e5f4ab"
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "AsteroidsAssembly"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
     "versionDefines": [],
     "noEngineReferences": false
 }

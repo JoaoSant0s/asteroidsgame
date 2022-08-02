@@ -31,17 +31,14 @@ namespace AsteroidsGame.Asteroids
         [SerializeField]
         private AsteroidContextVariable asteroidContextVariable;
 
-        [Header("Data")]
-        [SerializeField]
-        [Expandable]
-        private AsteroidSpawnerData spawnerData;
-
         [Header("References")]
 
         [SerializeField]
         private List<Transform> spawnPoints;
 
         private int spawnPointIndex;
+
+        private AsteroidSpawnerData spawnerData;
 
         private PoolService poolService;
 
@@ -63,6 +60,7 @@ namespace AsteroidsGame.Asteroids
 
         private void Awake()
         {
+            spawnerData = Resources.Load<AsteroidSpawnerData>("AsteroidSpawnerData");
             this.asteroidContextVariable.OnValueModified += BulletshipCollideAsteroid;
             LevelManager.OnLevelSpawned += UpdateAsteroidsCounter;
             LevelManager.OnSpawnAsteroid += SpawnAsteroid;
@@ -90,7 +88,7 @@ namespace AsteroidsGame.Asteroids
                 GeneratedAsteroids[i].Dispose();
             }
             GeneratedAsteroids.Clear();
-        }        
+        }
 
         #endregion
 
@@ -132,16 +130,7 @@ namespace AsteroidsGame.Asteroids
 
         private int AsteroidsAmount(AsteroidData data)
         {
-            var totalSequence = 1;
-
-            if (!data.canSpawnNextAsteroid) return totalSequence;
-
-            for (int i = 0; i < data.nextAsteroidAmount; i++)
-            {
-                totalSequence += AsteroidsAmount(spawnerData.GetAsteroidData(data.nextAsteroidType));
-            }
-
-            return totalSequence;
+            return spawnerData.TotalAsteroidsAmount(data); ;
         }
 
         private void SpawnAsteroid(TupleKeyData type, Vector2 position)

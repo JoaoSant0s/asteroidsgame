@@ -14,9 +14,29 @@ namespace AsteroidsGame.Asteroids.Data
     {
         public List<AsteroidTuple> asteroidConfigs;
 
-        public AsteroidData GetAsteroidData(TupleKeyData key)
+        public int TotalAsteroidsAmount(AsteroidData data)
+        {
+            var totalSequence = 1;
+
+            if (!data.canSpawnNextAsteroid) return totalSequence;
+
+            for (int i = 0; i < data.nextAsteroidAmount; i++)
+            {
+                totalSequence += TotalAsteroidsAmount(GetAsteroidData(data.nextAsteroidType));
+            }
+
+            return totalSequence;
+        }
+
+        private AsteroidData GetAsteroidData(TupleKeyData key)
         {
             var tuple = asteroidConfigs.Find(a => a.type == key);
+            return tuple.data;
+        }
+
+        public AsteroidData GetAsteroidData(int index)
+        {
+            var tuple = asteroidConfigs[index];
             return tuple.data;
         }
     }
