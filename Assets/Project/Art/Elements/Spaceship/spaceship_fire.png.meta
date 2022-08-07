@@ -87,6 +87,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -313,6 +314,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      spaceship_fire_19: 7180759758526811151
+      spaceship_fire_9: 7325232880226101134
+      spaceship_fire_8: -2976421039962388645
+      spaceship_fire_15: -4771872198518185143
+      spaceship_fire_20: -7528849327224888820
+      spaceship_fire_6: 5355197994069812603
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

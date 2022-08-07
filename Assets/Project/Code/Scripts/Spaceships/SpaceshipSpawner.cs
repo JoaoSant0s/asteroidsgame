@@ -14,13 +14,14 @@ using AsteroidsGame.Spaceships.Actions;
 using AsteroidsGame.Levels;
 using AsteroidsGame.Save;
 using AsteroidsGame.Ads.UI.Inputs;
+using AsteroidsGame.Ads;
 
 namespace AsteroidsGame.Spaceships
 {
     public class SpaceshipSpawner : MonoBehaviour
     {
         public static event Action OnGameOver;
-        public static event Action<bool, UnityAction> OnEnabeRewardButton;
+        public static event Action<bool, Action<AdsResult>> OnEnabeRewardButton;
 
         [Header("References")]
 
@@ -108,7 +109,7 @@ namespace AsteroidsGame.Spaceships
 
         private void SpaceshipDestroyed()
         {
-            OnEnabeRewardButton?.Invoke(false, () => { });
+            OnEnabeRewardButton?.Invoke(false, (result) => { });
 
             ModifyLife(-1);
             if (this.lifeVariable.Value <= 0)
@@ -140,9 +141,9 @@ namespace AsteroidsGame.Spaceships
             OnEnabeRewardButton?.Invoke(true, AddExtraLife);
         }
 
-        private void AddExtraLife()
+        private void AddExtraLife(AdsResult result)
         {
-            if (currentSpaceship == null) return;
+            if (result == AdsResult.Failed || currentSpaceship == null) return;
             extraLifeUsed = true;
 
             currentSpaceship.InvulnerableAction?.StopInvulnerability();

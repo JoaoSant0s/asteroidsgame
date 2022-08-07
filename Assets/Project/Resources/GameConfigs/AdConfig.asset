@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b8f208e50394ef4e9e4c28a1f17ef56, type: 3}
   m_Name: AdConfig
   m_EditorClassIdentifier: 
-  unityAds:
-    playStoreGameId: 4534103
-    placementRewardedVideoId: Rewarded_Android
+  testMode: 0
   playStoreGameId: 4534103
   placementRewardedVideoId: Rewarded_Android
