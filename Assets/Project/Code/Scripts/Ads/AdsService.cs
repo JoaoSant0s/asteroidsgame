@@ -46,8 +46,7 @@ namespace AsteroidsGame.Ads
 
         public void OnInitializationComplete()
         {
-            initialized = true;
-            LoadAllAds();
+            Init();
         }
 
         public void OnInitializationFailed(UnityAdsInitializationError error, string message)
@@ -57,6 +56,7 @@ namespace AsteroidsGame.Ads
 
         public void OnUnityAdsAdLoaded(string placementId)
         {
+            Debugs.Log("OnUnityAdsAdLoaded", placementId);
             unityAdsLoaded.Add(placementId, true);
         }
 
@@ -71,6 +71,7 @@ namespace AsteroidsGame.Ads
 
         public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
         {
+            Debugs.Log("OnUnityAdsShowFailure", placementId, error, message);
             TryRunCallback(placementId, AdsResult.Failed);
         }
 
@@ -86,6 +87,7 @@ namespace AsteroidsGame.Ads
 
         public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
         {
+            Debugs.Log("OnUnityAdsShowComplete", placementId, showCompletionState);
             TryRunCallback(placementId, (showCompletionState == UnityAdsShowCompletionState.SKIPPED) ? AdsResult.Skipped : AdsResult.Finished);
         }
 
@@ -111,9 +113,22 @@ namespace AsteroidsGame.Ads
 
         private void StartUnityAds()
         {
+            if (Advertisement.isInitialized)
+            {
+                Init();
+            }
+            else
+            {
 #if UNITY_ANDROID
-            Advertisement.Initialize(config.playStoreGameId, this.config.testMode, this);
+                Advertisement.Initialize(config.playStoreGameId, this.config.testMode, this);
 #endif
+            }
+        }
+
+        private void Init()
+        {
+            initialized = true;
+            LoadAllAds();
         }
 
         private void LoadAllAds()
