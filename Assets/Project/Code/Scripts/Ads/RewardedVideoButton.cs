@@ -18,7 +18,7 @@ namespace AsteroidsGame.Ads.UI.Inputs
         public static event Action ShowRewardedVideo;
 
         private Button button;
-        private UnityAction callbackAction;
+        private Action<AdsResult> callbackAction;
 
         private AdsService adsService;
 
@@ -53,7 +53,7 @@ namespace AsteroidsGame.Ads.UI.Inputs
         #endregion
 
         #region Private Methods       
-        private void EnableRewardButton(bool enable, UnityAction newAction)
+        private void EnableRewardButton(bool enable, Action<AdsResult> newAction)
         {
             if (enable)
             {
@@ -65,7 +65,7 @@ namespace AsteroidsGame.Ads.UI.Inputs
             }
         }
 
-        private void TryEnableButton(UnityAction newAction)
+        private void TryEnableButton(Action<AdsResult> newAction)
         {
             this.callbackAction = newAction;
 

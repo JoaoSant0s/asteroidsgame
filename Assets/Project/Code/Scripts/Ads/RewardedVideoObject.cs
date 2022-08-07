@@ -9,13 +9,13 @@ using JoaoSant0s.CommonWrapper;
 
 namespace AsteroidsGame.Ads
 {
-    public class RewardedVideoObject : IUnityAdsShowListener, IUnityAdsListener
+    public class RewardedVideoObject : IUnityAdsShowListener, IUnityAdsLoadListener
     {
         private UnityAction completeAction;
         public RewardedVideoObject(UnityAction action)
         {
             completeAction = action;
-            Advertisement.AddListener(this);
+            //Advertisement.AddListener(this);
         }
 
         #region Implemented IUnityAdsShowListener Methods
@@ -47,15 +47,16 @@ namespace AsteroidsGame.Ads
         public void OnUnityAdsDidError(string message)
         {
             Debugs.Log("OnUnityAdsDidError", message);
-            completeAction?.Invoke();
-            Advertisement.RemoveListener(this);
+            completeAction?.Invoke(); 
+            //Advertisement.Show()           
+            //Advertisement.RemoveListener(this);
         }
 
         public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
         {
             Debugs.Log("OnUnityAdsDidFinish", placementId, showResult);
             completeAction?.Invoke();
-            Advertisement.RemoveListener(this);
+            //Advertisement.RemoveListener(this);
         }
 
         public void OnUnityAdsDidStart(string placementId)
@@ -66,6 +67,16 @@ namespace AsteroidsGame.Ads
         public void OnUnityAdsReady(string placementId)
         {
             Debugs.Log("OnUnityAdsReady", placementId);
+        }
+
+        public void OnUnityAdsAdLoaded(string placementId)
+        {
+            Debugs.Log("OnUnityAdsAdLoaded", placementId);
+        }
+
+        public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
+        {
+            Debugs.Log("OnUnityAdsFailedToLoad", placementId.ToString(), error, message);
         }
 
         #endregion
