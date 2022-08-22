@@ -7,6 +7,7 @@ using UnityEngine;
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.CustomVariable;
+using JoaoSant0s.CommonWrapper;
 
 using AsteroidsGame.Spaceships.Data;
 using AsteroidsGame.UI.Popup;
@@ -74,6 +75,7 @@ namespace AsteroidsGame.Levels
             SetPlayerLevelIndex(levelSave);
 
             this.globalLevelVariable.Value = globalLevelIndex;
+            Debugs.Log("StartCurrentLevel", globalLevelIndex);
 
             if (levelSave.ContainsGameplayInfo())
             {
@@ -110,6 +112,8 @@ namespace AsteroidsGame.Levels
         {
             currentLevelIndex++;
             globalLevelIndex++;
+
+            Debugs.Log("GoNextLevel", globalLevelIndex);
 
             if (currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
 

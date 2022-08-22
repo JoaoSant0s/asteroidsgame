@@ -17,7 +17,6 @@ namespace AsteroidsGame.UtilWrapper
         protected override void Init()
         {
             this.canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
-            Debug.Log(this.canvas);
         }
 
         #endregion
