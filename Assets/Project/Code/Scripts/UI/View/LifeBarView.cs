@@ -21,12 +21,12 @@ namespace AsteroidsGame.UI.View
 
         protected void Awake()
         {
-            this.lifeVariable.OnValueModified += RefreshLifeIcons;
+            this.lifeVariable.AddChangeListener(RefreshLifeIcons);
         }
 
         private void OnDestroy()
         {
-            this.lifeVariable.OnValueModified -= RefreshLifeIcons;
+            this.lifeVariable.RemoveChangeListener(RefreshLifeIcons);
         }
 
         #endregion

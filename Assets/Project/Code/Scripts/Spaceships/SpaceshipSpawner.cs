@@ -77,7 +77,7 @@ namespace AsteroidsGame.Spaceships
 
         public void SetLife(int newLife)
         {
-            this.lifeVariable.Modify(newLife);
+            this.lifeVariable.Value = newLife;
         }
 
         public void SpawnSpaceship(bool makeInvulnarable = false)
@@ -124,7 +124,7 @@ namespace AsteroidsGame.Spaceships
 
         private void ModifyLife(int value)
         {
-            this.lifeVariable.Add(value);
+            this.lifeVariable.Increment(value);
         }
 
         private IEnumerator RespawnSpaceshipRoutine()

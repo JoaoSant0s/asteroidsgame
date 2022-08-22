@@ -73,7 +73,7 @@ namespace AsteroidsGame.Levels
 
             SetPlayerLevelIndex(levelSave);
 
-            this.globalLevelVariable.Modify(globalLevelIndex);
+            this.globalLevelVariable.Value = globalLevelIndex;
 
             if (levelSave.ContainsGameplayInfo())
             {
@@ -183,7 +183,7 @@ namespace AsteroidsGame.Levels
         {
             OnMakeSpaceshipInvulnerable?.Invoke();
 
-            globalLevelVariable.Modify(globalLevelIndex);
+            globalLevelVariable.Value = globalLevelIndex;
             SpawnLevelContent();
         }
 

@@ -20,12 +20,12 @@ namespace AsteroidsGame.UI.View
         #region Unitye Methods
         protected void Awake()
         {
-            this.scoreVariable.OnValueModified += UpdateScoreLabel;
+            this.scoreVariable.AddChangeListener(UpdateScoreLabel);
         }
 
         private void OnDestroy()
         {
-            this.scoreVariable.OnValueModified -= UpdateScoreLabel;
+            this.scoreVariable.RemoveChangeListener(UpdateScoreLabel);
         }
         #endregion
 

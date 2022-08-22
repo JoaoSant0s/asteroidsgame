@@ -9,9 +9,18 @@ namespace AsteroidsGame.UtilWrapper
 {
     public class MainCanvas : SingletonBehaviour<MainCanvas>
     {
-        [SerializeField]
         private Canvas canvas;
         protected override bool IsDontDestroyOnLoad => false;
+
+        #region Protected Override Methods
+
+        protected override void Init()
+        {
+            this.canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
+            Debug.Log(this.canvas);
+        }
+
+        #endregion
 
         public Vector2 Limits
         {

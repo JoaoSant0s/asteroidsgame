@@ -28,7 +28,7 @@ namespace AsteroidsGame.Scores
         #region Unitye Methods
         protected void Awake()
         {
-            this.asteroidContextVariable.OnValueModified += BulletshipCollideAsteroid;
+            this.asteroidContextVariable.AddChangeListener(BulletshipCollideAsteroid);
             LevelManager.OnSavePlayerScore += SaveScore;
         }
 
@@ -39,7 +39,7 @@ namespace AsteroidsGame.Scores
 
         private void OnDestroy()
         {
-            this.asteroidContextVariable.OnValueModified -= BulletshipCollideAsteroid;
+            this.asteroidContextVariable.RemoveChangeListener(BulletshipCollideAsteroid);
             LevelManager.OnSavePlayerScore -= SaveScore;
         }
         #endregion
@@ -48,7 +48,7 @@ namespace AsteroidsGame.Scores
 
         public void SetScore(int newScore)
         {
-            this.scoreVariable.Modify(newScore);
+            this.scoreVariable.Value = newScore;
         }
 
         #endregion
@@ -57,7 +57,7 @@ namespace AsteroidsGame.Scores
 
         private void BulletshipCollideAsteroid(AsteroidContext previousContext, AsteroidContext newContext)
         {
-            this.scoreVariable.Add(newContext.Data.destroyScore);
+            this.scoreVariable.Increment(newContext.Data.destroyScore);
         }
 
         private void SaveScore()
