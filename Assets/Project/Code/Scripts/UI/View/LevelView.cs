@@ -23,12 +23,12 @@ namespace AsteroidsGame.UI.View
 
         protected void Awake()
         {
-            this.globalLevelVariable.OnValueModified += UpdateLevelLabel;
+            this.globalLevelVariable.AddChangeListener(UpdateLevelLabel);
         }
 
         private void OnDestroy()
         {
-            this.globalLevelVariable.OnValueModified -= UpdateLevelLabel;
+            this.globalLevelVariable.RemoveChangeListener(UpdateLevelLabel);
         }
 
         #endregion

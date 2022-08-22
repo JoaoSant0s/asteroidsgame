@@ -11,15 +11,5 @@ using AsteroidsGame.Asteroids;
 namespace AsteroidsGame.CustomVariable
 {
     [CreateAssetMenu(fileName = "AsteroidContextVariable", menuName = "AsteroidsGame/CustomVariables/AsteroidContextVariable")]
-    public class AsteroidContextVariable : Variable<AsteroidContext>
-    {
-        #region Protected Override Methods
-
-        protected override void OnModify(AsteroidContext newValue)
-        {
-            Value = newValue;
-        }
-
-        #endregion
-    }
+    public class AsteroidContextVariable : Variable<AsteroidContext> { }
 }

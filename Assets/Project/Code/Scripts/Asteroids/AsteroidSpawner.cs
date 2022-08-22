@@ -61,7 +61,7 @@ namespace AsteroidsGame.Asteroids
         private void Awake()
         {
             spawnerData = Resources.Load<AsteroidSpawnerData>("AsteroidSpawnerData");
-            this.asteroidContextVariable.OnValueModified += BulletshipCollideAsteroid;
+            this.asteroidContextVariable.AddChangeListener(BulletshipCollideAsteroid);
             LevelManager.OnLevelSpawned += UpdateAsteroidsCounter;
             LevelManager.OnSpawnAsteroid += SpawnAsteroid;
         }
@@ -73,7 +73,7 @@ namespace AsteroidsGame.Asteroids
 
         private void OnDestroy()
         {
-            this.asteroidContextVariable.OnValueModified -= BulletshipCollideAsteroid;
+            this.asteroidContextVariable.RemoveChangeListener(BulletshipCollideAsteroid);
             LevelManager.OnLevelSpawned -= UpdateAsteroidsCounter;
             LevelManager.OnSpawnAsteroid -= SpawnAsteroid;
         }
@@ -105,8 +105,8 @@ namespace AsteroidsGame.Asteroids
         private void UpdateAsteroidsCounter()
         {
             var total = AsteroidsEstimatedAmount();
-            this.totalAsteroidsVariable.Modify(total);
-            this.currentAsteroidsVariable.Modify(total);
+            this.totalAsteroidsVariable.Value = total;
+            this.currentAsteroidsVariable.Value = total;
         }
 
         private int AsteroidsEstimatedAmount()
@@ -163,7 +163,7 @@ namespace AsteroidsGame.Asteroids
             newContext.Asteroid.Dispose();
 
             var estimatedAsteroidsAmount = AsteroidsEstimatedAmount();
-            this.currentAsteroidsVariable.Modify(estimatedAsteroidsAmount);
+            this.currentAsteroidsVariable.Value = estimatedAsteroidsAmount;
 
             CheckLevelEnded();
         }

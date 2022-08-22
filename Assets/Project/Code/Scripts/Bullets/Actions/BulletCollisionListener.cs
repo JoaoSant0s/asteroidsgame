@@ -39,7 +39,9 @@ namespace AsteroidsGame.Bullets.Actions
         #endregion
         private void RegisterBulletCollision(AsteroidContext context)
         {
-            asteroidContextVariable.Modify(context);
+            Debug.Log($"Asteroid {context.Data.name}");
+
+            asteroidContextVariable.Value = context;
         }
     }
 }

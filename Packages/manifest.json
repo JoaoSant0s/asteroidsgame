@@ -2,9 +2,9 @@
   "dependencies": {
     "com.dbrizov.naughtyattributes": "2.1.4",
     "com.demigiant.dotween": "1.2.632",
-    "com.joaosantos.package-common-wrapper": "2.2.4",
-    "com.joaosantos.package-custom-variables": "1.0.0",
-    "com.joaosantos.package-services": "2.4.2",
+    "com.joaosantos.package-common-wrapper": "2.4.1",
+    "com.joaosantos.package-custom-variables": "2.0.0",
+    "com.joaosantos.package-services": "2.5.0",
     "com.unity.2d.animation": "7.0.6",
     "com.unity.2d.pixel-perfect": "5.0.1",
     "com.unity.2d.psdimporter": "6.0.4",

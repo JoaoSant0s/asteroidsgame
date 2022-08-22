@@ -28,14 +28,14 @@ namespace AsteroidsGame.UI.View
 
         protected void Awake()
         {
-            this.totalAsteroidsVariable.OnValueModified += UpdateTotalAsteroids;
-            this.currentAsteroidsVariable.OnValueModified += UpdateCurrentAsteroids;
+            this.totalAsteroidsVariable.AddChangeListener(UpdateTotalAsteroids);
+            this.currentAsteroidsVariable.AddChangeListener(UpdateCurrentAsteroids);
         }
 
         private void OnDestroy()
         {
-            this.totalAsteroidsVariable.OnValueModified -= UpdateTotalAsteroids;
-            this.currentAsteroidsVariable.OnValueModified -= UpdateCurrentAsteroids;
+            this.totalAsteroidsVariable.RemoveChangeListener(UpdateTotalAsteroids);
+            this.currentAsteroidsVariable.RemoveChangeListener(UpdateCurrentAsteroids);
         }
 
         #endregion
