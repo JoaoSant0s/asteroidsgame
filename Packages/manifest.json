@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.dbrizov.naughtyattributes": "2.1.4",
-    "com.demigiant.dotween": "1.2.632",
     "com.joaosantos.package-common-wrapper": "2.4.1",
     "com.joaosantos.package-custom-variables": "2.0.0",
     "com.joaosantos.package-services": "2.5.0",
@@ -59,7 +58,6 @@
       "url": "https://package.openupm.com",
       "scopes": [
         "com.dbrizov.naughtyattributes",
-        "com.demigiant.dotween",
         "com.joaosantos.package-common-wrapper",
         "com.joaosantos.package-custom-variables",
         "com.joaosantos.package-services",
