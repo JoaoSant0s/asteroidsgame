@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2fd27cc3f71af439ff9e6273f7fba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turbineLeftBehaviour: {fileID: 2369444458315303494}
-  turbineRightBehaviour: {fileID: 2872351757508611233}
+  turbineLeft: {fileID: 6912623983799037603}
+  turbineRight: {fileID: 3651081662883896733}
+  rotateProportion: 0.75
 --- !u!1 &1775366672831780844
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4248839115427100697
 Transform:
   m_ObjectHideFlags: 0
@@ -218,7 +219,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 5355197994069812603, guid: d2d7909446eba934aa4193fa74df3a0b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 585dcf6dfa7697a47839fc1c64a52873, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -276,7 +277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &859632341760396511
 Transform:
   m_ObjectHideFlags: 0
@@ -333,7 +334,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 5355197994069812603, guid: d2d7909446eba934aa4193fa74df3a0b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 585dcf6dfa7697a47839fc1c64a52873, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -509,7 +510,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3702076022467836716}
-  turbine: {fileID: 5353630701867414764}
   context: {fileID: 8930818950646345645}
 --- !u!114 &8064669255497903500
 MonoBehaviour:

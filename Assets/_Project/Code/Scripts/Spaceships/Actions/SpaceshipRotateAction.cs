@@ -33,7 +33,7 @@ namespace AsteroidsGame.Spaceships.Actions
 
         #endregion
 
-        private void RotateAngle(float angle)
+        private void RotateAngle(float angle, Vector2 _)
         {
             transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }

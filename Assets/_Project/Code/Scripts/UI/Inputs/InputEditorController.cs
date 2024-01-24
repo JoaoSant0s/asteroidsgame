@@ -12,7 +12,7 @@ namespace AsteroidsGame.UI
     {
 #if UNITY_EDITOR
         public static event Action<int> RotateSpaceShip;
-        public static event Action<int> AccelerateSpaceShip;
+        public static event Action<float> AccelerateSpaceShip;
         public static event Action StopAccelerateSpaceShip;
         public static event Action ShootAction;
         public static event Action HyperSpaceAction;

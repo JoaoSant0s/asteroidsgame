@@ -10,7 +10,7 @@ namespace AsteroidsGame.UI.Inputs
     [RequireComponent(typeof(FloatingJoystick))]
     public class JoystickControl : MonoBehaviour
     {
-        public static event Action<float> RotateSpaceShip;
+        public static event Action<float, Vector2> RotateSpaceShip;
 
         private FloatingJoystick joystick;
 
@@ -38,7 +38,7 @@ namespace AsteroidsGame.UI.Inputs
 
             var increaseAngle = (direction.x > 0) ? -90 : 90;
 
-            RotateSpaceShip?.Invoke(angleDeg + increaseAngle);
+            RotateSpaceShip?.Invoke(angleDeg + increaseAngle, direction);
         }
         #endregion
     }
