@@ -18,9 +18,6 @@ namespace AsteroidsGame.Spaceships
         [SerializeField]
         private SpriteRenderer turbineRight;
 
-        [SerializeField]
-        private float rotateProportion = 0.75f;
-
         private int rotateDirectionId;
         private int speedId;
 
@@ -30,8 +27,8 @@ namespace AsteroidsGame.Spaceships
         {
             rotateDirectionId = Shader.PropertyToID("_RotateDirection");
             speedId = Shader.PropertyToID("_Speed");
-            //EnableFire(false);
-        }        
+            EnableFire(false);
+        }
 
         private void OnEnable()
         {
@@ -70,7 +67,7 @@ namespace AsteroidsGame.Spaceships
 
         private void StopTurbine()
         {
-            //EnableFire(false);
+            EnableFire(false);
         }
 
         private void RotateAngle(float angle, Vector2 direction)
@@ -80,12 +77,6 @@ namespace AsteroidsGame.Spaceships
 
         private void RotateDirection(int direction)
         {
-            Debug.Log(direction);
-
-            var materialBlock = new MaterialPropertyBlock();
-            turbineLeft.GetPropertyBlock(materialBlock);
-            materialBlock.SetFloat(rotateDirectionId, -direction * rotateProportion);
-            turbineLeft.SetPropertyBlock(materialBlock);
         }
 
         private void EnableFire(bool enable)
