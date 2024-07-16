@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9005365472024124650}
   - component: {fileID: 4630052852919486288}
   - component: {fileID: 7801151935019584388}
+  - component: {fileID: 7804340907273942857}
   - component: {fileID: 6283220025438875156}
   - component: {fileID: 8969033533035778296}
   - component: {fileID: 8969033533035778297}
@@ -145,6 +146,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider2D: {fileID: 5657880553891253099}
+--- !u!114 &7804340907273942857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091137706854112392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd960e875acbd1444a1af5395239715c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletTag: Bullet
+  context: {fileID: 9005365472024124650}
+  asteroidContextVariable: {fileID: 11400000, guid: 82d98af8342c46c438e0abfda07404de, type: 2}
 --- !u!114 &6283220025438875156
 MonoBehaviour:
   m_ObjectHideFlags: 0

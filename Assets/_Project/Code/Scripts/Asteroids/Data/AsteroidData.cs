@@ -14,6 +14,9 @@ namespace AsteroidsGame.Asteroids.Data
         [Header("Configs")]
         public float speed;
         public int destroyScore;
+        
+        [Header("Effects")]
+        public GameObject asteroidCollisionEffectPrefab;
 
         [Header("Asteroid Children")]
         public bool canSpawnNextAsteroid;

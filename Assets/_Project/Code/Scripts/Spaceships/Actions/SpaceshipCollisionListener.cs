@@ -40,7 +40,10 @@ namespace AsteroidsGame.Spaceships.Actions
             if (context.Invulnerable.Value) return;
             collided = true;
 
-            StartCoroutine(SimulateDestroyFade(col.transform.position));
+            Instantiate(context.Data.asteroidCollisionEffectPrefab, col.transform.position, Quaternion.identity);
+            RegisterSpaceshipCollision();
+            Destroy(gameObject);
+            //StartCoroutine(SimulateDestroyFade(col.transform.position));
         }
 
         #endregion

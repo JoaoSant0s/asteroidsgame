@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 816637670580614815}
   - component: {fileID: 4574333110036720673}
   - component: {fileID: 1576592489839253266}
-  - component: {fileID: 561719594910354107}
   - component: {fileID: 1664267252640217619}
   - component: {fileID: 5203716581880347640}
   - component: {fileID: 4922611347047179598}
@@ -119,22 +118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 17381e0bb80ad8d4c9dac904142f646b, type: 2}
---- !u!114 &561719594910354107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816637670580614812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a1b403d33983f41a8b4a9d30c8a015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  asteroidTag: Asteroid
-  context: {fileID: 1576592489839253266}
-  bullet: {fileID: 4574333110036720673}
-  asteroidContextVariable: {fileID: 11400000, guid: 82d98af8342c46c438e0abfda07404de, type: 2}
 --- !u!114 &1664267252640217619
 MonoBehaviour:
   m_ObjectHideFlags: 0
