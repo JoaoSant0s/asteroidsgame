@@ -411,7 +411,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 790a8737c985f2c4fb26d7f5270283ef, type: 2}
+  - {fileID: 2100000, guid: 1fbbcb96ee448644e96b06bdd8664811, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -482,6 +482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroidTag: Asteroid
+  spriteRender: {fileID: 7682215802541502690}
   context: {fileID: 8930818950646345645}
 --- !u!114 &7232691595977183956
 MonoBehaviour:

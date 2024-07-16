@@ -12,6 +12,7 @@ using AsteroidsGame.Save;
 using AsteroidsGame.Asteroids;
 using AsteroidsGame.Scores;
 using AsteroidsGame.Spaceships;
+using AsteroidsGame.Challenges;
 
 namespace AsteroidsGame.Manager
 {
@@ -21,6 +22,9 @@ namespace AsteroidsGame.Manager
 
         [SerializeField]
         private LevelManager levelManager;
+
+        [SerializeField]
+        private ChallengeManager challengeManager;
 
         [SerializeField]
         private ScoreManager scoreManager;
@@ -80,6 +84,7 @@ namespace AsteroidsGame.Manager
 
             spaceshipSpawner.SpawnSpaceship();
             levelManager.StartCurrentLevel(playerPersistence.GetLevelSave());
+            challengeManager.Init();
         }
 
         #endregion
