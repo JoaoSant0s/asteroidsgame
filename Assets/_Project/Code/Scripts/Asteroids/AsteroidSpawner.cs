@@ -14,12 +14,13 @@ using AsteroidsGame.Asteroids.Data;
 using AsteroidsGame.CustomVariable;
 using AsteroidsGame.Levels;
 using AsteroidsGame.UtilWrapper.Data;
+using JoaoSant0s.ServicePackage.Routine;
 
 namespace AsteroidsGame.Asteroids
 {
     public class AsteroidSpawner : MonoBehaviour
     {
-        public static event Action SpawnNextLevel;
+        public static event Action OnAllAsteroidsDestroyed;
 
         [Header("Variables")]
         [SerializeField]
@@ -41,6 +42,7 @@ namespace AsteroidsGame.Asteroids
         private AsteroidSpawnerData spawnerData;
 
         private PoolService poolService;
+        private RoutineService routineService;
 
         private List<Asteroid> generatedAsteroids;
 
@@ -69,6 +71,7 @@ namespace AsteroidsGame.Asteroids
         private void Start()
         {
             poolService = Services.Get<PoolService>();
+            routineService = Services.Get<RoutineService>();
         }
 
         private void OnDestroy()
@@ -165,7 +168,7 @@ namespace AsteroidsGame.Asteroids
             var estimatedAsteroidsAmount = AsteroidsEstimatedAmount();
             this.currentAsteroidsVariable.Value = estimatedAsteroidsAmount;
 
-            CheckLevelEnded();
+            CheckEmptyAsteroids();
         }
 
         private void RemoveAsteroid(Asteroid asteroid)
@@ -185,18 +188,11 @@ namespace AsteroidsGame.Asteroids
             }
         }
 
-        private void CheckLevelEnded()
+        private void CheckEmptyAsteroids()
         {
             if (GeneratedAsteroids.Count != 0) return;
 
-            StartCoroutine(SpawnNextLevelRoutine());
-        }
-
-        private IEnumerator SpawnNextLevelRoutine()
-        {
-            yield return new WaitForSeconds(1.5f);
-
-            SpawnNextLevel?.Invoke();
+            routineService.WaitTimeThenDo(1.5f, () => OnAllAsteroidsDestroyed?.Invoke());
         }
 
         #endregion

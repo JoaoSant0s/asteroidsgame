@@ -24,6 +24,8 @@ namespace AsteroidsGame.Levels
         public static event Action OnMakeSpaceshipInvulnerable;
         public static event Action OnSavePlayerScore;
         public static event Action OnSavePlayerLife;
+
+        public static event Action OnLevelCompleted;
         public static event Action OnLevelSpawned;
         public static event Action<TupleKeyData> OnSpawnAsteroid;
 
@@ -48,7 +50,7 @@ namespace AsteroidsGame.Levels
 
         private void Awake()
         {
-            AsteroidSpawner.SpawnNextLevel += GoNextLevel;
+            AsteroidSpawner.OnAllAsteroidsDestroyed += GoNextLevel;
             SpaceshipSpawner.OnGameOver += OnGameOver;
         }
 
@@ -60,7 +62,7 @@ namespace AsteroidsGame.Levels
 
         private void OnDestroy()
         {
-            AsteroidSpawner.SpawnNextLevel -= GoNextLevel;
+            AsteroidSpawner.OnAllAsteroidsDestroyed -= GoNextLevel;
             SpaceshipSpawner.OnGameOver -= OnGameOver;
         }
 
@@ -110,16 +112,17 @@ namespace AsteroidsGame.Levels
 
         private void GoNextLevel()
         {
+            OnLevelCompleted?.Invoke();
+            
             currentLevelIndex++;
             globalLevelIndex++;
-
-            Debugs.Log("GoNextLevel", globalLevelIndex);
 
             if (currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
 
             playerPersistence.SetLevel(currentLevelIndex, globalLevelIndex);
             OnSavePlayerScore?.Invoke();
             OnSavePlayerLife?.Invoke();
+
 
             StartCoroutine(GoNextLevelRoutine());
         }
