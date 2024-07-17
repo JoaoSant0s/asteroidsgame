@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e82e29705576be247b16efe297bd07ce, type: 3}
-  m_Name: CometData
+  m_Script: {fileID: 11500000, guid: 94691957040136b4aaf184823a605e34, type: 3}
+  m_Name: ChallengeScoreVariable
   m_EditorClassIdentifier: 
-  speed: 15
-  destroyScore: 25
-  life: 20
+  startValue: 0

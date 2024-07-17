@@ -12,25 +12,14 @@ namespace AsteroidsGame.Challenges
         [SerializeField]
         private CometContext context;
 
-#region Unity Methods
-
-        private void OnEnable()
+        public void Move(Vector2 target)
         {
-            Move();
-        }
+            rb.velocity = Vector2.zero;            
 
-#endregion
+            var direction = (target - (Vector2)transform.position).normalized;
+            direction.Normalize();
 
-        private void Move()
-        {
-            rb.velocity = Vector2.zero;
-
-            // TODO: Spawn in the same direction of the player spaceship
-
-            // var direction = Util.RandomDirection();
-            // direction.Normalize();
-
-            // rb.velocity = direction * context.Data.speed * Time.fixedDeltaTime;
+            rb.velocity = direction * context.Data.speed * Time.fixedDeltaTime;
         }
     }
 }

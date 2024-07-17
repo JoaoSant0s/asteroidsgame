@@ -21,7 +21,7 @@ namespace AsteroidsGame.Challenges
 
         public void Init()
         {
-            factory = new();
+            factory = new(this);
         }
 
         #region Unity Methods        
@@ -51,19 +51,25 @@ namespace AsteroidsGame.Challenges
                 return;
             }
 
-            var currentChallengeType = challengeCollectionData.challengeTypes.Random();
             currenChallengeObject?.Clean();
 
+            var currentChallengeType = challengeCollectionData.challengeTypes.Random();
             currenChallengeObject = factory.CreateChallenge(currentChallengeType);
             currenChallengeObject.Init();
+            currenChallengeObject.OnChallengeCompleted += FinishChallenge;
         }
 
         private void OnIncrementSessionLevel()
         {
+            FinishChallenge();
+
+            sessionLevelProgress += 1;
+        }
+
+        private void FinishChallenge()
+        {
             currenChallengeObject?.Clean();
             currenChallengeObject = null;
-            
-            sessionLevelProgress += 1;
         }
 
         #endregion

@@ -14,13 +14,13 @@ namespace AsteroidsGame.Challenges
 
         private Dictionary<ChallengeType, OnCreateChallenge> challengeFactory;
 
-        public ChallengeFactory()
+        public ChallengeFactory(ChallengeManager manager)
         {
             challengeFactory = new()
             {
                 {
                     ChallengeType.Comet,
-                    () => { return new ChallengeComet(); }
+                    () => { return new ChallengeComet(manager); }
                 }
             };
         }

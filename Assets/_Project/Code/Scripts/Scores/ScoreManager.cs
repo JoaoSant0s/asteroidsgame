@@ -23,14 +23,18 @@ namespace AsteroidsGame.Scores
         [SerializeField]
         private AsteroidContextVariable asteroidContextVariable;
 
+        [SerializeField]
+        private IntVariable challengeScoreVariable;
+
         private PlayerPersistenceService playerPersistence;
 
         #region Unitye Methods
         protected void Awake()
         {
-            this.asteroidContextVariable.AddChangeListener(BulletshipCollideAsteroid);
+            asteroidContextVariable.AddChangeListener(BulletshipCollideAsteroid);
+            challengeScoreVariable.AddChangeListener(ChallengeScoreIncremented);
             LevelManager.OnSavePlayerScore += SaveScore;
-        }
+        }        
 
         private void Start()
         {
@@ -39,7 +43,8 @@ namespace AsteroidsGame.Scores
 
         private void OnDestroy()
         {
-            this.asteroidContextVariable.RemoveChangeListener(BulletshipCollideAsteroid);
+            asteroidContextVariable.RemoveChangeListener(BulletshipCollideAsteroid);
+            challengeScoreVariable.RemoveChangeListener(ChallengeScoreIncremented);
             LevelManager.OnSavePlayerScore -= SaveScore;
         }
         #endregion
@@ -48,21 +53,26 @@ namespace AsteroidsGame.Scores
 
         public void SetScore(int newScore)
         {
-            this.scoreVariable.Value = newScore;
+            scoreVariable.Value = newScore;
         }
 
         #endregion
 
         #region Private Methods
 
-        private void BulletshipCollideAsteroid(AsteroidContext previousContext, AsteroidContext newContext)
+        private void BulletshipCollideAsteroid(AsteroidContext _, AsteroidContext newContext)
         {
-            this.scoreVariable.Increment(newContext.Data.destroyScore);
+            scoreVariable.Increment(newContext.Data.destroyScore);
+        }
+
+        private void ChallengeScoreIncremented(int _, int newScoreIncrement)
+        {
+            scoreVariable.Increment(newScoreIncrement);
         }
 
         private void SaveScore()
         {
-            playerPersistence.SetPlayerScore(this.scoreVariable.Value);
+            playerPersistence.SetPlayerScore(scoreVariable.Value);
         }
 
         #endregion

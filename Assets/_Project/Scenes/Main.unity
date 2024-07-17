@@ -2590,7 +2590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43026cfea9ad591428a2ebcb4c747a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceshipKeyboardMapping: {fileID: 11400000, guid: 50733cab5bd0b524284837f1221fc2d0, type: 2}
 --- !u!1 &1495962558
 GameObject:
   m_ObjectHideFlags: 0
@@ -2738,6 +2737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreVariable: {fileID: 11400000, guid: c1f06cd9491c92b4ea24de9a40fac355, type: 2}
   asteroidContextVariable: {fileID: 11400000, guid: 82d98af8342c46c438e0abfda07404de, type: 2}
+  challengeScoreVariable: {fileID: 11400000, guid: 00e955e35ee0f6c40a2da6ed437df6f8, type: 2}
 --- !u!1 &1538376858
 GameObject:
   m_ObjectHideFlags: 0

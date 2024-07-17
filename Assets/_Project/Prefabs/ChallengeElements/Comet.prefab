@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8235042046517384400}
   - component: {fileID: 7681367847140388866}
   - component: {fileID: 5399535564464007397}
+  - component: {fileID: 1489501271497231777}
   - component: {fileID: 4945470179395645050}
   - component: {fileID: 4081826207960003661}
   - component: {fileID: 2064549490009725639}
@@ -114,7 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bd2814beb6dda47b91926983579050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: d8ee8b5f9e729ff49bf639cd0da85795, type: 2}
+  data: {fileID: 11400000, guid: 0bd04e1b1fdc1ce4ea98244e37e7ab6c, type: 2}
+  challengeScoreVariable: {fileID: 11400000, guid: 00e955e35ee0f6c40a2da6ed437df6f8, type: 2}
 --- !u!114 &5399535564464007397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +130,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4081826207960003661}
+  context: {fileID: 7681367847140388866}
+--- !u!114 &1489501271497231777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6979684249074009927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1d24aac8350c24ab1a1fb16c2826a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletTag: Bullet
   context: {fileID: 7681367847140388866}
 --- !u!114 &4945470179395645050
 MonoBehaviour:
