@@ -36,11 +36,9 @@ namespace AsteroidsGame.Spaceships
             AccelerateButton.StopAccelerateSpaceShip += StopTurbine;
             JoystickControl.RotateSpaceShip += RotateAngle;
 
-#if UNITY_EDITOR
-            InputEditorController.AccelerateSpaceShip += AccelerateDirection;
-            InputEditorController.StopAccelerateSpaceShip += StopTurbine;
-            InputEditorController.RotateSpaceShip += RotateDirection;
-#endif
+            InputController.OnAccelerateSpaceShip += AccelerateDirection;
+            InputController.OnStopAccelerateSpaceShip += StopTurbine;
+            InputController.OnRotateSpaceShip += RotateDirection;
         }
 
         private void OnDisable()
@@ -49,11 +47,9 @@ namespace AsteroidsGame.Spaceships
             AccelerateButton.StopAccelerateSpaceShip -= StopTurbine;
             JoystickControl.RotateSpaceShip -= RotateAngle;
 
-#if UNITY_EDITOR
-            InputEditorController.AccelerateSpaceShip -= AccelerateDirection;
-            InputEditorController.StopAccelerateSpaceShip -= StopTurbine;
-            InputEditorController.RotateSpaceShip -= RotateDirection;
-#endif
+            InputController.OnAccelerateSpaceShip -= AccelerateDirection;
+            InputController.OnStopAccelerateSpaceShip -= StopTurbine;
+            InputController.OnRotateSpaceShip -= RotateDirection;
         }
 
         #endregion

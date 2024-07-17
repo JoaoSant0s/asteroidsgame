@@ -9,6 +9,7 @@ using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.ServicePackage.Popup;
 
 using AsteroidsGame.UI.Popup;
+using UnityEngine.InputSystem;
 
 namespace AsteroidsGame.UI.Inputs
 {
@@ -17,6 +18,7 @@ namespace AsteroidsGame.UI.Inputs
     {
         private Button buttonPause;
         private PopupService popupService;
+        private InputControls input;
 
         #region Unity Methods
 
@@ -24,14 +26,38 @@ namespace AsteroidsGame.UI.Inputs
         {
             buttonPause = GetComponent<Button>();
             popupService = Services.Get<PopupService>();
+            input = new InputControls();
+        }
+        private void OnEnable()
+        {
+            input.UI.Enable();
+
+            input.UI.Pause.performed += SelectionButton;
         }
 
         private void Start()
         {
             buttonPause.onClick.AddListener(() =>
             {
-                popupService.Show<PausePopup>();
+                NextAction();
             });
+        }
+
+        private void OnDisable()
+        {
+            input.UI.Disable();
+
+            input.UI.Pause.performed += SelectionButton;
+        }
+
+        private void SelectionButton(InputAction.CallbackContext context)
+        {
+            NextAction();
+        }
+
+        private void NextAction()
+        {
+            popupService.Show<PausePopup>();
         }
 
         #endregion

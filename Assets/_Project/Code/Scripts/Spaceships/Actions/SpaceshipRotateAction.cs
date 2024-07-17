@@ -16,19 +16,13 @@ namespace AsteroidsGame.Spaceships.Actions
         private void Awake()
         {
             JoystickControl.RotateSpaceShip += RotateAngle;
-
-#if UNITY_EDITOR
-            InputEditorController.RotateSpaceShip += RotateDirection;
-#endif
+            InputController.OnRotateSpaceShip += RotateDirection;
         }
 
         private void OnDestroy()
         {
             JoystickControl.RotateSpaceShip -= RotateAngle;
-
-#if UNITY_EDITOR
-            InputEditorController.RotateSpaceShip -= RotateDirection;
-#endif
+            InputController.OnRotateSpaceShip -= RotateDirection;
         }
 
         #endregion

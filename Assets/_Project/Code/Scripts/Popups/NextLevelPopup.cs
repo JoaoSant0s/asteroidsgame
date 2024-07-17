@@ -11,6 +11,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System;
 using TMPro;
+using UnityEngine.InputSystem;
 
 namespace AsteroidsGame.UI.Popup
 {
@@ -28,14 +29,33 @@ namespace AsteroidsGame.UI.Popup
         private FlagService flagService;
 
         private UnityAction action;
+        private InputControls input;
 
         #region Unity Methods
+
+        private void Awake()
+        {
+            input = new InputControls();
+        }
+        private void OnEnable()
+        {
+            input.UI.Enable();
+
+            input.UI.Continue.performed += SelectionButton;
+        }
         private void Start()
         {
             flagService = Services.Get<FlagService>();
             flagService.Lower(enableGameplayFlag);
 
             SetButtonEvents();
+        }
+
+        private void OnDisable()
+        {
+            input.UI.Disable();
+
+            input.UI.Continue.performed += SelectionButton;
         }
 
         #endregion
@@ -54,6 +74,11 @@ namespace AsteroidsGame.UI.Popup
         #endregion
 
         #region  Private Methods
+
+        private void SelectionButton(InputAction.CallbackContext context)
+        {
+            NextAction();
+        }
         private void SetButtonEvents()
         {
             continueButton.onClick.AddListener(() =>

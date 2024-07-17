@@ -18,9 +18,7 @@ namespace AsteroidsGame.Spaceships.Actions
         private void Awake()
         {
             HyperspaceButton.HyperSpaceAction += HyperSpace;
-#if UNITY_EDITOR
-            InputEditorController.HyperSpaceAction += HyperSpace;
-#endif
+            InputController.OnHyperSpaceAction += HyperSpace;
         }
 
         private void Start()
@@ -31,9 +29,7 @@ namespace AsteroidsGame.Spaceships.Actions
         private void OnDestroy()
         {
             HyperspaceButton.HyperSpaceAction -= HyperSpace;
-#if UNITY_EDITOR
-            InputEditorController.HyperSpaceAction -= HyperSpace;
-#endif
+            InputController.OnHyperSpaceAction -= HyperSpace;
         }
 
         #endregion

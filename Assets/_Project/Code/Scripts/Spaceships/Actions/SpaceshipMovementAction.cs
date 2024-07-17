@@ -21,9 +21,7 @@ namespace AsteroidsGame.Spaceships.Actions
         private void OnEnable()
         {
             AccelerateButton.AcceleratingSpaceShip += AccelerateDirection;
-#if UNITY_EDITOR
-            InputEditorController.AccelerateSpaceShip += AccelerateDirection;
-#endif
+            InputController.OnAccelerateSpaceShip += AccelerateDirection;
         }
 
         private void Start()
@@ -35,9 +33,7 @@ namespace AsteroidsGame.Spaceships.Actions
         private void OnDisable()
         {
             AccelerateButton.AcceleratingSpaceShip -= AccelerateDirection;
-#if UNITY_EDITOR
-            InputEditorController.AccelerateSpaceShip -= AccelerateDirection;
-#endif
+            InputController.OnAccelerateSpaceShip -= AccelerateDirection;
         }
 
         #endregion

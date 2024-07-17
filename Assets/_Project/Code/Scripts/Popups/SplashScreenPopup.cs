@@ -10,6 +10,8 @@ using JoaoSant0s.ServicePackage.General;
 using AsteroidsGame.Data;
 using AsteroidsGame.Manager;
 using AsteroidsGame.Save;
+using UnityEngine.InputSystem;
+using System;
 
 namespace AsteroidsGame.UI.Popup
 {
@@ -30,7 +32,21 @@ namespace AsteroidsGame.UI.Popup
         private FlagService flagService;
         private PlayerPersistenceService playerPersistence;
 
+        private InputControls input;
+
         #region Unity Methods
+
+        private void Awake()
+        {
+            input = new InputControls();
+        }
+        private void OnEnable()
+        {
+            input.UI.Enable();
+
+            input.UI.Continue.performed += SelectionButton;            
+        }
+
         private void Start()
         {
             flagService = Services.Get<FlagService>();
@@ -40,9 +56,26 @@ namespace AsteroidsGame.UI.Popup
             SetButtonEvents();
         }
 
+        private void OnDisable()
+        {
+            input.UI.Disable();
+
+            input.UI.Continue.performed += SelectionButton;
+        }
+
         #endregion
 
         #region Private Methods
+
+        private void SelectionButton(InputAction.CallbackContext context)
+        {
+            if (!playerPersistence.ContainsPlayerSave())
+            {
+                playerPersistence.CreatePlayerSave();
+            }
+
+            NextAction();
+        }
 
         private void EnableButtons()
         {
