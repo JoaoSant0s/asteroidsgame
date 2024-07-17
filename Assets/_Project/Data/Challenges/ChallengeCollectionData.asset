@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b93511928f6594c97ecb0c5ba9f08a, type: 3}
   m_Name: ChallengeCollectionData
   m_EditorClassIdentifier: 
-  challengeDatas:
-  - {fileID: 11400000, guid: d8ee8b5f9e729ff49bf639cd0da85795, type: 2}
+  challengeLevelModule: 1
+  challengeTypes: 00000000

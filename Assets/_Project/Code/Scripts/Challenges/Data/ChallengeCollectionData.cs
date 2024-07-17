@@ -4,14 +4,15 @@ using UnityEngine;
 
 namespace AsteroidsGame.Challenges.Data
 {
+    public enum ChallengeType
+    {
+        Comet
+    }
+
     [CreateAssetMenu(fileName = "ChallengeCollectionData", menuName = "AsteroidsGame/Challenge/ChallengeCollectionData")]
     public class ChallengeCollectionData : ScriptableObject
     {
-        [SerializeField]
-        private int levelIndexModel = 3;
-
-        [SerializeField]
-        private ChallengeData[] challengeDatas;
-        
+        public int challengeLevelModule = 3;
+        public ChallengeType[] challengeTypes;
     }
 }

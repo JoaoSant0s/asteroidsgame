@@ -83,8 +83,8 @@ namespace AsteroidsGame.Manager
             scoreManager.SetScore(playerSave.score);
 
             spaceshipSpawner.SpawnSpaceship();
-            levelManager.StartCurrentLevel(playerPersistence.GetLevelSave());
             challengeManager.Init();
+            levelManager.StartCurrentLevel(playerPersistence.GetLevelSave());
         }
 
         #endregion
