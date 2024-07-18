@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1ed2d39c37e3949abc9f4f85227612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidTag: Asteroid
+  collisionTag: SpaceshipCollision
   spriteRender: {fileID: 7682215802541502690}
   context: {fileID: 8930818950646345645}
 --- !u!114 &7232691595977183956

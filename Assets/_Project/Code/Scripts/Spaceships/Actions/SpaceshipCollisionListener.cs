@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using NaughtyAttributes;
+using JoaoSant0s.CommonWrapper;
 
 namespace AsteroidsGame.Spaceships.Actions
 {
@@ -14,7 +15,7 @@ namespace AsteroidsGame.Spaceships.Actions
 
         [Tag]
         [SerializeField]
-        private string asteroidTag;
+        private string collisionTag;
 
         [SerializeField]
         private SpriteRenderer spriteRender;
@@ -36,7 +37,7 @@ namespace AsteroidsGame.Spaceships.Actions
         void OnTriggerStay2D(Collider2D col)
         {
             if (collided) return;
-            if (!col.CompareTag(asteroidTag)) return;
+            if (!col.CompareTag(collisionTag)) return;
             if (context.Invulnerable.Value) return;
             collided = true;
 

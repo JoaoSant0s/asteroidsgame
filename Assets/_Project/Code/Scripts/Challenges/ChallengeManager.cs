@@ -46,7 +46,7 @@ namespace AsteroidsGame.Challenges
         {
             var challangeModule = challengeCollectionData.challengeLevelModule;
 
-            if (sessionLevelProgress < challangeModule || sessionLevelProgress % challangeModule != 0)
+            if (sessionLevelProgress < challangeModule || (challangeModule > 0 && sessionLevelProgress % challangeModule != 0))
             {
                 return;
             }

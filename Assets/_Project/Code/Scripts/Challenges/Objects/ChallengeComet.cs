@@ -45,7 +45,7 @@ namespace AsteroidsGame.Challenges
             var limits = MainCanvas.Instance.Limits;
 
             var xValue = UnityEngine.Random.Range(-limits.x, limits.x);
-            var startPosition = new Vector2(xValue, limits.y);
+            var startPosition = new Vector2(xValue, limits.y * 1.5f);
 
             return poolService.Get<Comet>(startPosition, manager.transform);
         }
