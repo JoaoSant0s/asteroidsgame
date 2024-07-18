@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using UnityEngine;
-using UnityEngine.Events;
 
-using JoaoSant0s.ServicePackage.Popup;
 using JoaoSant0s.ServicePackage.General;
 using JoaoSant0s.CustomVariable;
 
@@ -15,6 +14,7 @@ using AsteroidsGame.Levels;
 using AsteroidsGame.Save;
 using AsteroidsGame.Ads.UI.Inputs;
 using AsteroidsGame.Ads;
+using JoaoSant0s.CommonWrapper;
 
 namespace AsteroidsGame.Spaceships
 {
@@ -39,17 +39,16 @@ namespace AsteroidsGame.Spaceships
         [SerializeField]
         private IntVariable lifeVariable;
 
-        private PopupService popupService;
         private PlayerPersistenceService playerPersistence;
 
-        private Spaceship currentSpaceship;
+        private static Spaceship currentSpaceship;
         private bool extraLifeUsed;
 
         #region Unity Methods
 
         private void Awake()
         {
-            SpaceshipCollisionListener.AsteroidCollided += SpaceshipDestroyed;
+            SpaceshipCollisionListener.SpaceshipCollided += SpaceshipDestroyed;
             RewardedVideoButton.ShowRewardedVideo += RewardedVideoStarted;
             LevelManager.OnMakeSpaceshipInvulnerable += MakeSpaceshipInvulnerable;
             LevelManager.OnSavePlayerLife += SaveLife;
@@ -58,13 +57,12 @@ namespace AsteroidsGame.Spaceships
 
         private void Start()
         {
-            popupService = Services.Get<PopupService>();
             playerPersistence = Services.Get<PlayerPersistenceService>();
         }
 
         private void OnDestroy()
         {
-            SpaceshipCollisionListener.AsteroidCollided -= SpaceshipDestroyed;
+            SpaceshipCollisionListener.SpaceshipCollided -= SpaceshipDestroyed;
             RewardedVideoButton.ShowRewardedVideo -= RewardedVideoStarted;
             LevelManager.OnMakeSpaceshipInvulnerable -= MakeSpaceshipInvulnerable;
             LevelManager.OnSavePlayerLife -= SaveLife;
@@ -84,6 +82,18 @@ namespace AsteroidsGame.Spaceships
         {
             currentSpaceship = Instantiate(spaceshipPrefab, Vector3.zero, Quaternion.identity);
             if (makeInvulnarable) MakeSpaceshipInvulnerable();
+        }
+
+        public static async Task<Spaceship> WaitCurrentSpaceship()
+        {
+            if (currentSpaceship) return currentSpaceship;
+
+            while (currentSpaceship == null)
+            {
+                await Task.Delay(100);
+            }
+
+            return currentSpaceship;
         }
 
         #endregion
@@ -109,6 +119,7 @@ namespace AsteroidsGame.Spaceships
 
         private void SpaceshipDestroyed()
         {
+            currentSpaceship = null;
             OnEnabeRewardButton?.Invoke(false, (result) => { });
 
             ModifyLife(-1);

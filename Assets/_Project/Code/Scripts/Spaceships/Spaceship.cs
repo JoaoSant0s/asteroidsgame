@@ -9,18 +9,27 @@ namespace AsteroidsGame.Spaceships
 {
     public class Spaceship : MonoBehaviour
     {
-        private SpaceshipInvulnerableAction invulnerableAction;
+        public SpaceshipInvulnerableAction InvulnerableAction { get; protected set; }
 
-        public SpaceshipInvulnerableAction InvulnerableAction
+        #region Unity Methods
+
+        private void Awake()
+        {
+            InvulnerableAction = GetComponent<SpaceshipInvulnerableAction>();
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public Vector2 Position
         {
             get
             {
-                if (invulnerableAction == null)
-                {
-                    invulnerableAction = GetComponent<SpaceshipInvulnerableAction>();
-                }
-                return invulnerableAction;
+                return transform.position;
             }
         }
+
+        #endregion
     }
 }

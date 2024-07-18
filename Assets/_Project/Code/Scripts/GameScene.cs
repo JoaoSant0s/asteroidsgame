@@ -79,12 +79,12 @@ namespace AsteroidsGame.Manager
         {
             var playerSave = playerPersistence.GetPlayerSave();
 
+            challengeManager.Init();
             spaceshipSpawner.SetLife(playerSave.life);
             scoreManager.SetScore(playerSave.score);
 
-            spaceshipSpawner.SpawnSpaceship();
-            challengeManager.Init();
             levelManager.StartCurrentLevel(playerPersistence.GetLevelSave());
+            spaceshipSpawner.SpawnSpaceship();
         }
 
         #endregion

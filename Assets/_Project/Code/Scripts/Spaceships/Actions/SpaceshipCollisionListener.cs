@@ -11,7 +11,7 @@ namespace AsteroidsGame.Spaceships.Actions
     [RequireComponent(typeof(Collider2D))]
     public class SpaceshipCollisionListener : MonoBehaviour
     {
-        public static event Action AsteroidCollided;
+        public static event Action SpaceshipCollided;
 
         [Tag]
         [SerializeField]
@@ -68,7 +68,7 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void RegisterSpaceshipCollision()
         {
-            AsteroidCollided?.Invoke();
+            SpaceshipCollided?.Invoke();
         }
     }
 }

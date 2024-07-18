@@ -24,14 +24,13 @@ namespace AsteroidsGame.Challenges
         {
             poolService = Services.Get<PoolService>();
             routineService = Services.Get<RoutineService>();
-
-            // TODO: Wait the space ship Avaialble and get the position
+            
             var target = Vector2.zero;
 
             comet = CreateComet();
             comet.GetComponent<CometContext>().OnDestroyed += DestroyDelay;
 
-            comet.Init(target);
+            comet.Init();
         }
 
         public override void Clean()
@@ -40,12 +39,12 @@ namespace AsteroidsGame.Challenges
         }
 
         private Comet CreateComet()
-        {
-            
+        {            
             var limits = MainCanvas.Instance.Limits;
 
-            var xValue = UnityEngine.Random.Range(-limits.x, limits.x);
-            var startPosition = new Vector2(xValue, limits.y * 1.5f);
+            var xValue = UnityEngine.Random.Range(-limits.x * 0.7f, limits.x * 0.7f);
+            var yValue = UnityEngine.Random.Range(-limits.y * 0.7f, limits.y * 0.7f);            
+            var startPosition = new Vector2(xValue, yValue);
 
             return poolService.Get<Comet>(startPosition, manager.transform);
         }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82e29705576be247b16efe297bd07ce, type: 3}
   m_Name: CometData
   m_EditorClassIdentifier: 
-  speed: 15
-  destroyScore: 25
-  life: 20
+  speed: 50
+  destroyScore: 50
+  life: 30

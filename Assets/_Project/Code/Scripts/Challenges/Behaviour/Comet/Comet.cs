@@ -1,8 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using AsteroidsGame.Animations;
-using JoaoSant0s.CommonWrapper;
+
 using UnityEngine;
+
+using JoaoSant0s.CommonWrapper;
+
+using AsteroidsGame.Animations;
+using AsteroidsGame.Spaceships;
+using AsteroidsGame.UtilWrapper;
 
 namespace AsteroidsGame.Challenges
 {
@@ -13,6 +18,7 @@ namespace AsteroidsGame.Challenges
         private RotateTweenAnimation rotateTweenAnimation;
         private ComentMovementAction movementAction;
         private CometContext context;
+        private MoveToOppositeSide moveOppositeSide;
 
         #region Unity Methods
 
@@ -21,6 +27,7 @@ namespace AsteroidsGame.Challenges
             rb = GetComponent<Rigidbody2D>();
             rotateTweenAnimation = GetComponent<RotateTweenAnimation>();
             movementAction = GetComponent<ComentMovementAction>();
+            moveOppositeSide = GetComponent<MoveToOppositeSide>();
             context = GetComponent<CometContext>();
         }
 
@@ -28,11 +35,9 @@ namespace AsteroidsGame.Challenges
 
         #region Public Methods
 
-        public void Init(Vector3 target)
+        public void Init()
         {
-            movementAction.Move(target);
-            context.OnDamaged += OnDamaged;
-            context.OnDestroyed += OnDestroyed;
+            BuildMoveDirection();
         }
         #endregion
 
@@ -50,6 +55,12 @@ namespace AsteroidsGame.Challenges
             Dispose();
         }
 
+        private async void BuildMoveDirection()
+        {
+            Spaceship spaceship = await SpaceshipSpawner.WaitCurrentSpaceship();
+            movementAction.Move(spaceship.Position);
+        }
+
         #endregion
 
         #region Protected Override Methods
@@ -58,12 +69,21 @@ namespace AsteroidsGame.Challenges
         {
             context.Setup();
             rotateTweenAnimation.Run();
+            moveOppositeSide.OnPositionChanged += BuildMoveDirection;
+
+            context.OnDamaged += OnDamaged;
+            context.OnDestroyed += OnDestroyed;
         }
 
         protected override void OnDispose()
         {
             rb.velocity = Vector2.zero;
             rotateTweenAnimation.CompleteTween();
+
+            moveOppositeSide.OnPositionChanged -= BuildMoveDirection;
+
+            context.OnDamaged -= OnDamaged;
+            context.OnDestroyed -= OnDestroyed;
         }
 
         #endregion
