@@ -9,7 +9,7 @@ using AsteroidsGame.Animations;
 using AsteroidsGame.Spaceships;
 using AsteroidsGame.UtilWrapper;
 
-namespace AsteroidsGame.Challenges
+namespace AsteroidsGame.Challenges.Comets
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(RotateTweenAnimation))]
     public class Comet : ChallengeBehaviour
@@ -18,6 +18,7 @@ namespace AsteroidsGame.Challenges
         private RotateTweenAnimation rotateTweenAnimation;
         private ComentMovementAction movementAction;
         private CometContext context;
+        private CometRender render;
         private MoveToOppositeSide moveOppositeSide;
 
         #region Unity Methods
@@ -29,6 +30,7 @@ namespace AsteroidsGame.Challenges
             movementAction = GetComponent<ComentMovementAction>();
             moveOppositeSide = GetComponent<MoveToOppositeSide>();
             context = GetComponent<CometContext>();
+            render = GetComponent<CometRender>();
         }
 
         #endregion
@@ -43,15 +45,13 @@ namespace AsteroidsGame.Challenges
 
         #region Private Methods
 
-        public void OnDamaged(int life)
+        public void OnDamaged(int life, int maxLife)
         {
-            Debugs.Log("Damaged", life);
-            // TODO: Apply Effect here
+            render.DamageEffect(life/(float)maxLife);
         }
 
         private void OnDestroyed()
         {
-            // TODO: Play Destruction Effect here
             Dispose();
         }
 
@@ -77,6 +77,7 @@ namespace AsteroidsGame.Challenges
 
         protected override void OnDispose()
         {
+            render.Reset();
             rb.velocity = Vector2.zero;
             rotateTweenAnimation.CompleteTween();
 

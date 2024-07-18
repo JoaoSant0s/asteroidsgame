@@ -15,6 +15,15 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private Coroutine disableRoutine;
 
+        #region Unity Methods
+
+        private void OnDestroy()
+        {
+            context.Invulnerable.Value = false;
+        }
+
+        #endregion
+
         #region Public Methods
 
         public void RunDefaultInvulnerability()

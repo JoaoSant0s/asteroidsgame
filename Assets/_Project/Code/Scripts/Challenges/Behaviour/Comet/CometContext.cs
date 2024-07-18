@@ -6,11 +6,11 @@ using JoaoSant0s.CommonWrapper;
 using JoaoSant0s.CustomVariable;
 using UnityEngine;
 
-namespace AsteroidsGame.Challenges
+namespace AsteroidsGame.Challenges.Comets
 {
     public class CometContext : MonoBehaviour
     {
-        public event Action<int> OnDamaged;
+        public event Action<int, int> OnDamaged;
         public event Action OnDestroyed;
 
         [SerializeField]
@@ -34,7 +34,7 @@ namespace AsteroidsGame.Challenges
             if(life <= 0) return;
 
             life -= 1;
-            OnDamaged?.Invoke(life);
+            OnDamaged?.Invoke(life, data.life);
 
             if (life <= 0) {
                 challengeScoreVariable.Value = data.destroyScore;                

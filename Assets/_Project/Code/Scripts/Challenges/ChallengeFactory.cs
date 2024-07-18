@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using AsteroidsGame.Challenges.Data;
+using AsteroidsGame.Challenges.Comets;
 
 namespace AsteroidsGame.Challenges
 {

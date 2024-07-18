@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace AsteroidsGame.Challenges
+namespace AsteroidsGame.Challenges.Comets
 {
     public class ComentMovementAction : MonoBehaviour
     {

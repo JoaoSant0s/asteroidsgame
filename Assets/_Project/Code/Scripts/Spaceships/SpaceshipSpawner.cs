@@ -78,10 +78,10 @@ namespace AsteroidsGame.Spaceships
             this.lifeVariable.Value = newLife;
         }
 
-        public void SpawnSpaceship(bool makeInvulnarable = false)
+        public void SpawnSpaceship()
         {
             currentSpaceship = Instantiate(spaceshipPrefab, Vector3.zero, Quaternion.identity);
-            if (makeInvulnarable) MakeSpaceshipInvulnerable();
+            MakeSpaceshipInvulnerable();
         }
 
         public static async Task<Spaceship> WaitCurrentSpaceship()
@@ -102,6 +102,7 @@ namespace AsteroidsGame.Spaceships
 
         private void MakeSpaceshipInvulnerable()
         {
+            Debugs.Log("MakeSpaceshipInvulnerable", currentSpaceship);
             if (currentSpaceship == null) return;
             currentSpaceship.InvulnerableAction?.RunDefaultInvulnerability();
         }
@@ -141,7 +142,7 @@ namespace AsteroidsGame.Spaceships
         private IEnumerator RespawnSpaceshipRoutine()
         {
             yield return new WaitForSeconds(spaceshipSpawnerData.respawnDelay);
-            SpawnSpaceship(true);
+            SpawnSpaceship();
             CheckRewardLife();
         }
 

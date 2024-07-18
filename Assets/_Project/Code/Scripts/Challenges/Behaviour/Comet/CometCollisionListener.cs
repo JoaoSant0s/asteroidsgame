@@ -4,7 +4,7 @@ using AsteroidsGame.Bullets;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace AsteroidsGame.Challenges
+namespace AsteroidsGame.Challenges.Comets
 {
     [RequireComponent(typeof(Collider2D))]
     public class CometCollisionListener : MonoBehaviour

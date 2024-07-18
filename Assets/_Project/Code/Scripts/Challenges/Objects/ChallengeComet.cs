@@ -9,7 +9,7 @@ using JoaoSant0s.ServicePackage.Routine;
 
 using AsteroidsGame.UtilWrapper;
 
-namespace AsteroidsGame.Challenges
+namespace AsteroidsGame.Challenges.Comets
 {
     public class ChallengeComet : ChallengeObject
     {
