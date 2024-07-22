@@ -1,0 +1,87 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using AsteroidsGame.UI;
+using AsteroidsGame.UI.Inputs;
+using AsteroidsGame.UtilWrapper;
+using UnityEngine;
+
+namespace AsteroidsGame.Spaceships
+{
+    public class SpaceshipTurbine : MonoBehaviour
+    {
+        [Header("Behaviours")]
+
+        [SerializeField]
+        private SpriteRenderer turbineLeft;
+
+        [SerializeField]
+        private SpriteRenderer turbineRight;
+
+        private int rotateDirectionId;
+        private int speedId;
+
+        #region Unity Methods
+
+        private void Awake()
+        {
+            rotateDirectionId = Shader.PropertyToID("_RotateDirection");
+            speedId = Shader.PropertyToID("_Speed");
+            EnableFire(false);
+        }
+
+        private void OnEnable()
+        {
+            AccelerateButton.AcceleratingSpaceShip += AccelerateDirection;
+            AccelerateButton.StopAccelerateSpaceShip += StopTurbine;
+            JoystickControl.RotateSpaceShip += RotateAngle;
+
+            InputController.OnAccelerateSpaceShip += AccelerateDirection;
+            InputController.OnStopAccelerateSpaceShip += StopTurbine;
+            InputController.OnRotateSpaceShip += RotateDirection;
+        }
+
+        private void OnDisable()
+        {
+            AccelerateButton.AcceleratingSpaceShip -= AccelerateDirection;
+            AccelerateButton.StopAccelerateSpaceShip -= StopTurbine;
+            JoystickControl.RotateSpaceShip -= RotateAngle;
+
+            InputController.OnAccelerateSpaceShip -= AccelerateDirection;
+            InputController.OnStopAccelerateSpaceShip -= StopTurbine;
+            InputController.OnRotateSpaceShip -= RotateDirection;
+        }
+
+        #endregion
+
+        #region Private Methods        
+
+        private void AccelerateDirection(float direction)
+        {
+            EnableFire(true);
+        }
+
+        private void StopTurbine()
+        {
+            EnableFire(false);
+        }
+
+        private void RotateAngle(float angle, Vector2 direction)
+        {
+
+        }
+
+        private void RotateDirection(int direction)
+        {
+        }
+
+        private void EnableFire(bool enable)
+        {
+            this.turbineLeft.enabled = enable;
+            this.turbineRight.enabled = enable;
+        }
+
+        #endregion
+
+    }
+}
