@@ -20,6 +20,9 @@ namespace AsteroidsGame.Challenges.Comets
         [SerializeField]
         private SpriteRenderer spriteRender;
 
+        [SerializeField]
+        private ParticleSystem tailParticle;
+
         #region Unity Method
 
         private void Awake()
@@ -31,10 +34,15 @@ namespace AsteroidsGame.Challenges.Comets
 
         #region Public Methods
 
+        public void ResetTailPresence()
+        {
+            tailParticle.Clear();
+            tailParticle.Stop();
+            tailParticle.Play();
+        }
+
         public async void DamageEffect(float lifeProgress)
         {
-            Debugs.Log("Damaged", lifeProgress);
-
             spriteRender.GetPropertyBlock(materialBlock);
             materialBlock.SetFloat("_LifeProgress", lifeProgress);
             materialBlock.SetFloat("_ShakeForce", shakeForce);

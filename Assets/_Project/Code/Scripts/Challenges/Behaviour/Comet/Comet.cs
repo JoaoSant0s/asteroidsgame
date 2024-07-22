@@ -59,6 +59,7 @@ namespace AsteroidsGame.Challenges.Comets
         {
             Spaceship spaceship = await SpaceshipSpawner.WaitCurrentSpaceship();
             movementAction.Move(spaceship.Position);
+            render.ResetTailPresence();
         }
 
         #endregion

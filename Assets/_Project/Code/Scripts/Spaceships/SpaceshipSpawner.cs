@@ -102,7 +102,6 @@ namespace AsteroidsGame.Spaceships
 
         private void MakeSpaceshipInvulnerable()
         {
-            Debugs.Log("MakeSpaceshipInvulnerable", currentSpaceship);
             if (currentSpaceship == null) return;
             currentSpaceship.InvulnerableAction?.RunDefaultInvulnerability();
         }
