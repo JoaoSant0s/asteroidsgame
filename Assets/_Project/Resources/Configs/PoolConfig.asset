@@ -38,3 +38,13 @@ MonoBehaviour:
     maxPoolAmount: 10
     outsidePosition: {x: 3000, y: 3000, z: 3000}
     indexOrdering: 0
+  - prefab: {fileID: -1724057698923884917, guid: f516cc5b03d2ee14ea5858f2459956da, type: 3}
+    startPoolAmount: 5
+    maxPoolAmount: 20
+    outsidePosition: {x: 3000, y: 3000, z: 3000}
+    indexOrdering: 0
+  - prefab: {fileID: 1635797336351545265, guid: 7a9c924ea1fa0424bbcd48627dacd362, type: 3}
+    startPoolAmount: 2
+    maxPoolAmount: 10
+    outsidePosition: {x: 3000, y: 3000, z: 3000}
+    indexOrdering: 1

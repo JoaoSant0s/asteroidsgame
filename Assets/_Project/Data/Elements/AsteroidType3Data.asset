@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 60
   destroyScore: 1
-  asteroidCollisionEffectPrefab: {fileID: 2554450836756354896, guid: f516cc5b03d2ee14ea5858f2459956da, type: 3}
   canSpawnNextAsteroid: 0
   nextAsteroidAmount: 0
   nextAsteroidType: {fileID: 0}

@@ -2374,6 +2374,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 379548690}
+  - {fileID: 1241672119}
   m_Father: {fileID: 2021781687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1016014102
@@ -2389,6 +2390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletsArea: {fileID: 379548690}
+  spaceshipArea: {fileID: 1241672119}
   spaceshipPrefab: {fileID: 1135018853, guid: f95fbc8f85d7aa948b5de3b8eb71b37e, type: 3}
   spaceshipSpawnerData: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}
   lifeVariable: {fileID: 11400000, guid: 5811fad299e46a74881e49165488274c, type: 2}
@@ -2540,6 +2542,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1381827210602075575, guid: 69b046dae54188f4f8f8d85d79fa6009, type: 3}
   m_PrefabInstance: {fileID: 1166372140}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1241672118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1241672119}
+  m_Layer: 0
+  m_Name: SpaceshipArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1241672119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241672118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1016014101}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1439252835
 GameObject:
   m_ObjectHideFlags: 0

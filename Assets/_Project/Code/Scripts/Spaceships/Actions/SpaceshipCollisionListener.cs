@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using NaughtyAttributes;
-using JoaoSant0s.CommonWrapper;
+using JoaoSant0s.ServicePackage.Pool;
+using JoaoSant0s.ServicePackage.General;
+
+using AsteroidsGame.UtilWrapper;
 
 namespace AsteroidsGame.Spaceships.Actions
 {
@@ -27,11 +30,18 @@ namespace AsteroidsGame.Spaceships.Actions
         private float fade;
         private MaterialPropertyBlock materialBlock;
 
+        private PoolService poolService;
+
         #region Unity Methods      
 
         private void Awake()
         {
             materialBlock = new();
+        }
+
+        private void Start()
+        {
+            poolService = Services.Get<PoolService>();
         }
 
         void OnTriggerStay2D(Collider2D col)
@@ -40,8 +50,8 @@ namespace AsteroidsGame.Spaceships.Actions
             if (!col.CompareTag(collisionTag)) return;
             if (context.Invulnerable.Value) return;
             collided = true;
+            poolService.Get<DisposeSchedule>(col.transform.position, Quaternion.identity, transform.parent, 1);
 
-            Instantiate(context.Data.asteroidCollisionEffectPrefab, col.transform.position, Quaternion.identity);
             RegisterSpaceshipCollision();
             Destroy(gameObject);
             //StartCoroutine(SimulateDestroyFade(col.transform.position));

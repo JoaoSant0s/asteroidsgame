@@ -28,6 +28,9 @@ namespace AsteroidsGame.Spaceships
         [SerializeField]
         private Transform bulletsArea;
 
+        [SerializeField]
+        private Transform spaceshipArea;
+
         [Header("Data")]
         [SerializeField]
         private Spaceship spaceshipPrefab;
@@ -80,7 +83,7 @@ namespace AsteroidsGame.Spaceships
 
         public void SpawnSpaceship()
         {
-            currentSpaceship = Instantiate(spaceshipPrefab, Vector3.zero, Quaternion.identity);
+            currentSpaceship = Instantiate(spaceshipPrefab, Vector3.zero, Quaternion.identity, spaceshipArea);
             MakeSpaceshipInvulnerable();
         }
 
