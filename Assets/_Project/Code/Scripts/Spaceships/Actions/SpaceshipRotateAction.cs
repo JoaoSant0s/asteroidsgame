@@ -31,13 +31,11 @@ namespace AsteroidsGame.Spaceships.Actions
         {
             transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
-#if UNITY_EDITOR
-
+        
         private void RotateDirection(int direction)
         {
             transform.Rotate(0, 0, direction * context.Data.rotateSpeed * Time.deltaTime);
         }
-#endif
 
     }
 }
