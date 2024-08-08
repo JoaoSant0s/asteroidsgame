@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,7 +13,7 @@ namespace AsteroidsGame.Asteroids.Data
     [CreateAssetMenu(fileName = "AsteroidSpawnerData", menuName = "AsteroidsGame/Asteroid/AsteroidSpawnerData")]
     public class AsteroidSpawnerData : ScriptableObject
     {
-        public List<AsteroidTuple> asteroidConfigs;
+        public AsteroidTuple[] asteroidConfigs;
 
         public int TotalAsteroidsAmount(AsteroidData data)
         {
@@ -28,10 +29,16 @@ namespace AsteroidsGame.Asteroids.Data
             return totalSequence;
         }
 
-        private AsteroidData GetAsteroidData(TupleKeyData key)
+        public AsteroidData GetAsteroidData(TupleKeyData key)
         {
-            var tuple = asteroidConfigs.Find(a => a.type == key);
+            var tuple = asteroidConfigs.First(a => a.type == key);;
             return tuple.data;
+        }
+
+         public AsteroidTuple GetAsteroiInfo(TupleKeyData key)
+        {
+            var tuple = asteroidConfigs.First(a => a.type == key);;
+            return tuple;
         }
 
         public AsteroidData GetAsteroidData(int index)

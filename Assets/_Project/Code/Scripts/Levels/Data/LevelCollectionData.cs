@@ -11,6 +11,6 @@ namespace AsteroidsGame.Levels.Data
         [Header("Config")]
         public int levelToReturnAfterGameOver;
         public float nextLevelDelay;
-        public List<LevelData> levels;
+        public LevelData[] levels;
     }
 }

@@ -35,7 +35,7 @@ namespace AsteroidsGame.Asteroids
         [Header("References")]
 
         [SerializeField]
-        private List<Transform> spawnPoints;
+        private Transform[] spawnPoints;
 
         private int spawnPointIndex;
 
@@ -99,7 +99,7 @@ namespace AsteroidsGame.Asteroids
 
         private void SpawnAsteroid(TupleKeyData type)
         {
-            var config = spawnerData.asteroidConfigs.Find(a => a.type == type);
+            var config = spawnerData.GetAsteroiInfo(type);
             var position = SequencePosition();
 
             InstantiateAsteroid(config.asteroidIndex, position);
@@ -138,7 +138,7 @@ namespace AsteroidsGame.Asteroids
 
         private void SpawnAsteroid(TupleKeyData type, Vector2 position)
         {
-            var config = spawnerData.asteroidConfigs.Find(a => a.type == type);
+            var config = spawnerData.GetAsteroiInfo(type);
 
             InstantiateAsteroid(config.asteroidIndex, position);
         }
@@ -154,7 +154,7 @@ namespace AsteroidsGame.Asteroids
         {
             var position = spawnPoints[spawnPointIndex].position;
 
-            spawnPointIndex = ++spawnPointIndex % spawnPoints.Count;
+            spawnPointIndex = ++spawnPointIndex % spawnPoints.Length;
 
             return position + new Vector3(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1), 0);
         }
