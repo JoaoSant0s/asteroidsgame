@@ -220,6 +220,15 @@ namespace AsteroidsGame.UI
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TempSelectToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""929a0d4d-6d9a-4f00-af72-337ae39d1251"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -266,6 +275,17 @@ namespace AsteroidsGame.UI
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""822e62db-bc8d-4ae9-ba7f-34e9c84db987"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TempSelectToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +303,7 @@ namespace AsteroidsGame.UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Continue = m_UI.FindAction("Continue", throwIfNotFound: true);
             m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+            m_UI_TempSelectToggle = m_UI.FindAction("TempSelectToggle", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -424,12 +445,14 @@ namespace AsteroidsGame.UI
         private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
         private readonly InputAction m_UI_Continue;
         private readonly InputAction m_UI_Pause;
+        private readonly InputAction m_UI_TempSelectToggle;
         public struct UIActions
         {
             private @InputControls m_Wrapper;
             public UIActions(@InputControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @Continue => m_Wrapper.m_UI_Continue;
             public InputAction @Pause => m_Wrapper.m_UI_Pause;
+            public InputAction @TempSelectToggle => m_Wrapper.m_UI_TempSelectToggle;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -445,6 +468,9 @@ namespace AsteroidsGame.UI
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @TempSelectToggle.started += instance.OnTempSelectToggle;
+                @TempSelectToggle.performed += instance.OnTempSelectToggle;
+                @TempSelectToggle.canceled += instance.OnTempSelectToggle;
             }
 
             private void UnregisterCallbacks(IUIActions instance)
@@ -455,6 +481,9 @@ namespace AsteroidsGame.UI
                 @Pause.started -= instance.OnPause;
                 @Pause.performed -= instance.OnPause;
                 @Pause.canceled -= instance.OnPause;
+                @TempSelectToggle.started -= instance.OnTempSelectToggle;
+                @TempSelectToggle.performed -= instance.OnTempSelectToggle;
+                @TempSelectToggle.canceled -= instance.OnTempSelectToggle;
             }
 
             public void RemoveCallbacks(IUIActions instance)
@@ -484,6 +513,7 @@ namespace AsteroidsGame.UI
         {
             void OnContinue(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
+            void OnTempSelectToggle(InputAction.CallbackContext context);
         }
     }
 }

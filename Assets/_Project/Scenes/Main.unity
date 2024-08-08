@@ -1753,6 +1753,7 @@ MonoBehaviour:
   scoreManager: {fileID: 1496268954}
   spaceshipSpawner: {fileID: 1016014102}
   asteroidSpawner: {fileID: 2068886610}
+  enableMobileControllerFlag: {fileID: 11400000, guid: 732e0ef8ee98ed846b750585dae0dde8, type: 2}
 --- !u!4 &793252770
 Transform:
   m_ObjectHideFlags: 0
@@ -2122,6 +2123,7 @@ GameObject:
   - component: {fileID: 911198734}
   - component: {fileID: 911198733}
   - component: {fileID: 911198737}
+  - component: {fileID: 911198738}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: MainCanvas
@@ -2260,6 +2262,74 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: JoaoSant0s.CommonWrapper.ButtonHold, com.joaosantos.package-common-wrapper.Runtime
         m_MethodName: SetNotPressed
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &911198738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911198732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74148a1fb6088114999fcb915db4ffbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableFlag: {fileID: 11400000, guid: 732e0ef8ee98ed846b750585dae0dde8, type: 2}
+  startState: 0
+  raiseEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 536719037}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2110864298}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  lowerEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 536719037}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2110864298}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

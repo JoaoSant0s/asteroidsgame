@@ -13,6 +13,7 @@ namespace AsteroidsGame.Data
         [Header("Keys")]
         public string playerSaveKey;
         public string levelSaveKey;
+        public string settingsSaveKey;
 
         [Header("Data")]
         public SpaceshipSpawnerData spaceshipSpawnerData;
