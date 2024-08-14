@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using JoaoSant0s.ServicePackage.General;
-using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.Popups;
+using JoaoSant0s.ServicePackage.Flag;
 
 using AsteroidsGame.UI.Popup;
 using AsteroidsGame.Levels;
@@ -13,7 +14,7 @@ using AsteroidsGame.Asteroids;
 using AsteroidsGame.Scores;
 using AsteroidsGame.Spaceships;
 using AsteroidsGame.Challenges;
-using JoaoSant0s.ServicePackage.Flag;
+using AsteroidsGame.UI;
 
 namespace AsteroidsGame.Manager
 {

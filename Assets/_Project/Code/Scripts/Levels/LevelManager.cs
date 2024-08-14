@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using JoaoSant0s.ServicePackage.General;
-using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.Popups;
 using JoaoSant0s.CustomVariable;
 using JoaoSant0s.CommonWrapper;
 
@@ -16,6 +16,7 @@ using AsteroidsGame.Save;
 using AsteroidsGame.Asteroids;
 using AsteroidsGame.UtilWrapper.Data;
 using AsteroidsGame.Levels.Data;
+using AsteroidsGame.UI;
 
 namespace AsteroidsGame.Levels
 {

@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
-
-using JoaoSant0s.ServicePackage.Popup;
-using JoaoSant0s.ServicePackage.General;
-using JoaoSant0s.ServicePackage.Flag;
-using AsteroidsGame.Data;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using System;
-using TMPro;
 using UnityEngine.InputSystem;
+
+using AsteroidsGame.Data;
+
+using JoaoSant0s.ServicePackage.Popups;
+using JoaoSant0s.ServicePackage.General;
+using JoaoSant0s.ServicePackage.Flag;
+
+using TMPro;
 
 namespace AsteroidsGame.UI.Popup
 {
-    public class NextLevelPopup : BasePopup
+    public class NextLevelPopup : PopupBehaviour
     {
         [Header("Components")]
         [SerializeField]

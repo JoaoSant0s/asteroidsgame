@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AsteroidsGame.UtilWrapper
 {
-    public class DisposeSchedule : PoolBase
+    public class DisposeSchedule : PoolBehaviour
     {
         [SerializeField]
         private int destroyDelayTimeInMiliseconds;

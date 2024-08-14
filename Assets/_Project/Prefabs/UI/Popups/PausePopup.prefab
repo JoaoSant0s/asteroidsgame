@@ -285,6 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10df3a4c9e580b40b14d13e9fe52126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasId: Popup
   resumeButton: {fileID: 5140281969059255069}
   mobileControllersToggle: {fileID: 8752803070924520948}
   enableGameplayFlag: {fileID: 11400000, guid: 16e6ff95c38854546bfbd9ba7b5e8ad8, type: 2}

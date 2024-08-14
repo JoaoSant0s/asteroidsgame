@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1deff4dc0d070c546bb25c9485998aa2, type: 3}
+  m_Name: CanvasConfig
+  m_EditorClassIdentifier: 
+  priority: 0
+  defaultCanvasPrefab: {fileID: 4173575262595411802, guid: 8426f0190d71d7c49af0c911f951f790, type: 3}
+  canvasInfos:
+  - id: Popup
+    sortOrder: 1
+    overrideCanvasPrefab: {fileID: 0}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.Popups;
 using JoaoSant0s.ServicePackage.Flag;
 using JoaoSant0s.ServicePackage.General;
 using AsteroidsGame.Data;
@@ -15,7 +15,7 @@ using System;
 
 namespace AsteroidsGame.UI.Popup
 {
-    public class SplashScreenPopup : BasePopup
+    public class SplashScreenPopup : PopupBehaviour
     {
         [Header("Components")]
         [SerializeField]

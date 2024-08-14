@@ -7,15 +7,15 @@ using UnityEngine.UI;
 
 using TMPro;
 
-using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.Popups;
 using JoaoSant0s.ServicePackage.Flag;
 using JoaoSant0s.ServicePackage.General;
 using UnityEngine.InputSystem;
 
 
-namespace AsteroidsGame.UI.Popup
+namespace AsteroidsGame.UI
 {
-    public class GameOverScreenPopup : BasePopup
+    public class GameOverScreenPopup : PopupBehaviour
     {
         public static event Action RestartGame;
 

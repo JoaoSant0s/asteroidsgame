@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.Popups;
 using UnityEngine.UI;
 using JoaoSant0s.ServicePackage.Flag;
 using JoaoSant0s.ServicePackage.General;
@@ -14,7 +14,7 @@ using UnityEditor.SceneManagement;
 
 namespace AsteroidsGame.UI.Popup
 {
-    public class PausePopup : BasePopup
+    public class PausePopup : PopupBehaviour
     {
         [Header("Components")]
         [SerializeField]

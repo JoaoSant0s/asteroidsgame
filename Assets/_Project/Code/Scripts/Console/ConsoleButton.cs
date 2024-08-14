@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using JoaoSant0s.ServicePackage.General;
-using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.Popups;
 
 using AsteroidsGame.UI.Console;
 
