@@ -18,13 +18,19 @@ namespace AsteroidsGame.Challenges.Comets
 
         private Comet comet;
 
-        public ChallengeComet(ChallengeManager newManager) : base(newManager) { }
+        protected ChallengeManager manager;
+        public ChallengeComet(ChallengeManager newManager)
+        {
+            manager = newManager;
+        }
 
-        public override void Init()
+        #region Interface Implementation     
+
+        public void Init()
         {
             poolService = Services.Get<PoolService>();
             routineService = Services.Get<RoutineService>();
-            
+
             var target = Vector2.zero;
 
             comet = CreateComet();
@@ -33,17 +39,24 @@ namespace AsteroidsGame.Challenges.Comets
             comet.Init();
         }
 
-        public override void Clean()
+        public void Clean()
         {
             if (comet) comet.Dispose();
         }
 
+        public void ChallengeCompleted()
+        {
+            manager.ChallengeCompleted();
+        }
+
+        #endregion
+
         private Comet CreateComet()
-        {            
+        {
             var limits = MainCanvas.Instance.Limits;
 
             var xValue = UnityEngine.Random.Range(-limits.x * 0.7f, limits.x * 0.7f);
-            var yValue = UnityEngine.Random.Range(-limits.y * 0.7f, limits.y * 0.7f);            
+            var yValue = UnityEngine.Random.Range(-limits.y * 0.7f, limits.y * 0.7f);
             var startPosition = new Vector2(xValue, yValue);
 
             return poolService.Get<Comet>(startPosition, manager.transform);
