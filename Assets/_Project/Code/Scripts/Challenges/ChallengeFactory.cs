@@ -13,22 +13,23 @@ namespace AsteroidsGame.Challenges
     {
         public delegate ChallengeObject OnCreateChallenge();
 
-        private Dictionary<ChallengeType, OnCreateChallenge> challengeFactory;
+        private Dictionary<string, OnCreateChallenge> challengeFactory;
 
         public ChallengeFactory(ChallengeManager manager)
         {
-            challengeFactory = new()
+            challengeFactory = new();
+
+            for (int i = 0; i < ChallengeIdAttribute.Options.Length; i++)
             {
-                {
-                    ChallengeType.Comet,
-                    () => { return new ChallengeComet(manager); }
-                }
-            };
+                var optionKey = ChallengeIdAttribute.Options[i];
+                challengeFactory.Add(optionKey, () => { return new ChallengeComet(manager); });
+            }
         }
 
-        public ChallengeObject CreateChallenge(ChallengeType challengeType)
+        public ChallengeObject CreateChallenge(ChallengeIdObject challenge)
         {
-            return challengeFactory[challengeType]();
+            Debug.Assert(challengeFactory.ContainsKey(challenge.id), "To create this Challenge you must add this new Challenge Class to the ChallengeIdAttribute Property Class");
+            return challengeFactory[challenge.id]();
         }
     }
 }

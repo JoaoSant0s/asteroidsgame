@@ -66,8 +66,8 @@ namespace AsteroidsGame.Challenges
 
             currenChallengeObject?.Clean();
 
-            var currentChallengeType = challengeCollectionData.challengeTypes.Random();
-            currenChallengeObject = factory.CreateChallenge(currentChallengeType);
+            var challengeIdObject = challengeCollectionData.challenges.Random();
+            currenChallengeObject = factory.CreateChallenge(challengeIdObject);
             currenChallengeObject.Init();
         }
 

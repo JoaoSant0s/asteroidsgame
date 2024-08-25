@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ChallengeCollectionData
   m_EditorClassIdentifier: 
   challengeLevelModule: 3
-  challengeTypes: 00000000
+  challenges:
+  - id: ChallengeComet
