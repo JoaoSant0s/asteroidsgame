@@ -9,6 +9,7 @@ using JoaoSant0s.CustomVariable;
 
 namespace AsteroidsGame.UI.View
 {
+    
     public class AsteroidCounterView : MonoBehaviour
     {
         [SerializeField]
