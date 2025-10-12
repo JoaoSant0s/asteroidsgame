@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using JoaoSant0s.ServicePackage.General;
-using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.Popups;
 using JoaoSant0s.CustomVariable;
 using JoaoSant0s.CommonWrapper;
 
@@ -16,6 +16,7 @@ using AsteroidsGame.Save;
 using AsteroidsGame.Asteroids;
 using AsteroidsGame.UtilWrapper.Data;
 using AsteroidsGame.Levels.Data;
+using AsteroidsGame.UI;
 
 namespace AsteroidsGame.Levels
 {
@@ -117,7 +118,7 @@ namespace AsteroidsGame.Levels
             currentLevelIndex++;
             globalLevelIndex++;
 
-            if (currentLevelIndex >= data.levels.Count) currentLevelIndex = 0;
+            if (currentLevelIndex >= data.levels.Length) currentLevelIndex = 0;
 
             playerPersistence.SetLevel(currentLevelIndex, globalLevelIndex);
             OnSavePlayerScore?.Invoke();
@@ -131,7 +132,7 @@ namespace AsteroidsGame.Levels
         {
             var level = data.levels[currentLevelIndex];
 
-            for (int i = 0; i < level.Configs.Count; i++)
+            for (int i = 0; i < level.Configs.Length; i++)
             {
                 var config = level.Configs[i];
 
@@ -156,7 +157,7 @@ namespace AsteroidsGame.Levels
             var level = data.levels[currentLevelIndex];
             var info = new LevelGameplaySave();
 
-            for (int i = 0; i < level.Configs.Count; i++)
+            for (int i = 0; i < level.Configs.Length; i++)
             {
                 var config = level.Configs[i];
                 var amount = config.RandomAmount;

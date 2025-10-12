@@ -7,7 +7,7 @@ using JoaoSant0s.ServicePackage.Pool;
 
 namespace AsteroidsGame.Challenges
 {
-    public class ChallengeBehaviour : PoolBase
+    public class ChallengeBehaviour : PoolBehaviour
     {
     
     }

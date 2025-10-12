@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using JoaoSant0s.ServicePackage.General;
-using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.Popups;
+using JoaoSant0s.ServicePackage.Flag;
 
 using AsteroidsGame.UI.Popup;
 using AsteroidsGame.Levels;
@@ -13,12 +14,15 @@ using AsteroidsGame.Asteroids;
 using AsteroidsGame.Scores;
 using AsteroidsGame.Spaceships;
 using AsteroidsGame.Challenges;
+using AsteroidsGame.UI;
 
 namespace AsteroidsGame.Manager
 {
     public class GameScene : MonoBehaviour
     {
         [Header("Components")]
+
+
 
         [SerializeField]
         private LevelManager levelManager;
@@ -35,15 +39,23 @@ namespace AsteroidsGame.Manager
         [SerializeField]
         private AsteroidSpawner asteroidSpawner;
 
+        [Header("Assets")]
+
+        [SerializeField]
+        private FlagAsset enableMobileControllerFlag;
+
         private PopupService popupService;
 
         private PlayerPersistenceService playerPersistence;
+        private FlagService flagService;
+
 
         #region Unity Methods
         private void Start()
         {
             popupService = Services.Get<PopupService>();
             playerPersistence = Services.Get<PlayerPersistenceService>();
+            flagService = Services.Get<FlagService>();
 
             GameOverScreenPopup.RestartGame += RestartGame;
 
@@ -85,6 +97,20 @@ namespace AsteroidsGame.Manager
 
             levelManager.StartCurrentLevel(playerPersistence.GetLevelSave());
             spaceshipSpawner.SpawnSpaceship();
+
+            ToggleMobileController(playerPersistence.GetSettingsSave().isMobileControllerOn);
+        }
+
+        private void ToggleMobileController(bool isOn)
+        {
+            if (isOn)
+            {
+                flagService.Raise(enableMobileControllerFlag);
+            }
+            else
+            {
+                flagService.Lower(enableMobileControllerFlag);
+            }
         }
 
         #endregion

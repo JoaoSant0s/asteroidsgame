@@ -14,9 +14,9 @@ namespace AsteroidsGame.Levels.Data
     public class LevelData : ScriptableObject
     {
         [SerializeField]
-        private List<AsteroidConfig> configs;
+        private AsteroidConfig[] configs;
 
-        public List<AsteroidConfig> Configs => configs;
+        public AsteroidConfig[] Configs => configs;
     }
 
     [Serializable]

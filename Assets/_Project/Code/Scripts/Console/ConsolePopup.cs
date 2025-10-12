@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using JoaoSant0s.ServicePackage.Popup;
+using JoaoSant0s.ServicePackage.Popups;
+using JoaoSant0s.CommonWrapper.Console;
 using TMPro;
-using JoaoSant0s.ServicePackage.Console;
 
 namespace AsteroidsGame.UI.Console
 {
-    public class ConsolePopup : BasePopup
+    public class ConsolePopup : PopupBehaviour
     {
         [Header("Components")]
         [SerializeField]

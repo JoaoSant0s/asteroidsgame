@@ -12,6 +12,8 @@ namespace AsteroidsGame.Challenges
 {
     public class ChallengeManager : MonoBehaviour
     {
+        public event Action OnChallengeCompleted;
+
         [SerializeField]
         private ChallengeCollectionData challengeCollectionData;
 
@@ -30,12 +32,23 @@ namespace AsteroidsGame.Challenges
         {
             LevelManager.OnLevelSpawned += OnTryCreateChallenge;
             LevelManager.OnLevelCompleted += OnIncrementSessionLevel;
+            OnChallengeCompleted += FinishChallenge;
         }
 
         private void OnDestroy()
         {
             LevelManager.OnLevelSpawned -= OnTryCreateChallenge;
             LevelManager.OnLevelCompleted -= OnIncrementSessionLevel;
+            OnChallengeCompleted -= FinishChallenge;
+        }
+
+        #endregion
+
+        #region Interval Methods
+
+        internal void ChallengeCompleted()
+        {
+            OnChallengeCompleted?.Invoke();
         }
 
         #endregion
@@ -53,10 +66,9 @@ namespace AsteroidsGame.Challenges
 
             currenChallengeObject?.Clean();
 
-            var currentChallengeType = challengeCollectionData.challengeTypes.Random();
-            currenChallengeObject = factory.CreateChallenge(currentChallengeType);
+            var challengeIdObject = challengeCollectionData.challenges.Random();
+            currenChallengeObject = factory.CreateChallenge(challengeIdObject);
             currenChallengeObject.Init();
-            currenChallengeObject.OnChallengeCompleted += FinishChallenge;
         }
 
         private void OnIncrementSessionLevel()

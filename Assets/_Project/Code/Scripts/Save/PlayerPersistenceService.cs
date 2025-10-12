@@ -8,6 +8,8 @@ using JoaoSant0s.ServicePackage.General;
 
 using AsteroidsGame.Data;
 using JoaoSant0s.ServicePackage.Save;
+using JetBrains.Annotations;
+using System.ComponentModel;
 
 namespace AsteroidsGame.Save
 {
@@ -18,6 +20,7 @@ namespace AsteroidsGame.Save
 
         private SaveLocalService saveService;
 
+        private SettingsData localSettingsSave;
         private PlayerInfoData localPlayerSave;
         private LevelSaveData localLevelSave;
 
@@ -28,6 +31,7 @@ namespace AsteroidsGame.Save
             this.playerPersistenceConfig = Resources.Load<SaveConfig>("GameConfigs/PlayerPersistenceConfig");
             this.saveService = Services.Get<SaveLocalService>();
 
+            BuildLocalSettingsSave();
             BuildLocalPlayerSave();
             BuildLocalLevelSave();
         }
@@ -37,6 +41,8 @@ namespace AsteroidsGame.Save
         #region Public Methods
 
         public bool ContainsPlayerSave() => this.saveService.Contains(this.playerPersistenceConfig.playerSaveKey);
+
+        public SettingsData GetSettingsSave() => this.localSettingsSave;
 
         public PlayerInfoData GetPlayerSave() => this.localPlayerSave;
 
@@ -52,6 +58,12 @@ namespace AsteroidsGame.Save
         {
             this.localPlayerSave.life = newLife;
             SavePlayerInfo();
+        }
+
+        public void SetSettingsMobileControllerOn(bool isOn)
+        {
+            this.localSettingsSave.isMobileControllerOn = isOn;
+            SaveSettings();
         }
 
         public void CreatePlayerSave()
@@ -84,25 +96,46 @@ namespace AsteroidsGame.Save
 
         private void BuildLocalPlayerSave()
         {
-            this.localPlayerSave = this.saveService.Get<PlayerInfoData>(this.playerPersistenceConfig.playerSaveKey) ?? new PlayerInfoData(this.playerPersistenceConfig.spaceshipSpawnerData.maxSpaceshipLife); ;
+            this.localPlayerSave = this.saveService.Get<PlayerInfoData>(this.playerPersistenceConfig.playerSaveKey) ?? new PlayerInfoData(this.playerPersistenceConfig.spaceshipSpawnerData.maxSpaceshipLife);
         }
 
         private void BuildLocalLevelSave()
         {
-            this.localLevelSave = this.saveService.Get<LevelSaveData>(this.playerPersistenceConfig.levelSaveKey) ?? new LevelSaveData(0, 0); ;
+            this.localLevelSave = this.saveService.Get<LevelSaveData>(this.playerPersistenceConfig.levelSaveKey) ?? new LevelSaveData(0, 0);
+        }
+
+        private void BuildLocalSettingsSave()
+        {
+            this.localSettingsSave = this.saveService.Get<SettingsData>(this.playerPersistenceConfig.settingsSaveKey) ?? new SettingsData();
         }
 
         private void SavePlayerInfo()
         {
-            this.saveService.Set<PlayerInfoData>(this.playerPersistenceConfig.playerSaveKey, this.localPlayerSave);
+            this.saveService.Set(this.playerPersistenceConfig.playerSaveKey, this.localPlayerSave);
         }
 
         private void SaveLevelSave()
         {
-            this.saveService.Set<LevelSaveData>(this.playerPersistenceConfig.levelSaveKey, this.localLevelSave);
+            this.saveService.Set(this.playerPersistenceConfig.levelSaveKey, this.localLevelSave);
+        }
+
+        private void SaveSettings()
+        {
+            this.saveService.Set(this.playerPersistenceConfig.settingsSaveKey, this.localSettingsSave);
         }
 
         #endregion
+    }
+
+    [Serializable]
+    public class SettingsData
+    {
+        public bool isMobileControllerOn;
+
+        public SettingsData()
+        {
+            isMobileControllerOn = true;
+        }
     }
 
     [Serializable]

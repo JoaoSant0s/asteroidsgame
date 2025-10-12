@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSaveKey: player_save_1
   levelSaveKey: level_save_1
+  settingsSaveKey: settings_save_1
   spaceshipSpawnerData: {fileID: 11400000, guid: 7cbf616e930feae4bb3381a2419419d8, type: 2}

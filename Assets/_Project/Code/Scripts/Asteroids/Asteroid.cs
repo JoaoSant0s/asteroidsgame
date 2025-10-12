@@ -9,8 +9,9 @@ using AsteroidsGame.Animations;
 namespace AsteroidsGame.Asteroids
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(RotateTweenAnimation))]
-    public class Asteroid : PoolBase
+    public class Asteroid : PoolBehaviour
     {
+        
         private Rigidbody2D rb;
         private RotateTweenAnimation rotateTweenAnimation;
 

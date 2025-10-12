@@ -11,7 +11,7 @@ using AsteroidsGame.Animations;
 namespace AsteroidsGame.Bullets
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(PunchScaleTweenAnimation))]
-    public class Bullet : PoolBase
+    public class Bullet : PoolBehaviour
     {
         [SerializeField]
         private BulletMovementAction movementAction;

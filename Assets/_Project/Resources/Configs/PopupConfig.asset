@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299e3b4ed8d7c454bb0a14193d50c3f1, type: 3}
   m_Name: PopupConfig
   m_EditorClassIdentifier: 
-  mainPopupTag: Popup
-  popupsInfos:
-  - prefab: {fileID: 3388575993061150518, guid: a1bdb559dd4b71b49b7f5c10424c54a4, type: 3}
-  - prefab: {fileID: 1285335988571325005, guid: b458d327974d9f24b95ec45e36328ac3, type: 3}
-  - prefab: {fileID: 4533291439038514365, guid: 3bf6ba02ef56f4e4797187175fbfb33a, type: 3}
-  - prefab: {fileID: 2961813675706074442, guid: 34b6884cebcc4f1418d8c88ea22740ae, type: 3}
-  - prefab: {fileID: 32292684752898151, guid: 3ed066a6bef09474aa178787822c9997, type: 3}
+  priority: 0
+  popupPrefabs:
+  - {fileID: 32292684752898151, guid: 3ed066a6bef09474aa178787822c9997, type: 3}
+  - {fileID: 3388575993061150518, guid: a1bdb559dd4b71b49b7f5c10424c54a4, type: 3}
+  - {fileID: 4533291439038514365, guid: 3bf6ba02ef56f4e4797187175fbfb33a, type: 3}
+  - {fileID: 2961813675706074442, guid: 34b6884cebcc4f1418d8c88ea22740ae, type: 3}
+  - {fileID: 1285335988571325005, guid: b458d327974d9f24b95ec45e36328ac3, type: 3}

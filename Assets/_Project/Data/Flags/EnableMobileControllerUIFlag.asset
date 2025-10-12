@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b93511928f6594c97ecb0c5ba9f08a, type: 3}
-  m_Name: ChallengeCollectionData
+  m_Script: {fileID: 11500000, guid: 57468f316e2594c4dbb6c69fa1f78246, type: 3}
+  m_Name: EnableMobileControllerUIFlag
   m_EditorClassIdentifier: 
-  challengeLevelModule: 3
-  challenges:
-  - id: ChallengeComet
