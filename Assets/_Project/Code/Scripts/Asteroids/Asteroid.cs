@@ -34,7 +34,7 @@ namespace AsteroidsGame.Asteroids
 
         protected override void OnDispose()
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rotateTweenAnimation.CompleteTween();
         }
 

@@ -26,8 +26,8 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void Start()
         {
-            rb.angularDrag = context.Data.angularDrag;
-            rb.drag = context.Data.linearDrag;
+            rb.angularDamping = context.Data.angularDrag;
+            rb.linearDamping = context.Data.linearDrag;
         }
 
         private void OnDisable()
@@ -40,7 +40,7 @@ namespace AsteroidsGame.Spaceships.Actions
 
         private void AccelerateDirection(float _)
         {
-            if (rb.velocity.magnitude >= context.Data.maxForwardVelocity) return;
+            if (rb.linearVelocity.magnitude >= context.Data.maxForwardVelocity) return;
 
             rb.AddForce(transform.up * context.Data.forwardForce * Time.deltaTime);
         }
