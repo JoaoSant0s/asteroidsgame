@@ -10,6 +10,9 @@ using JoaoSant0s.ServicePackage.General;
 using AsteroidsGame.Ads.Data;
 using JoaoSant0s.CommonWrapper;
 using System;
+using AsteroidsGame.Save;
+using JoaoSant0s.ServicePackage.Popups;
+using AsteroidsGame.UI.Popup;
 
 namespace AsteroidsGame.Ads
 {
@@ -29,15 +32,19 @@ namespace AsteroidsGame.Ads
 
         private string RewardedVideoId => config.placementRewardedVideoId;
 
+        private PlayerPersistenceService playerPersistence;
+        private PopupService popupService;
+
         #region Public Override Methods
 
         public override void OnInit()
         {
             config = Resources.Load<AdConfigData>("GameConfigs/AdConfig");
+            playerPersistence = Services.Get<PlayerPersistenceService>();
+            popupService = Services.Get<PopupService>();
+
             unityAdsLoaded = new Dictionary<string, bool>();
             callbackActions = new Dictionary<string, Action<AdsResult>>();
-
-            StartUnityAds();
         }
 
         #endregion
@@ -93,10 +100,31 @@ namespace AsteroidsGame.Ads
 
         #endregion
 
-        #region Public Methods
+        #region Public Methods        
+
+        public bool WasConsentSelected()
+        {
+            return playerPersistence.GetSettingsSave().adsConsent.isAdConsentSelected;
+        }
+
+        public void StartUnityAds()
+        {
+            if (Advertisement.isInitialized)
+            {
+                Init();
+            }
+            else
+            {
+#if UNITY_ANDROID
+                SetConsent(WasConsentAgreed());
+                Advertisement.Initialize(config.playStoreGameId, this.config.testMode, this);
+#endif
+            }
+        }
+
         public Coroutine WaitRewardAdsReady(UnityAction action)
         {
-            return StartCoroutine(OWaitRewardAdsReadyRoutine(action));
+            return StartCoroutine(OnWaitRewardAdsReadyRoutine(action));
         }
 
         public void ShowRewardedVideo(Action<AdsResult> callbackAction)
@@ -109,21 +137,7 @@ namespace AsteroidsGame.Ads
 
         #endregion
 
-        #region Private Methods
-
-        private void StartUnityAds()
-        {
-            if (Advertisement.isInitialized)
-            {
-                Init();
-            }
-            else
-            {
-#if UNITY_ANDROID
-                Advertisement.Initialize(config.playStoreGameId, this.config.testMode, this);
-#endif
-            }
-        }
+        #region Private Methods   
 
         private void Init()
         {
@@ -141,7 +155,7 @@ namespace AsteroidsGame.Ads
             Advertisement.Load(RewardedVideoId, this);
         }
 
-        private IEnumerator OWaitRewardAdsReadyRoutine(UnityAction action)
+        private IEnumerator OnWaitRewardAdsReadyRoutine(UnityAction action)
         {
             yield return new WaitUntil(() => initialized && IsAdvertisementReady(RewardedVideoId));
 
@@ -161,6 +175,22 @@ namespace AsteroidsGame.Ads
             callbackActions.Remove(placementId);
         }
 
+        private void SetConsent(bool consent)
+        {
+            MetaData gdprMetaData = new MetaData("gdpr");
+            gdprMetaData.Set("consent", consent ? "true" : "false");
+
+            MetaData privacyData = new MetaData("privacy");
+            privacyData.Set("consent", consent ? "true" : "false");
+
+            Advertisement.SetMetaData(gdprMetaData);
+            Advertisement.SetMetaData(privacyData);
+        }
+
+        public bool WasConsentAgreed()
+        {
+            return playerPersistence.GetSettingsSave().adsConsent.wasAgreed;
+        }
 
         #endregion
 
