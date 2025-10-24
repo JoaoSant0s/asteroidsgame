@@ -1,0 +1,8 @@
+﻿<Solution>
+  <Project Path="AsteroidsAssembly.csproj" />
+  <Project Path="DOTween.Modules.csproj" />
+  <Project Path="Joysticks.csproj" />
+  <Project Path="AsteroidsAssembly.Tests.csproj" />
+  <Project Path="AsteroidsAssembly.Editor.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+</Solution>

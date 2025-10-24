@@ -15,14 +15,13 @@ using AsteroidsGame.Scores;
 using AsteroidsGame.Spaceships;
 using AsteroidsGame.Challenges;
 using AsteroidsGame.UI;
+using AsteroidsGame.Ads;
 
 namespace AsteroidsGame.Manager
 {
     public class GameScene : MonoBehaviour
     {
         [Header("Components")]
-
-
 
         [SerializeField]
         private LevelManager levelManager;
@@ -48,6 +47,7 @@ namespace AsteroidsGame.Manager
 
         private PlayerPersistenceService playerPersistence;
         private FlagService flagService;
+        private AdsService adsService;
 
 
         #region Unity Methods
@@ -56,10 +56,20 @@ namespace AsteroidsGame.Manager
             popupService = Services.Get<PopupService>();
             playerPersistence = Services.Get<PlayerPersistenceService>();
             flagService = Services.Get<FlagService>();
+            adsService = Services.Get<AdsService>();
 
             GameOverScreenPopup.RestartGame += RestartGame;
 
-            StartCoroutine(ShowSplashScreenRoutine());
+            if (adsService.WasConsentSelected())
+            {
+                InitGame();
+            }
+            else
+            {
+                var popup = popupService.Show<AdsConsentPopup>();
+                popup.OnBeforeClose += InitGame;
+            }
+
         }
 
         private void OnDestroy()
@@ -70,6 +80,12 @@ namespace AsteroidsGame.Manager
         #endregion
 
         #region Private Methods
+
+        private void InitGame()
+        {
+            adsService.StartUnityAds();
+            StartCoroutine(ShowSplashScreenRoutine());
+        }
 
         private IEnumerator ShowSplashScreenRoutine()
         {

@@ -7,7 +7,6 @@ using UnityEditor;
 using JoaoSant0s.CommonWrapper.GUIDrawerEditor;
 
 using AsteroidsGame.Challenges;
-using AsteroidsGame.Challenges.Comets;
 
 namespace AsteroidsGame.ChallengesEditor
 {

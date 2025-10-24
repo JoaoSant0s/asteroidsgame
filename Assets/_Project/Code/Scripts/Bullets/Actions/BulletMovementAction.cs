@@ -18,7 +18,7 @@ namespace AsteroidsGame.Bullets.Actions
 
         public void Move(Vector2 direction)
         {
-            rb.velocity = direction * context.Data.speed * Time.fixedDeltaTime;
+            rb.linearVelocity = direction * context.Data.speed * Time.fixedDeltaTime;
         }
     }
 }

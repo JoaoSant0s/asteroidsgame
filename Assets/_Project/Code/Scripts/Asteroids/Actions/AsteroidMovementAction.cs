@@ -26,12 +26,12 @@ namespace AsteroidsGame.Asteroids.Actions
 
         private void Move()
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
 
             var direction = Util.RandomDirection();
             direction.Normalize();
 
-            rb.velocity = direction * context.Data.speed * Time.fixedDeltaTime;
+            rb.linearVelocity = direction * context.Data.speed * Time.fixedDeltaTime;
         }
     }
 }

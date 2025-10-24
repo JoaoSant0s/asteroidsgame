@@ -79,7 +79,7 @@ namespace AsteroidsGame.Challenges.Comets
         protected override void OnDispose()
         {
             render.Reset();
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rotateTweenAnimation.CompleteTween();
 
             moveOppositeSide.OnPositionChanged -= BuildMoveDirection;

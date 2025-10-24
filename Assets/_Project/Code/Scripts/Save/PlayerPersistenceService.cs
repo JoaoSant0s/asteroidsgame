@@ -66,6 +66,12 @@ namespace AsteroidsGame.Save
             SaveSettings();
         }
 
+        public void SetSettingsAdConsentSelected(bool wasAgreed)
+        {
+            this.localSettingsSave.adsConsent.SetAgreement(wasAgreed);
+            SaveSettings();
+        }
+
         public void CreatePlayerSave()
         {
             this.localPlayerSave = new PlayerInfoData(this.playerPersistenceConfig.spaceshipSpawnerData.maxSpaceshipLife);
@@ -131,10 +137,31 @@ namespace AsteroidsGame.Save
     public class SettingsData
     {
         public bool isMobileControllerOn;
+        public AdsConsentData adsConsent;
 
         public SettingsData()
         {
             isMobileControllerOn = true;
+            adsConsent = new AdsConsentData();
+        }
+    }
+
+    [Serializable]
+    public class AdsConsentData
+    {
+        public bool isAdConsentSelected;
+        public bool wasAgreed;
+
+        public AdsConsentData()
+        {
+            isAdConsentSelected = false;
+            wasAgreed = false;
+        }
+
+        public void SetAgreement(bool agree)
+        {
+            isAdConsentSelected = true;
+            wasAgreed = agree;
         }
     }
 

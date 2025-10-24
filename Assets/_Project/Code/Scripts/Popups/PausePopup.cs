@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
-
-using JoaoSant0s.ServicePackage.Popups;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+
 using JoaoSant0s.ServicePackage.Flag;
 using JoaoSant0s.ServicePackage.General;
-using UnityEngine.InputSystem;
-using JoaoSant0s.CustomVariable;
+using JoaoSant0s.ServicePackage.Popups;
+
 using AsteroidsGame.Save;
-using UnityEditor.SceneManagement;
 
 namespace AsteroidsGame.UI.Popup
 {
